@@ -95,30 +95,30 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
 
         var _x = x0 + specific_margin;
         var _y = (y0 + y1) / 2;
-        var _maxWidth = x1 - x0 - specific_margin * 2;
+        var _max_width = x1 - x0 - specific_margin * 2;
 
         var words = string_split(text, " ");
-        var currentLine = "";
+        var _current_line = "";
 
         for (var i = 0; i < array_length_1d(words); i++) {
             var word = words[i];
-            var lineWidth = string_width(currentLine + " " + word);
+            var lineWidth = string_width(_current_line + " " + word);
 
-            if (lineWidth <= _maxWidth) {
-                if (currentLine != "") {
-                    currentLine += " ";
+            if (lineWidth <= _max_width) {
+                if (_current_line != "") {
+                    _current_line += " ";
                 }
-                currentLine += word;
+                _current_line += word;
             } else {
                 // Draw the current line and move the y-coordinate
-                draw_text(_x, _y, currentLine);
-                _y += string_height(currentLine);
+                draw_text(_x, _y, _current_line);
+                _y += string_height(_current_line);
 
-                currentLine = word; // Start a new line
+                _current_line = word; // Start a new line
             }
         }
 
         // Draw the last line
-        draw_text(_x, _y, currentLine);
+        draw_text(_x, _y, _current_line);
     }
 }
