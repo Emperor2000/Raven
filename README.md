@@ -36,7 +36,7 @@ Raven provides a set of components for creating dynamic and responsive GUI's in 
 <img width="916" alt="menu1" src="https://github.com/Emperor2000/Raven/assets/38536470/e7b89cd8-37b5-4e4d-860c-c0855dafd51b">
 
 
-Raven allows you to create UI's at different resolutions and have a responsive UI when rescaling images.
+Raven allows you to create UI's at different resolutions and have a responsive UI when scaling containers or the game window.
 
 
 <img width="294" alt="scaling1" src="https://github.com/Emperor2000/Raven/assets/38536470/1ff4355f-03c7-479d-ab1d-1e02e3a4b682">
