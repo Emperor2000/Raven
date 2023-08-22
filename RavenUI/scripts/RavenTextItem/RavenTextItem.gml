@@ -1,5 +1,5 @@
 /// TextItem Constructor
-function RavenTextItem(_text, _on_click, _margin, _font, _color) : RavenItem(_text, _on_click, _margin) constructor {
+function RavenTextItem(_text, _on_click, _margin, _font, _color = undefined) : RavenItem(_text, _on_click, _margin) constructor {
     container_id = undefined;
     is_enabled = true;
     text = _text;
@@ -105,7 +105,11 @@ function RavenTextItem(_text, _on_click, _margin, _font, _color) : RavenItem(_te
 	// Render method to draw the text item
 	function Render() {
 	    draw_set_font(font);
-	    draw_set_color(color);
+		if (color == undefined) {
+			draw_set_color(global.gui_text_default);
+		} else {
+			draw_set_color(color);
+		}
 
 	    // Calculate the width of the text
 	    var text_width = string_width(text);

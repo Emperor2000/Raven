@@ -1,5 +1,5 @@
 /// RavenDropdownItem Constructor
-function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fnt_dsansmono16, _color = global.gui_text_default, _text_color = global.gui_text_default, _dropdown_color = global.gui_menu, _hover_color = global.gui_menu_hover, _background_color = global.gui_background) : RavenItem(_text, undefined, _margin) constructor {
+function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fnt_dsansmono16, _color = undefined, _text_color = undefined, _dropdown_color = global.gui_menu, _hover_color = undefined, _background_color = global.gui_background) : RavenItem(_text, undefined, _margin) constructor {
     container_id = undefined;
     is_enabled = true;
     text = _text;
@@ -107,7 +107,11 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	}
 	function Render() {
 	    // Draw dropdown text at the original y position
-		draw_set_color(dropdown_color);
+		if (dropdown_color == undefined) {
+			draw_set_color(global.gui_menu);
+		} else {
+			draw_set_color(dropdown_color);
+		}
 		
 		//Draw accordion area
 		//If the selected item index is less than 0 or more or equal to the ds list size it is not a valid item. In that case we can draw a compact rectangle as no value is selected.
@@ -118,7 +122,12 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 			draw_rectangle(x0, y0, x0 + GetDropdownWidth() + string_width(ds_list_find_value(options, selected_item_index)), y0 + GetDropdownItemHeight(), false);
 		}
 	    draw_set_font(font);
-	    draw_set_color(text_color);
+		
+		if (text_color == undefined) {
+			draw_set_color(global.gui_text_default);
+		} else {
+			draw_set_color(text_color);
+		}
 	    draw_text(x0, y0, text);
 		
 
@@ -134,27 +143,47 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 
 	            // Draw highlighted item on hover
 	            if (_is_mouse_over) {
-	                draw_set_color(hover_color);
+					if (hover_color == undefined) {
+						draw_set_color(global.gui_menu_hover);
+					} else {
+						draw_set_color(hover_color);
+					}
 	                draw_rectangle(x0, _item_y, x0 + GetDropdownWidth(), _item_y + _item_height, true);
 	            }
             
 	            // Draw text with appropriate colors
 	            draw_set_font(font);
-	            draw_set_color(dropdown_color); // Set dropdown color
+				if (dropdown_color == undefined) {
+					draw_set_color(global.gui_menu);
+				} else {
+					draw_set_color(dropdown_color);
+				}
 	            draw_rectangle(x0, _item_y, x0 + GetDropdownWidth(), _item_y + _item_height, false); // Draw outline
-	            draw_set_color(text_color);
+				if (text_color == undefined) {
+					draw_set_color(global.gui_text_default);
+				} else {
+					draw_set_color(text_color);
+				}
 	            draw_text(x0 + 4, _item_y + 2, ds_list_find_value(options, _i)); // Adjusted position
             
 	            // Apply outline when hovered
 	            if (_is_mouse_over) {
-	                draw_set_color(hover_color);
+					if (text_color == undefined) {
+						draw_set_color(global.gui_text_default);
+					} else {
+						draw_set_color(text_color);
+					}
 	                draw_text(x0 + 4, _item_y + 2, ds_list_find_value(options, _i));
 	            }
 	        }
 	    } else {
 	        // Draw selected item's text
 	        if (selected_item_index >= 0 && selected_item_index < ds_list_size(options)) {
-	            draw_set_color(text_color);
+				if (text_color == undefined) {
+					draw_set_color(global.gui_text_default);
+				} else {
+					draw_set_color(text_color);
+				}
 	            draw_text(x0 + string_width(text) + margin, y0, ds_list_find_value(options, selected_item_index));
 				
 	        }

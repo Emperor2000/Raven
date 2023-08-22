@@ -1,5 +1,5 @@
 /// RavenMultiLineTextItem Constructor
-function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsansmono16, _color = global.gui_text_default) : RavenItem(_text, _on_click, _margin) constructor {
+function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsansmono16, _color = undefined) : RavenItem(_text, _on_click, _margin) constructor {
     container_id = undefined;
     is_enabled = true;
     text = _text;
@@ -86,7 +86,12 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
 
     function Render() {
         draw_set_font(font);
-        draw_set_color(color);
+		
+		if (color == undefined) {
+			draw_set_color(global.gui_text_default);
+		} else {
+			draw_set_color(color);
+		}
 
         var _x = x0 + specific_margin;
         var _y = (y0 + y1) / 2;

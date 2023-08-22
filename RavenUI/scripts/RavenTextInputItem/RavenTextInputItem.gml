@@ -7,7 +7,7 @@
 /// @param {_font} _font	The font used to draw text input.
 /// @param {_color}	_color	The color used to draw input border
 /// @param {_text_color} _text_color		The color used to draw text input
-function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = fnt_dsansmono16, _color = global.gui_text_default, _text_color = global.gui_text_default) : RavenItem(_text, _on_click, _margin) constructor {
+function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = fnt_dsansmono16, _color = undefined, _text_color = undefined) : RavenItem(_text, _on_click, _margin) constructor {
     container_id = undefined;
     is_enabled = true;
     text = _text;
@@ -192,7 +192,11 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 	    var text_x = x0 + specific_margin;
 	    var text_y = y0 + (y1 - y0 - font_height) / 2;
 
-	    draw_set_color(text_color);
+		if (text_color == undefined) {
+			draw_set_color(global.gui_text_default);
+		} else {
+			draw_set_color(text_color);
+		}
 
 	    var display_text = input_text;
 	    if (string_length(display_text) == 0 && !active) {
