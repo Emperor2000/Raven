@@ -34,12 +34,15 @@ Raven provides a set of components for creating dynamic and responsive GUI's in 
 
 
 <img width="916" alt="menu1" src="https://github.com/Emperor2000/Raven/assets/38536470/e7b89cd8-37b5-4e4d-860c-c0855dafd51b">
+
 Raven allows you to create UI's at different resolutions and have a responsive UI when rescaling images.
 
 
 <img width="294" alt="scaling1" src="https://github.com/Emperor2000/Raven/assets/38536470/1ff4355f-03c7-479d-ab1d-1e02e3a4b682">
+
 As you can see we are also able to scale our UI, and text, buttons and elements will adapt to the new layout. 
 
 
 <img width="919" alt="theme2" src="https://github.com/Emperor2000/Raven/assets/38536470/db52bac1-021e-4afc-b3f6-ef4305fda904">
+
 You can select a few different themes, or easily make your own!
