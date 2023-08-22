@@ -31,3 +31,9 @@ Raven provides a set of components for creating dynamic and responsive GUI's in 
 - RavenTextInputItem : An experimental element that allows you to type text into a field. Please note that this item is a work in progress, and may have some unexpected behavior.
 - RavenDropdownItem : An experimental element that allows you to show options in a dropdown, and select an item. Please note that this element may have some unexpected behavior.
 
+Raven allows you to create UI's at different resolutions and have a responsive UI when rescaling images.
+<img width="294" alt="scaling1" src="https://github.com/Emperor2000/Raven/assets/38536470/1ff4355f-03c7-479d-ab1d-1e02e3a4b682">
+<img width="919" alt="theme2" src="https://github.com/Emperor2000/Raven/assets/38536470/db52bac1-021e-4afc-b3f6-ef4305fda904">
+
+Raven also allows you to use different themes and replace them with your own preferred styles.
+<img width="916" alt="menu1" src="https://github.com/Emperor2000/Raven/assets/38536470/e7b89cd8-37b5-4e4d-860c-c0855dafd51b">
