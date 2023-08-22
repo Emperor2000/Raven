@@ -1,6 +1,5 @@
 // Init
 global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
-
 #region Macros
 // Dark Theme - macros not directly used, but simply serve as data store for theme manager
 #macro GUI_DARK_BACKGROUND $2a2a2e
@@ -34,7 +33,6 @@ global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
 #macro GUI_TEXT_FONT_MENU_ 14
 
 #endregion
-
 
 #region global variables - base
 enum theme {
@@ -80,46 +78,6 @@ global.experimental_features = false; //Enables some experimental features in th
 
 #endregion
 
-
-#region Config
-display_set_gui_maximise();
-#endregion
-
-#region Init RavenGUI
-global.raven_debug = true;
-raven_gui = new RavenMain();
-raven_menu = new RavenMenu(0,0,64,32,32);
-overview_button = new RavenItem("Overview",noone);
-new_button = new RavenItem("New", noone);
-save_button = new RavenItem("Save",noone);
-view_button = new RavenItem("View",noone);
-undo_button = new RavenItem("Undo", noone);
-redo_button = new RavenItem("Redo", noone);
-export_button = new RavenItem("Export", noone);
-preferences_button = new RavenItem("Preferences", noone);
-variables_button = new RavenItem("variables", noone);
-changelog_button = new RavenItem("Changelog", noone);
-help_button = new RavenItem("Help",global.open_help_page);
-//container = new RavenContainer(0,0,1920,1080, true, false);
-container = new RavenContainer(0,0,global.resolution_x, global.resolution_y, true, false);
-container.SetLock(true);
-raven_gui.SetMenu(raven_menu);
-raven_menu.SetOutline(true);
-raven_menu.AddItem(overview_button);
-raven_menu.AddItem(new_button);
-raven_menu.AddItem(save_button);
-raven_menu.AddItem(view_button);
-raven_menu.AddItem(undo_button);
-raven_menu.AddItem(redo_button);
-raven_menu.AddItem(export_button);
-raven_menu.AddItem(variables_button);
-raven_menu.AddItem(preferences_button);
-raven_menu.AddItem(changelog_button);
-raven_menu.AddItem(help_button);
-raven_gui.AddContainer(container);
-//raven_gui.AddContainer(new RavenContainer(200,200,400,400,false, c_red));
-
-
 #region Callback functions & Closures
 
 global.destroy_container = function() {
@@ -131,13 +89,16 @@ global.destroy_container = function() {
 #endregion
 
 
-
-
+//GET STARTED HERE
+#region Config & Customize
+display_set_gui_maximise();
 
 //THEMES INIT
 //Theme Manager
 theme = theme.RAVEN;
 
+
+//Also copy paste any custom themes in step event if you want to update these dynamically.
 switch(theme) {
 	case theme.RAVEN:
 		global.gui_background = $2a2a2e;
@@ -210,9 +171,54 @@ switch(theme) {
 }
 
 
+#endregion
+
+//init raven
+#region Init RavenGUI
+global.raven_debug = true;
+raven_gui = new RavenMain();
+raven_menu = new RavenMenu(0,0,64,32,32);
+overview_button = new RavenItem("Overview",noone);
+new_button = new RavenItem("New", noone);
+save_button = new RavenItem("Save",noone);
+view_button = new RavenItem("View",noone);
+undo_button = new RavenItem("Undo", noone);
+redo_button = new RavenItem("Redo", noone);
+export_button = new RavenItem("Export", noone);
+preferences_button = new RavenItem("Preferences", noone);
+variables_button = new RavenItem("variables", noone);
+changelog_button = new RavenItem("Changelog", noone);
+help_button = new RavenItem("Help",global.open_help_page);
+//container = new RavenContainer(0,0,1920,1080, true, false);
+container = new RavenContainer(0,0,global.resolution_x, global.resolution_y, true, false);
+container.SetLock(true);
+raven_gui.SetMenu(raven_menu);
+raven_menu.SetOutline(true);
+raven_menu.AddItem(overview_button);
+raven_menu.AddItem(new_button);
+raven_menu.AddItem(save_button);
+raven_menu.AddItem(view_button);
+raven_menu.AddItem(undo_button);
+raven_menu.AddItem(redo_button);
+raven_menu.AddItem(export_button);
+raven_menu.AddItem(variables_button);
+raven_menu.AddItem(preferences_button);
+raven_menu.AddItem(changelog_button);
+raven_menu.AddItem(help_button);
+raven_gui.AddContainer(container);
+//raven_gui.AddContainer(new RavenContainer(200,200,400,400,false, c_red));
 
 
 
+
+
+
+
+
+
+//Get Started here:
+
+//replace with your own elements------------------------
 var subcontainer = new RavenContainer(200,200,600,600,false, true, gui_render_mode.VLIST, 3);
 subcontainer.SetGUIDepthIndex(2);
 var container_menu = new RavenMenu(0,0,64,32,32);
@@ -232,7 +238,10 @@ subcontainer.AddItem(new RavenLineBreakItem(32,32));
 subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
 //subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 raven_gui.AddContainer(subcontainer);
-//subcontainer.SetLock(true);
+
+
+
+//----------------------------------
 
 
 

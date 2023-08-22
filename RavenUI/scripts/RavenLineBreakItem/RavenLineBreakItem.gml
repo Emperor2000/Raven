@@ -23,18 +23,7 @@ function RavenLineBreakItem(_margin, _height, _color = undefined) constructor {
 	
 	function IsOutsideContainerBounds(container_x1) {
     return (x1 > container_x1);
-}
-
-    function SetEnabled(_set) {
-        is_enabled = _set;    
-    }
-
-    function SetOnClick(_function) {
-        if (is_enabled) {
-            on_click = _function;
-            SetEnabled(true);
-        }
-    }
+	}
 
     function GetWidth() {
 		return x1 - x0;
@@ -50,6 +39,10 @@ function RavenLineBreakItem(_margin, _height, _color = undefined) constructor {
     function GetHeight() {
         return height;
     }
+	
+	function SetHeight(_height) {
+		height = _height;
+	}
 	
     function Update() {
 		
