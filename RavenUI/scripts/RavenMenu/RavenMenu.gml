@@ -178,7 +178,7 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 	            _row_count++;
 	            _draw_pos = x + margin;
 	            _items_in_row = 0;
-	            _row_start_index = i;
+	            _row_start_index = _i;
 			
 	        }
 		
