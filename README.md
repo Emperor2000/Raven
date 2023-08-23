@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Raven is a UI framework for GameMaker. It is something I set out to make as a challenge, something I have learned a lot from. This framework isn't perfect and still a huge work in progress, but I hope to have delivered a system with this that at least can make the process of making UI's a bit easier in GameMaker.
+Raven is a UI framework for GameMaker. It is something I set out to make as a challenge, something I have learned a lot from. This framework isn't perfect and still a huge work in progress, but I hope to have delivered a system that makes it an easier experience to create UI's in GameMaker.
 I expect to be regularly updating this framework for the upcoming time to flesh it out more and realise a minimum set of functionalities I have envisioned. I have decided to make the current version public so that anyone interested can follow development and experiment with it.
 Raven allows you to create panels and UI elements with hopefully a minimal amount of effort and in an easy to understand way. At first I was planning to make a UI framework that would allow adding items recursively, with indefinite subcontainers and items. But apart from the huge amount of extra work that would give me, I found out that something like that already exists while I was working on this. User DragoniteSpam has developed an incredible UI framework called "Emu". Emu is far more sophisticated than Raven, and something I would not dare set out to rival. Both frameworks being birds is a weird coincidence I promise! :)
 
