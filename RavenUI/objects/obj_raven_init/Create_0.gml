@@ -46,7 +46,7 @@ enum THEME {
 global.THEME = THEME.RAVEN;
 
 global.open_help_page = function open_help_page(){
-	url_open("TODO-ADD URL TO Raven Docs here");
+	url_open("https://ravenforgamemaker.com");
 }
 
 global.resolution_x = 3840; //1920; 
