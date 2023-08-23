@@ -174,7 +174,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 			var _select = false;
 			//show_debug_message("select size: " + string(_select_size));
 	        // Check if the mouse is within the bottom edge with the specified margin
-	        if (mouse_y > (y1 - _select_size) && mouse_y < (y1 + _select_size) && device_mouse_x_to_gui(0) > (x0 - _select_size) && device_mouse_x_to_gui(0) < (x1 + _select_size)) || resizing {
+	        if (device_mouse_y_to_gui(0) > (y1 - _select_size) && device_mouse_y_to_gui(0) < (y1 + _select_size) && device_mouse_x_to_gui(0) > (x0 - _select_size) && device_mouse_x_to_gui(0) < (x1 + _select_size)) || resizing {
 				//Hovering the bottom edge
 				window_set_cursor(cr_size_ns);
 				if (_action_pressed && !lock) {
@@ -188,7 +188,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	        }
 	        // Check if the mouse is within the left edge with the specified margin
 			
-	        if (device_mouse_x_to_gui(0) > (x0 - _select_size) && device_mouse_x_to_gui(0) < (x0 + _select_size) && mouse_y > (y0 - _select_size) && mouse_y < (y1 + _select_size)) || resizing_left {
+	        if (device_mouse_x_to_gui(0) > (x0 - _select_size) && device_mouse_x_to_gui(0) < (x0 + _select_size) && device_mouse_y_to_gui(0) > (y0 - _select_size) && device_mouse_y_to_gui(0) < (y1 + _select_size)) || resizing_left {
 				//Hovering the left edge
 				window_set_cursor(cr_size_we);
 				if (_action_pressed && !lock) {
@@ -204,7 +204,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 				}
 	        }
 	        // Check if the mouse is within the right edge with the specified margin
-	        if (device_mouse_x_to_gui(0) > (x1 - _select_size) && (device_mouse_x_to_gui(0) < x1 + _select_size) && mouse_y > (y0 - _select_size) && mouse_y < (y1 + _select_size)) || resizing_right {
+	        if (device_mouse_x_to_gui(0) > (x1 - _select_size) && (device_mouse_x_to_gui(0) < x1 + _select_size) && device_mouse_y_to_gui(0) > (y0 - _select_size) && device_mouse_y_to_gui(0) < (y1 + _select_size)) || resizing_right {
 				//Hovering the right edge
 				window_set_cursor(cr_size_we);
 				if (_action_pressed && !lock) {
