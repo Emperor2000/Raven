@@ -55,8 +55,8 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 	function UpdateItemContainers() {
 		show_debug_message("Updating item containers...");
 		//show_debug_message(container_id);
-		for (var i = 0; i < ds_list_size(items); i++) {
-			var _item = ds_list_find_value(items, i);
+		for (var _i = 0; _i < ds_list_size(items); _i++) {
+			var _item = ds_list_find_value(items, _i);
 			_item.SetContainerId(container_id);
 		}
 	}
@@ -134,7 +134,7 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 	
 
 	function Render() {
-	    var window_width = display_get_gui_width();
+	    var _window_width = display_get_gui_width();
 	
 		//override if bound to a container
 		//applied x and y used for container alignment.
@@ -144,7 +144,7 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 		var _y1_applied = y1;
 	
 		if (is_bound_by_container) {
-			window_width = container_x1 - container_x0;
+			_window_width = container_x1 - container_x0;
 			_x0_applied = container_x0;
 			_y0_applied = container_y0;
 			_x1_applied = container_x1;
@@ -160,25 +160,25 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 		lock_icon_y0 = (y+height/2) - sprite_get_height(spr_lock/2);
 		lock_icon_y1 = (y+height/2) + sprite_get_height(spr_lock/2);
 	
-	    var draw_pos = x + margin;
-	    var row_count = 1;
-	    var items_in_row = 0;
-	    var row_start_index = 0;
+	    var _draw_pos = x + margin;
+	    var _row_count = 1;
+	    var _items_in_row = 0;
+	    var _row_start_index = 0;
 	
 	    draw_set_color(global.gui_menu);
 		//draw_rectangle(200,200,1200,1200,false);
 	    draw_rectangle(_x0_applied, _y0_applied, _x1_applied, _y0_applied + height, false);
 	    draw_rectangle(_x0_applied, _y0_applied, _x1_applied, _y0_applied + height, true);
 
-	    for (var i = 0; i < ds_list_size(items); i++) {
-	        var raven_item_reference = ds_list_find_value(items, i);
+	    for (var _i = 0; _i < ds_list_size(items); _i++) {
+	        var _raven_item_reference = ds_list_find_value(items, _i);
 	        draw_set_valign(fa_center);
 
-	        if (draw_pos + raven_item_reference.GetWidth() > window_width && items_in_row > 0) {
-	            row_count++;
-	            draw_pos = x + margin;
-	            items_in_row = 0;
-	            row_start_index = i;
+	        if (_draw_pos + _raven_item_reference.GetWidth() > _window_width && _items_in_row > 0) {
+	            _row_count++;
+	            _draw_pos = x + margin;
+	            _items_in_row = 0;
+	            _row_start_index = i;
 			
 	        }
 		
@@ -188,50 +188,50 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 			}
 			
 			draw_set_color(global.gui_menu_hover);
-			if (raven_item_reference.hover) {
-				 draw_rectangle(raven_item_reference.x0, raven_item_reference.y0, raven_item_reference.x1, raven_item_reference.y1, false);	
+			if (_raven_item_reference.hover) {
+				 draw_rectangle(_raven_item_reference.x0, _raven_item_reference.y0, _raven_item_reference.x1, _raven_item_reference.y1, false);	
 			}
 
 
 	        draw_set_color(global.gui_menu_click);
-	        if (raven_item_reference.gui_clicking) {
-	            draw_rectangle(raven_item_reference.x0, raven_item_reference.y0, raven_item_reference.x1, raven_item_reference.y1, false);
+	        if (_raven_item_reference.gui_clicking) {
+	            draw_rectangle(_raven_item_reference.x0, _raven_item_reference.y0, _raven_item_reference.x1, _raven_item_reference.y1, false);
 	        }
 
 	        draw_set_color(global.gui_text_default);
-	        var draw_pos_start = draw_pos;
-	        var draw_pos_y = y + ((row_count - 1) * height) + (height / 2);
+	        var _draw_pos_start = _draw_pos;
+	        var _draw_pos_y = y + ((_row_count - 1) * height) + (height / 2);
 		
 			//If the item is bound by a container should override the draw_y position
 			//if (is_bound_by_container) {
 			//	draw_pos_y = _y0_applied + height/2;	
 			//}
 		
-	        //draw_text(draw_pos, draw_pos_y, raven_item_reference.Gettext());
+	        //draw_text(draw_pos, draw_pos_y, _raven_item_reference.Gettext());
 			draw_set_font(font);
-			draw_text_ext_transformed(draw_pos,draw_pos_y,raven_item_reference.GetText(),8, 300,global.interface_scale, global.interface_scale, 0)
-	        var draw_pos_move_amount = (raven_item_reference.GetWidth() + margin) * global.interface_scale;
-	        draw_pos += draw_pos_move_amount;
-	        items_in_row++;
+			draw_text_ext_transformed(_draw_pos,_draw_pos_y,_raven_item_reference.GetText(),8, 300,global.interface_scale, global.interface_scale, 0)
+	        var _draw_pos_move_amount = (_raven_item_reference.GetWidth() + margin) * global.interface_scale;
+	        _draw_pos += _draw_pos_move_amount;
+	        _items_in_row++;
 
-	        var button_padding = margin / 2;
-	        var button_start_x = draw_pos_start - button_padding;
-	        var button_start_y = draw_pos_y - (height / 2); // Adjust button position based on text position
-	        var button_end_x = draw_pos - button_padding;
-	        var button_end_y = button_start_y + height;
+	        var _button_padding = margin / 2;
+	        var _button_start_x = _draw_pos_start - _button_padding;
+	        var _button_start_y = _draw_pos_y - (height / 2); // Adjust button position based on text position
+	        var _button_end_x = _draw_pos - _button_padding;
+	        var _button_end_y = _button_start_y + height;
 	
 
-	        raven_item_reference.SetCoords(button_start_x, button_start_y, button_end_x, button_end_y);
+	        _raven_item_reference.SetCoords(_button_start_x, _button_start_y, _button_end_x, _button_end_y);
 
 	        if (item_outline) {
 				draw_set_color(global.gui_outline);
-	            draw_rectangle(button_start_x, button_start_y, button_end_x, button_end_y, item_outline);
+	            draw_rectangle(_button_start_x, _button_start_y, _button_end_x, _button_end_y, item_outline);
 	        }
 	        draw_set_valign(fa_top);
 	    }
 
 	    // Adjust the overall height of the menu to match the last row
-	    y1 = y + row_count * height;
+	    y1 = y + _row_count * height;
 		
 		//if container_lock is enabled
 		if (container_lock) {

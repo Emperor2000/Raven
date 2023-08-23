@@ -21,8 +21,8 @@ function RavenLineBreakItem(_margin, _height, _color = undefined) constructor {
         container_id = _container_id;
     }
 	
-	function IsOutsideContainerBounds(container_x1) {
-    return (x1 > container_x1);
+	function IsOutsideContainerBounds(_container_x1) {
+    return (x1 > _container_x1);
 	}
 
     function GetWidth() {

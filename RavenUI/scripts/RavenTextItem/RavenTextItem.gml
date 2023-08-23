@@ -27,8 +27,8 @@ function RavenTextItem(_text, _on_click, _margin, _font, _color = undefined) : R
         container_id = _container_id;
     }
 	
-	function IsOutsideContainerBounds(container_x1) {
-    return (x1 > container_x1);
+	function IsOutsideContainerBounds(_container_x1) {
+    return (x1 > _container_x1);
 }
 
     function SetEnabled(_set) {
@@ -112,31 +112,31 @@ function RavenTextItem(_text, _on_click, _margin, _font, _color = undefined) : R
 		}
 
 	    // Calculate the width of the text
-	    var text_width = string_width(text);
+	    var _text_width = string_width(text);
 
 	    // Draw the text up to the x1 position if it fits within the bounds
 	    if (text_x1 <= x1) {
 	        draw_text(x0 + specific_margin, (y0 + y1) / 2, text);
 	    } else {
 	        // Calculate the maximum number of characters that can be drawn within bounds
-	        var max_chars = 0;
-	        var current_width = 0;
+	        var _max_chars = 0;
+	        var _current_width = 0;
 
-	        for (var i = 1; i <= string_length(text); i++) {
-	            current_width = string_width(string_copy(text, 1, i));
-	            if (x0 + specific_margin + current_width <= x1) {
-	                max_chars = i;
+	        for (var _i = 1; _i <= string_length(text); _i++) {
+	            _current_width = string_width(string_copy(text, 1, _i));
+	            if (x0 + specific_margin + _current_width <= x1) {
+	                _max_chars = _i;
 	            } else {
 	                break;
 	            }
 	        }
 
 	        // Draw the portion of the text that fits within the bounds
-	        if (max_chars > 0) {
-	            var truncated_text = string_copy(text, 1, max_chars);
-	            draw_text(x0 + specific_margin, (y0 + y1) / 2, truncated_text);
+	        if (_max_chars > 0) {
+	            var _truncated_text = string_copy(text, 1, _max_chars);
+	            draw_text(x0 + specific_margin, (y0 + y1) / 2, _truncated_text);
 	        }
 	    }
-	    text_x1 = x0 + specific_margin + text_width;
+	    text_x1 = x0 + specific_margin + _text_width;
 	}
 }

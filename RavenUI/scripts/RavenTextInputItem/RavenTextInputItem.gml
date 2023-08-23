@@ -165,9 +165,9 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
                 input_text = string_delete(input_text, cursor_position, 1);
             }
 
-            var input_char = keyboard_string;
-            if (string_length(input_char) > 0 && input_char != "\r") {
-                input_text = string_insert("", input_char, cursor_position + 1);
+            var _input_char = keyboard_string;
+            if (string_length(_input_char) > 0 && _input_char != "\r") {
+                input_text = string_insert("", _input_char, cursor_position + 1);
                 cursor_position += 1;
             }
 
@@ -181,16 +181,16 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 	function Render() {
 
 	    draw_set_font(font);
-	    var font_height = font_get_size(font);
+	    var _font_height = font_get_size(font);
 
 	    // Determine the maximum width based on the input text length
-	    var max_width = string_width(input_text) <= 128 ? 128 : string_width(input_text) * 1.05;
+	    var _max_width = string_width(input_text) <= 128 ? 128 : string_width(input_text) * 1.05;
 
 	    // Draw the background rectangle
-	    draw_rectangle(x0 + specific_margin, y0, x0 + specific_margin + max_width, y1 + font_height, true);
+	    draw_rectangle(x0 + specific_margin, y0, x0 + specific_margin + _max_width, y1 + _font_height, true);
 
-	    var text_x = x0 + specific_margin;
-	    var text_y = y0 + (y1 - y0 - font_height) / 2;
+	    var _text_x = x0 + specific_margin;
+	    var _text_y = y0 + (y1 - y0 - _font_height) / 2;
 
 		if (text_color == undefined) {
 			draw_set_color(global.gui_text_default);
@@ -198,27 +198,27 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 			draw_set_color(text_color);
 		}
 
-	    var display_text = input_text;
-	    if (string_length(display_text) == 0 && !active) {
-	        display_text = placeholder_text;
+	    var _display_text = input_text;
+	    if (string_length(_display_text) == 0 && !active) {
+	        _display_text = placeholder_text;
 	    }
-		//show_debug_message("Display Text: " + display_text);
+		//show_debug_message("Display Text: " + _display_text);
 		//show_debug_message("Input Text: " + input_text);
 
 	    // Clamp the cursor position within the valid range
 	    cursor_position = clamp(cursor_position, 0, string_length(input_text));
 
 	    if (active && cursor_visible) {
-	        var pre_cursor = string_copy(display_text, 0, cursor_position);
-	        var post_cursor = string_copy(display_text, cursor_position + 1, string_length(display_text) - cursor_position);
-			display_text = pre_cursor + "|" + post_cursor;
+	        var _pre_cursor = string_copy(_display_text, 0, cursor_position);
+	        var _post_cursor = string_copy(_display_text, cursor_position + 1, string_length(_display_text) - cursor_position);
+			_display_text = _pre_cursor + "|" + _post_cursor;
 			//Debug purposes alternative, also displays the cursor position/index
-	        //display_text = pre_cursor + "|" + post_cursor + " " + string(cursor_position);
+	        //_display_text = _pre_cursor + "|" + _post_cursor + " " + string(cursor_position);
 	    }
-		//show_debug_message("display text: " + display_text);
+		//show_debug_message("display text: " + _display_text);
 		//show_debug_message("input text: " + input_text);
-	    var _text = draw_text(text_x, text_y, display_text);
-		//show_debug_message("result: " + display_text);
+	    var _text = draw_text(_text_x, _text_y, _display_text);
+		//show_debug_message("result: " + _display_text);
 	}
 
 }

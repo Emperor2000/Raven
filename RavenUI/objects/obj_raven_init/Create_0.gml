@@ -1,7 +1,7 @@
 // Init
 global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
 #region Macros
-// Dark Theme - macros not directly used, but simply serve as data store for theme manager
+// Dark THEME - macros not directly used, but simply serve as data store for THEME manager
 #macro GUI_DARK_BACKGROUND $2a2a2e
 #macro GUI_DARK_MENU $1b1b1b
 #macro GUI_DARK_TEXT_DEFAULT $c6c6d0
@@ -16,7 +16,7 @@ global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
 #macro GUI_ACTIVITY_COLOUR_HTTP $7bc3c8
 
 
-// Raven Theme 
+// Raven THEME 
 #macro GUI_RAVEN_BACKGROUND $2a2a2e
 #macro GUI_RAVEN_MENU $1b1b1b
 #macro GUI_RAVEN_TEXT_DEFAULT $f0a8c0
@@ -35,7 +35,7 @@ global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
 #endregion
 
 #region global variables - base
-enum theme {
+enum THEME {
 	RAVEN,
 	DARK,
 	LIGHT,
@@ -43,7 +43,7 @@ enum theme {
 	APPLE,
 	COFFEE
 }
-global.theme = theme.RAVEN;
+global.THEME = THEME.RAVEN;
 
 global.open_help_page = function open_help_page(){
 	url_open("TODO-ADD URL TO Raven Docs here");
@@ -81,9 +81,9 @@ global.experimental_features = false; //Enables some experimental features in th
 #region Callback functions & Closures
 
 global.destroy_container = function() {
-    var captured_container_id = self.container_id;
+    var _captured_container_id = self.container_id;
     // Define the actual destroy_container logic using captured_container_id
-    DestroyRavenContainerById(captured_container_id);
+    DestroyRavenContainerById(_captured_container_id);
 };
 
 #endregion
@@ -94,13 +94,13 @@ global.destroy_container = function() {
 display_set_gui_maximise();
 
 //THEMES INIT
-//Theme Manager
-theme = theme.RAVEN;
+//CHANGE YOUR SELECTED THEME
+THEME = THEME.RAVEN;
 
 
-//Also copy paste any custom themes in step event if you want to update these dynamically.
-switch(theme) {
-	case theme.RAVEN:
+//Also copy paste any custom THEMEs in step event if you want to update these dynamically.
+switch(THEME) {
+	case THEME.RAVEN:
 		global.gui_background = $2a2a2e;
 		global.gui_menu = $1b1b1b;
 		global.gui_text_default = $f0c5d3;
@@ -112,7 +112,7 @@ switch(theme) {
 		global.gui_checkmark_color = $9e6975;
 		global.gui_item_color = $9e6975;
 		break;
-	case theme.DARK:
+	case THEME.DARK:
 		global.gui_background = $2a2a2e;
 		global.gui_menu = $1b1b1b;
 		global.gui_text_default = $c6c6d0;
@@ -123,7 +123,7 @@ switch(theme) {
 		global.gui_outline = $1b1b1b;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.LIGHT:
+	case THEME.LIGHT:
 		//lobal.gui_background = $e3e3e3;
 		global.gui_background = $dddbdc;
 		global.gui_menu = $dddbdc;
@@ -135,7 +135,7 @@ switch(theme) {
 		global.gui_outline = $171718;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.DARKMIN:
+	case THEME.DARKMIN:
 		//not implemented
 		global.gui_background = GUI_DARK_BACKGROUND;
 		global.gui_menu = GUI_DARK_MENU;
@@ -146,7 +146,7 @@ switch(theme) {
 		global.gui_menu_hover = global.gui_menu_click;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.APPLE:
+	case THEME.APPLE:
 		global.gui_background = $9494d2;
 		global.gui_menu = $4c4cc8;
 		global.gui_text_default = $292954;
@@ -157,7 +157,7 @@ switch(theme) {
 		global.gui_outline = $5f57c8;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.COFFEE:
+	case THEME.COFFEE:
 		global.gui_background = $638aa7;
 		global.gui_menu = $2a485f;
 		global.gui_text_default = $75aad2;
@@ -219,25 +219,25 @@ raven_gui.AddContainer(container);
 //Get Started here:
 
 //replace with your own elements------------------------
-var subcontainer = new RavenContainer(200,200,600,600,false, true, gui_render_mode.VLIST, 3);
-subcontainer.SetGUIDepthIndex(2);
-var container_menu = new RavenMenu(0,0,64,32,32);
-subcontainer.SetMenu(container_menu);
-container_menu.AddItem(new RavenItem("Exit",global.destroy_container,32));
-subcontainer.SetMenuBoundByContainer(true);
-subcontainer.AddItem(new RavenTextItem("This is a TextField",0,16, fnt_dsansmono16));
-subcontainer.AddItem(new RavenTextItem("Let's write a paragraph! The quick brown fox jumped over the",0,16,fnt_dsansmono16));
+var _subcontainer = new RavenContainer(200,200,600,600,false, true, GUI_RENDER_MODE.VLIST, 3);
+_subcontainer.SetGUIDepthIndex(2);
+var _container_menu = new RavenMenu(0,0,64,32,32);
+_subcontainer.SetMenu(_container_menu);
+_container_menu.AddItem(new RavenItem("Exit",global.destroy_container,32));
+_subcontainer.SetMenuBoundByContainer(true);
+_subcontainer.AddItem(new RavenTextItem("This is a TextField",0,16, fnt_dsansmono16));
+_subcontainer.AddItem(new RavenTextItem("Let's write a paragraph! The quick brown fox jumped over the",0,16,fnt_dsansmono16));
 
-subcontainer.AddItem(new RavenTextInputItem("Username", noone, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
+_subcontainer.AddItem(new RavenTextInputItem("Username", noone, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
 //subcontainer.AddItem(new RavenMultilineTextItem("Let's write an entire section. This code should be shifted to the next line as soon as it overflows!",0,16,fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
-subcontainer.AddItem(new RavenTextItem("",0,16,fnt_dsansmono16));
-subcontainer.AddItem(new RavenTextItem("",0,16,fnt_dsansmono16));
-subcontainer.AddItem(new RavenCheckboxItem("Check: "));
-show_debug_message("list size (init0): " + string(ds_list_size(subcontainer.items)));
-subcontainer.AddItem(new RavenLineBreakItem(32,32));
-subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
+_subcontainer.AddItem(new RavenTextItem("",0,16,fnt_dsansmono16));
+_subcontainer.AddItem(new RavenTextItem("",0,16,fnt_dsansmono16));
+_subcontainer.AddItem(new RavenCheckboxItem("Check: "));
+show_debug_message("list size (init0): " + string(ds_list_size(_subcontainer.items)));
+_subcontainer.AddItem(new RavenLineBreakItem(32,32));
+_subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
 //subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
-raven_gui.AddContainer(subcontainer);
+raven_gui.AddContainer(_subcontainer);
 
 
 
@@ -247,24 +247,16 @@ raven_gui.AddContainer(subcontainer);
 
 
 
-//We must push all referecnes when finished init so that each raven item knows it's parent container:
+//We must push all references when finished init so that each raven item knows it's parent container:
 raven_gui.PushReferences();
 
 
 #endregion
 
 
-
-
-
-
-
-show_debug_message("list size (init1): " + string(ds_list_size(subcontainer.items)));
-
-
 //Container init
 //Containers support being rendered in a few different modes.
-enum gui_render_mode {
+enum GUI_RENDER_MODE {
 	HLIST,
 	VLIST,
 	GRID,

@@ -1,13 +1,16 @@
 //A Raven Item is a page or a function trigger
 ///@Description An item, use false or noone if not interactable.
-function RavenItem(_text, _on_click, _margin) constructor {
+/// @param {String}     inst_id    The unique instance ID value of the instance to check.
+/// @param {String}  object_id  The object index to be checked against.
+/// @param {Real}	_margin Not yet implemented!
+function RavenItem(_text, _on_click, _margin = 0) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	text = _text;
 	if (_on_click == noone || !_on_click)
 	    on_click = _on_click;
 	else
-	    on_click = method(self, _on_click);
+	    on_click = method(self, _on_click); //Note that _on_click expects a function!
 	lock_trigger = false;
 	clicking = false;
 	gui_clicking = false;

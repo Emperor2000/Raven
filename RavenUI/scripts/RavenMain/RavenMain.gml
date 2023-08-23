@@ -19,8 +19,8 @@ function RavenMain() constructor {
 	
 	function PushReferences() {
 		show_debug_message("RAVENDEBUG: Container count: " + string(ds_list_size(global.raven_containers)));
-		for (var i = 0; i < ds_list_size(global.raven_containers); i++) {
-		var _container = ds_list_find_value(global.raven_containers, i);
+		for (var _i = 0; _i < ds_list_size(global.raven_containers); _i++) {
+		var _container = ds_list_find_value(global.raven_containers, _i);
 		show_debug_message("retrieved container instance");
 		show_debug_message("container's data: " + _container.container_id);
 		_container.UpdateItemContainers();
@@ -39,13 +39,13 @@ function RavenMain() constructor {
 		if (menu != noone) menu.Update();
 		
 		//update items
-		for (var i = 0; i < ds_list_size(items); i++) {
-			var _item = ds_list_find_value(items, i).Update();
+		for (var _i = 0; _i < ds_list_size(items); _i++) {
+			var _item = ds_list_find_value(items, _i).Update();
 		}
 		
 		//update container
-		for (var i = 0; i < ds_list_size(global.raven_containers); i++) {
-			ds_list_find_value(global.raven_containers, i).Update();
+		for (var _i = 0; _i < ds_list_size(global.raven_containers); _i++) {
+			ds_list_find_value(global.raven_containers, _i).Update();
 		}
 	}
 	
@@ -59,8 +59,8 @@ function RavenMain() constructor {
 		
 		//we will first render our containers.
 		//render container
-		for (var i = 0; i < ds_list_size(global.raven_containers); i++) {
-			ds_list_find_value(global.raven_containers, i).Render();
+		for (var _i = 0; _i < ds_list_size(global.raven_containers); _i++) {
+			ds_list_find_value(global.raven_containers, _i).Render();
 		}
 		
 		//render items

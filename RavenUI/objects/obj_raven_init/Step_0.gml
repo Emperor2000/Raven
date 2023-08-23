@@ -21,11 +21,11 @@ if (global.current_size_x != window_get_width() || global.current_size_y != wind
 //global.resolution_base_x and global.resolution_base_y
 //constitute the scale factor the app was designed for
 //that scale should be 1 for width and height
-//todo: remove theme manager from step event and only update when called.
+//todo: remove THEME manager from step event and only update when called.
 
 //Theme Manager
-switch(theme) {
-	case theme.RAVEN:
+switch(THEME) {
+	case THEME.RAVEN:
 		global.gui_background = $2a2a2e;
 		global.gui_menu = $1b1b1b;
 		global.gui_text_default = $f0c5d3;
@@ -36,7 +36,7 @@ switch(theme) {
 		global.gui_outline = $1b1b1b;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.DARK:
+	case THEME.DARK:
 		global.gui_background = $2a2a2e;
 		global.gui_menu = $1b1b1b;
 		global.gui_text_default = $c6c6d0;
@@ -47,7 +47,7 @@ switch(theme) {
 		global.gui_outline = $1b1b1b;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.LIGHT:
+	case THEME.LIGHT:
 		//lobal.gui_background = $e3e3e3;
 		global.gui_background = $dddbdc;
 		global.gui_menu = $dddbdc;
@@ -59,7 +59,7 @@ switch(theme) {
 		global.gui_outline = $171718;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.DARKMIN:
+	case THEME.DARKMIN:
 		//not implemented
 		global.gui_background = GUI_DARK_BACKGROUND;
 		global.gui_menu = GUI_DARK_MENU;
@@ -70,7 +70,7 @@ switch(theme) {
 		global.gui_menu_hover = global.gui_menu_click;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.APPLE:
+	case THEME.APPLE:
 		global.gui_background = $9494d2;
 		global.gui_menu = $4c4cc8;
 		global.gui_text_default = $292954;
@@ -81,7 +81,7 @@ switch(theme) {
 		global.gui_outline = $5f57c8;
 		global.gui_checkmark_color = c_lime;
 		break;
-	case theme.COFFEE:
+	case THEME.COFFEE:
 		global.gui_background = $638aa7;
 		global.gui_menu = $2a485f;
 		global.gui_text_default = $75aad2;

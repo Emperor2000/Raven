@@ -1,17 +1,17 @@
 /// @Description returns a new Raven GUID/UID
 function CreateRavenGUID() {
 	if (global.raven_debug) show_debug_message("RAVENDEBUG: Generating a GUID");
-	var characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	var guid = "";
+	var _characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	var _guid = "";
 
 	repeat(24)
 	{
-	    var random_index = irandom_range(1, string_length(characters));
-	    guid += string_char_at(characters, random_index);
+	    var _random_index = irandom_range(1, string_length(_characters));
+	    _guid += string_char_at(_characters, _random_index);
 
-	    if (string_length(guid) % 8 == 0 && string_length(guid) != 24)
-	        guid += "-";
+	    if (string_length(_guid) % 8 == 0 && string_length(_guid) != 24)
+	        _guid += "-";
 	}
 
-	return string(guid);
+	return string(_guid);
 }

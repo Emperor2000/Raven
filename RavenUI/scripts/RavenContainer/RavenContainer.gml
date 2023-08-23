@@ -1,6 +1,6 @@
 //TODO: there might be a small memory leak in containers, items or menus, please make sure you are deleting your ds_lists.
 
-function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = gui_render_mode.VLIST, _outline_size = 1, _color_override = undefined) constructor{
+function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = GUI_RENDER_MODE.VLIST, _outline_size = 1, _color_override = undefined) constructor{
 	container_id = CreateRavenGUID();
 	active = false;
 	menu = noone;
@@ -59,10 +59,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = g
 			menu.SetContainerId(container_id);
 			menu.UpdateItemContainers();
 		}
-		for (var i = 0; i < ds_list_size(items); i++) {
-			var _item = ds_list_find_value(items, i);
+		for (var _i = 0; _i < ds_list_size(items); _i++) {
+			var _item = ds_list_find_value(items, _i);
 			_item.SetContainerId(container_id);
-			ds_list_replace(items, i, _item);
+			ds_list_replace(items, _i, _item);
 		}
 	}
 	
@@ -151,7 +151,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = g
 // container_resize()
 // @desc Resizes the container based on mouse position while dragging the edges.
 
-function containerResize() {
+	function containerResize() {
 	//if the container is being moved resizing is not allowed.
 	if (!menu) {
 		return;	
@@ -226,7 +226,7 @@ function containerResize() {
 	   // }
 		//}
 		}
-}
+	}
 	
 	//Binds a menu to this container
 	function SetMenu(_raven_menu) {
@@ -267,8 +267,8 @@ function containerResize() {
 		draw_rectangle(x0_scaling, y0_scaling, x1_scaling, y1_scaling, false);	
 		if (outline) {
 			draw_set_color(global.gui_outline);
-			for (var i = 0; i < outline_size; i++) {
-			draw_rectangle(x0_scaling-i, y0_scaling-i, x1_scaling+i, y1_scaling+i, true);
+			for (var _i = 0; _i < outline_size; _i++) {
+			draw_rectangle(x0_scaling-_i, y0_scaling-_i, x1_scaling+_i, y1_scaling+_i, true);
 			}
 		}
 		//render menu
@@ -279,32 +279,32 @@ function containerResize() {
 		var _sep = 16;
 		switch (render_mode) {
 			
-			case gui_render_mode.HLIST:
+			case GUI_RENDER_MODE.HLIST:
 			show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method HLIST is not yet implemented into Raven!", false);
 			break;
 			
-			case gui_render_mode.VLIST:
+			case GUI_RENDER_MODE.VLIST:
 		    var _y_current = y0_scaling + container_margin_top; // Starting Y position
 			//show_debug_message("render list size: " + string(ds_list_size(items)));
-		    for (var i = 0; i < ds_list_size(items); i++) {
-		        var item = ds_list_find_value(items, i);
+		    for (var _i = 0; _i < ds_list_size(items); _i++) {
+		        var _item = ds_list_find_value(items, _i);
 				//show_debug_message(item.title);
 		        // Update item's position for VLIST rendering
-		        item.SetCoords(x0_scaling + item.margin, _y_current, x1_scaling + item.margin, _y_current + item.GetHeight());
+		        _item.SetCoords(x0_scaling + _item.margin, _y_current, x1_scaling + _item.margin, _y_current + _item.GetHeight());
 
 		        // Render the item
-		        item.Render();
+		        _item.Render();
 				//show_debug_message("Text should have been rendered at: x0: " + x0_scaling + " y0: " + _y_current + " x1: " + x1_scaling + " y1: " + _y_current);
 		        // Move to the next Y position with separation
-		        _y_current += item.GetHeight() + _sep;
+		        _y_current += _item.GetHeight() + _sep;
 				}
 			break;
 			
-			case gui_render_mode.GRID:
+			case GUI_RENDER_MODE.GRID:
 				show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method GRID is not yet implemented into Raven!", false);
 			break;
 			
-			//case gui_render_mode.COLUMNS2:
+			//case GUI_RENDER_MODE.COLUMNS2:
 			//	show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method Columns2 is not yet implemented into Raven!", false);
 			//break;
 			
@@ -367,14 +367,14 @@ function containerResize() {
 		
 		//updatemenu items
 		if (menu_items != undefined) {
-			for (var i = 0; i < ds_list_size(menu_items); i++) {
-				var _item = ds_list_find_value(menu_items, i).Update();
+			for (var _i = 0; _i < ds_list_size(menu_items); _i++) {
+				var _item = ds_list_find_value(menu_items, _i).Update();
 			}
 		}
 		
 		if (items != undefined) {
-			for (var i = 0; i < ds_list_size(items); i++) {
-				var _item = ds_list_find_value(items, i).Update();
+			for (var _i = 0; _i < ds_list_size(items); _i++) {
+				var _item = ds_list_find_value(items, _i).Update();
 			}	
 		}
 		x0_previous = x0;

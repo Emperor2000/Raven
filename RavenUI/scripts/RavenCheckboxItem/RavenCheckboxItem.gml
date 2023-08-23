@@ -82,8 +82,8 @@ function RavenCheckboxItem(_text, _on_click = undefined, _margin = 16, _font = f
         draw_text(x0 + specific_margin, y0, text);
 		
 		
-        var checkbox_x = x0 + specific_margin + string_width(text);
-        var checkbox_y = y0 - string_height(text)/2 + specific_margin/2;
+        var _checkbox_x = x0 + specific_margin + string_width(text);
+        var _checkbox_y = y0 - string_height(text)/2 + specific_margin/2;
 
         if (value) {
             draw_set_color(checkmark_color); // Change color to checkmark color
@@ -92,15 +92,15 @@ function RavenCheckboxItem(_text, _on_click = undefined, _margin = 16, _font = f
         }
 
         // Draw checkbox rectangle
-        draw_rectangle(checkbox_x, checkbox_y, checkbox_x + GetCheckboxWidth(), checkbox_y + GetCheckboxHeight(), false);
+        draw_rectangle(_checkbox_x, _checkbox_y, _checkbox_x + GetCheckboxWidth(), _checkbox_y + GetCheckboxHeight(), false);
 		
 		draw_set_color(global.gui_text_default);
-		draw_rectangle(checkbox_x, checkbox_y, checkbox_x + GetCheckboxWidth(), checkbox_y + GetCheckboxHeight(), true);
+		draw_rectangle(_checkbox_x, _checkbox_y, _checkbox_x + GetCheckboxWidth(), _checkbox_y + GetCheckboxHeight(), true);
 		
-		rectangle_x0 = checkbox_x;
-		rectangle_y0 = checkbox_y;
-		rectangle_x1 = checkbox_x + GetCheckboxWidth();
-		rectangle_y1 = checkbox_y + GetCheckboxHeight();
+		rectangle_x0 = _checkbox_x;
+		rectangle_y0 = _checkbox_y;
+		rectangle_x1 = _checkbox_x + GetCheckboxWidth();
+		rectangle_y1 = _checkbox_y + GetCheckboxHeight();
 		
 
 

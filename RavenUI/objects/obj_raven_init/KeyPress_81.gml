@@ -1,15 +1,15 @@
-/// @description Insert description here
+/// @description Change Theme button
 // You can write your code in this editor
 
 
-if (theme == theme.RAVEN) {
-	theme = theme.DARK;
-} else if (theme == theme.DARK) {
-	theme = theme.LIGHT;
-} else if (theme == theme.LIGHT) {
-	theme = theme.APPLE;	
-} else if (theme == theme.APPLE) {
-	theme = theme.COFFEE;	
-} else if (theme == theme.COFFEE) {
-	theme = theme.RAVEN;	
+if (THEME == THEME.RAVEN) {
+	THEME = THEME.DARK;
+} else if (THEME == THEME.DARK) {
+	THEME = THEME.LIGHT;
+} else if (THEME == THEME.LIGHT) {
+	THEME = THEME.APPLE;	
+} else if (THEME == THEME.APPLE) {
+	THEME = THEME.COFFEE;	
+} else if (THEME == THEME.COFFEE) {
+	THEME = THEME.RAVEN;	
 }
