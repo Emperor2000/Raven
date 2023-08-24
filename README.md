@@ -21,20 +21,6 @@ If you're looking for a framework with recursive setup and nesting of components
 
 Raven allows you to create UI's at different resolutions and have a responsive UI when scaling containers or the game window.
 
-## Components
-Raven provides a set of components for creating dynamic and responsive GUI's in GameMaker. Components include containers (panels), menuss, checkboxes, text input fields, dropdowns, text fields and much more.
-
-- RavenMain : Main component which controls and updates all components in the framework.
-- RavenMenu : A component that you can insert into containers, to give them a menu bar and make them controllable.
-- RavenContainer : A central building block of the framework. Use this to create the layout for your application. You can use several variants of this RavenContainer to automatically render in lists or grids, or position everything yourself.
-- RavenTextItem : A single line of text, any text outside of the container is hidden. This element is responsive to altering container dimensions.
-- RavenMultilineTextItem : A multiline text, any text outside of the container is shifted to the next line, again and again. This element is responsive to altering container dimensions.
-- RavenItem : The main button used for menu items. This also is a parent to many other items. This element should shift and move to the next line if it does not fit in your container anymore.
-- RavenLineBreakItem : An empty space to separate content, defined by a margin when rendered by a container, or a height in the item itself.
-- RavenCheckboxItem: A simple checkbox item. Shows a string with a checkbox (true or false) value behind it.
-- RavenTextInputItem : An experimental element that allows you to type text into a field. Please note that this item is a work in progress, and may have some unexpected behavior.
-- RavenDropdownItem : An experimental element that allows you to show options in a dropdown, and select an item. Please note that this element may have some unexpected behavior.
-
 
 ## Getting Raven
 
@@ -113,6 +99,24 @@ As you can see we are also able to scale our UI, and text, buttons and elements 
 
 
 You can select a few different themes, or easily make your own!
+
+
+
+## Components
+Raven provides a set of components for creating dynamic and responsive GUI's in GameMaker. Components include containers (panels), menuss, checkboxes, text input fields, dropdowns, text fields and much more.
+
+- RavenMain : Main component which controls and updates all components in the framework.
+- RavenMenu : A component that you can insert into containers, to give them a menu bar and make them controllable.
+- RavenContainer : A central building block of the framework. Use this to create the layout for your application. You can use several variants of this RavenContainer to automatically render in lists or grids, or position everything yourself.
+- RavenTextItem : A single line of text, any text outside of the container is hidden. This element is responsive to altering container dimensions.
+- RavenMultilineTextItem : A multiline text, any text outside of the container is shifted to the next line, again and again. This element is responsive to altering container dimensions.
+- RavenItem : The main button used for menu items. This also is a parent to many other items. This element should shift and move to the next line if it does not fit in your container anymore.
+- RavenLineBreakItem : An empty space to separate content, defined by a margin when rendered by a container, or a height in the item itself.
+- RavenCheckboxItem: A simple checkbox item. Shows a string with a checkbox (true or false) value behind it.
+- RavenTextInputItem : An experimental element that allows you to type text into a field. Please note that this item is a work in progress, and may have some unexpected behavior.
+- RavenDropdownItem : An experimental element that allows you to show options in a dropdown, and select an item. Please note that this element may have some unexpected behavior.
+
+
 
 
 
