@@ -4,8 +4,7 @@
 Raven is a UI library for GameMaker designed to simplify the process of creating responsive UIs for your projects. This library aims to provide an intuitive way to create panels and UI elements while maintaining flexibility and customizability.
 
 
-
-If you're looking for a framework with recursive setup and nesting of components, consider checking out the "Emu" UI framework created by community member DragoniteSpam, Emu is more sophisticated and advanced than Raven and is something I would not dare to rival. Sooo, why use Raven?
+If you're looking for a framework with recursive setup and nesting of components, consider checking out the "Emu" UI framework created by community member DragoniteSpam. Sooo.. Why use Raven?
 
 # Key Features:
 
@@ -16,7 +15,7 @@ If you're looking for a framework with recursive setup and nesting of components
 - Customizable: Customize UI elements to match your game's aesthetic and design.
 
 
-<img width="916" alt="menu1" src="https://github.com/Emperor2000/Raven/assets/38536470/e7b89cd8-37b5-4e4d-860c-c0855dafd51b">
+<img width="400" alt="menu1" src="https://github.com/Emperor2000/Raven/assets/38536470/e7b89cd8-37b5-4e4d-860c-c0855dafd51b">
 
 
 Raven allows you to create UI's at different resolutions and have a responsive UI when scaling containers or the game window.
@@ -81,7 +80,7 @@ tooltipcontainer.AddItem(new RavenTextItem("Let's write a paragraph! The quick b
 ```
 And we finalize by adding our tooltipcontainer to our main struct.
 ```javascript
-raven.AddContainer(subcontainer);
+raven.AddContainer(tooltip_container);
 ```
 That's it for getting started!
 
