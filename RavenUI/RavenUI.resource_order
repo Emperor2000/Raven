@@ -44,5 +44,6 @@
     {"name":"GetRavenContainerIndexById","order":3,"path":"scripts/GetRavenContainerIndexById/GetRavenContainerIndexById.yy",},
     {"name":"RavenMultilineTextItem","order":7,"path":"scripts/RavenMultilineTextItem/RavenMultilineTextItem.yy",},
     {"name":"obj_raven_init","order":1,"path":"objects/obj_raven_init/obj_raven_init.yy",},
+    {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
   ],
 }
