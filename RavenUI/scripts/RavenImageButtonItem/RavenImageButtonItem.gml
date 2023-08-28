@@ -1,12 +1,13 @@
 //A Raven Item is a page or a function trigger
 ///@Description An item, use false or noone for _on_click if not interactable.
-/// @param {String}     text    The unique instance ID value of the instance to check.
 /// @param {String}  on_click  The object index to be checked against.
-/// @param {Real}	_margin Not yet implemented!
-function RavenItem(_text, _on_click, _margin = 0) constructor {
+/// @param {Asset.GMSprite}  _sprite  The sprite 
+/// @param {Real}	_margin The margin applied to the top, buttom, left and right of the item.
+/// @param {Real}	_image_x_scale The x scaling of the image, where 1 is the original scale.
+/// @param {Real}	_image_y_scale The y scaling of the image, where 1 is the original scale.
+function RavenImageButtonItem(_on_click, _sprite, _margin = 0, _sprite_xscale = 1, _sprite_yscale = 1) constructor {
 	container_id = undefined;
 	is_enabled = true;
-	text = _text;
 	if (_on_click == noone || !_on_click)
 	    on_click = _on_click;
 	else
@@ -23,7 +24,9 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 	y1 = 0;
 	hover = false;
 	height = 0;
-	
+	sprite = _sprite
+	sprite_xscale = _sprite_xscale;
+	sprite_yscale = _sprite_yscale;
 	
 	function GetContainerId() {
 		return container_id;	
@@ -55,22 +58,10 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 		}
 	}
 	
-	
-	/// @description	returns the text of the item.
-	function GetText() {
-		return text;	
-	}
-	
-	function SetText(_text) {
-		text = _text;
-	}
-	
 	/// @description	returns the width of the text in pixels.
 	function GetWidth() {
-		if (text != noone) {
-			return string_width(text);	
-		}
-	}	
+		return sprite_get_width(sprite)*sprite_xscale;
+	}
 	
 	function SetCoords(_x0, _y0, _x1, _y1) {
 		x0 = _x0;
@@ -79,15 +70,14 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 		y1 = _y1;
 	}
 	
-	function GetHeight() {
-		height = y1 - y0;
-		return height;	
-	}
+    function GetHeight() {
+        return sprite_get_height(sprite)*sprite_yscale;
+    }
 	
 	
 	function Update() {
 		gui_clicking = false;
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x1, y1)) {
+		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale, y0 + sprite_get_height(sprite)*sprite_yscale)) {
 			hover = true;
 			
 			//use mouse_check_button for gui responsiveness
@@ -110,6 +100,17 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 		}
 	}
 	
+	function Render() {
+		draw_sprite_ext(sprite,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
+		
+		if (hover) {
+			draw_sprite_ext(sprite,0,x0,y0,sprite_xscale,sprite_yscale,0,global.gui_menu_hover,0.3);
+		}
+		
+		if (gui_clicking) {
+			draw_sprite_ext(sprite,0,x0,y0,sprite_xscale,sprite_yscale,0,global.gui_menu_click,0.6);	
+		}
+	}
 	
 	
 

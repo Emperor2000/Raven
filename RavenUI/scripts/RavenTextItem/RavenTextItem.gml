@@ -95,7 +95,7 @@ function RavenTextItem(_text, _on_click, _margin, _font, _color = undefined) : R
     }
 	
 	//check if our text element is outside the bounds of the container
-	function IsTextOusideBounds() {
+	function IsTextOutsideBounds() {
 		if (text_x1 > x1) {
 			return true;
 		}

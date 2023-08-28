@@ -3,7 +3,7 @@
 /// @param {String}     text    The unique instance ID value of the instance to check.
 /// @param {String}  on_click  The object index to be checked against.
 /// @param {Real}	_margin Not yet implemented!
-function RavenItem(_text, _on_click, _margin = 0) constructor {
+function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	text = _text;
@@ -23,7 +23,9 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 	y1 = 0;
 	hover = false;
 	height = 0;
-	
+	draw_outline = _draw_outline;
+	padding = _padding;
+	border_radius = _border_radius;
 	
 	function GetContainerId() {
 		return container_id;	
@@ -68,7 +70,7 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 	/// @description	returns the width of the text in pixels.
 	function GetWidth() {
 		if (text != noone) {
-			return string_width(text);	
+			return string_width(text)+padding+padding;	
 		}
 	}	
 	
@@ -79,15 +81,18 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 		y1 = _y1;
 	}
 	
-	function GetHeight() {
-		height = y1 - y0;
-		return height;	
-	}
+    function GetHeight() {
+        return string_height(text);
+    }
 	
 	
 	function Update() {
+		var _px0 = x0 - padding;
+		var _px1 = x1 + padding;
+		var _py0 = y0 - padding;
+		var _py1 = y1 + padding;
 		gui_clicking = false;
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x1, y1)) {
+		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), _px0, _py0, _px0+GetWidth(), _py0+GetHeight())) {
 			hover = true;
 			
 			//use mouse_check_button for gui responsiveness
@@ -110,6 +115,32 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 		}
 	}
 	
+	function Render() {
+		var _px0 = x0 - padding;
+		var _px1 = x1 + padding;
+		var _py0 = y0 - padding;
+		var _py1 = y1 + padding;
+		
+		draw_set_color(global.gui_menu);
+		draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
+		draw_set_color(global.gui_text_default);
+
+		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0),_px0,_py0,_px0+GetWidth(),_py1)) {
+			draw_set_color(global.gui_menu_hover);
+			draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
+			
+			if (mouse_check_button_pressed(mb_left)) {
+				draw_set_color(global.gui_menu_click);
+				draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
+			}
+		}
+		if (draw_outline) {
+			draw_set_color(global.gui_text_default);
+			draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, true);
+		}
+		draw_set_color(global.gui_text_default);
+		draw_text(x0, y0, text);
+	}
 	
 	
 
