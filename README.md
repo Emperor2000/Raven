@@ -65,7 +65,7 @@ container.SetLock(true);
 ```
 We have created a container and locked it. This means the container can not be resized, dragged, etc. We have not yet added our container to the main struct, let's do that!
 ```javascript
-raven_gui.AddContainer(container);
+raven.AddContainer(container);
 ```
 We can also create a smaller panel, for example in order to display tooltips or serve as a sidebar or overlay:
 ```javascript
