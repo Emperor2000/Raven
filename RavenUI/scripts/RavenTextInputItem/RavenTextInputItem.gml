@@ -34,11 +34,16 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
     cursor_blink_interval = 30; // Adjust as needed
     cursor_blink_timer = 0;
     cursor_visible = true;
+	backspace_cooldown = 3; //the cooldown in frames in which a character can be removed when holding backspace. 
+	backspace_cooldown_actual = 0; //when this counter reaches zero another character can be removed.
+	backspace_hold_block = 10; //the cooldown in frames in which holding backspace is ignored after pressing backspace.
+	backspace_hold_block_actual = 0; //when this counter reaches zero another character can be removed.
 
     // New methods to handle input
     function StartInput() {
         active = true;
         cursor_blink_timer = cursor_blink_interval;
+		keyboard_string = "";
     }
 
     function StopInput() {
@@ -126,60 +131,76 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
            // input_text = string_insert(cursor_position, "|", cursor_position + 1);
 		   
 		   //Copy to clipboard
-		   
-		   if (global.experimental_features) {
-				if (keyboard_check(vk_control) && keyboard_check_pressed(ord("C"))) {
-					show_debug_message("copy command:");
-				    clipboard_set_text(input_text);
-				} else
-				if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V"))) {
-					show_debug_message("paste command:");
-				    var _clipboard_text = clipboard_get_text();
-					show_debug_message("text from clipboard: " + _clipboard_text);
-				    input_text = string_insert(_clipboard_text, input_text, cursor_position + 1);
-					show_debug_message("input text: " + input_text);
-				    cursor_position += string_length(_clipboard_text);
-				} else
-				if (keyboard_check(vk_control) && keyboard_check_pressed(ord("X"))) {
-					show_debug_message("cut command:");
-					var _clipboard = input_text;
-				    clipboard_set_text(_clipboard);
-					cursor_position = 1;
-					input_text = "";
-				    //input_text = string_delete(input_text, 0, string_length(clipboard_get_text()));
+		   if (active) {
+			   if (global.experimental_features) {
+					if (keyboard_check(vk_control) && keyboard_check_pressed(ord("C"))) {
+						show_debug_message("copy command:");
+					    clipboard_set_text(input_text);
+					} else
+					if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V"))) {
+						show_debug_message("paste command:");
+					    var _clipboard_text = clipboard_get_text();
+						show_debug_message("text from clipboard: " + _clipboard_text);
+					    input_text = string_insert(_clipboard_text, input_text, cursor_position + 1);
+						show_debug_message("input text: " + input_text);
+					    cursor_position += string_length(_clipboard_text);
+					} else
+					if (keyboard_check(vk_control) && keyboard_check_pressed(ord("X"))) {
+						show_debug_message("cut command:");
+						var _clipboard = input_text;
+					    clipboard_set_text(_clipboard);
+						cursor_position = 1;
+						input_text = "";
+					    //input_text = string_delete(input_text, 0, string_length(clipboard_get_text()));
+					}
+			   }
+	            if (keyboard_check_pressed(vk_left)) {
+	                cursor_position = max(0, cursor_position - 1);
+	            }
+	            if (keyboard_check_pressed(vk_right)) {
+	                cursor_position = min(string_length(input_text), cursor_position + 1);
+	            }
+				
+				backspace_cooldown_actual -= 1;
+				backspace_hold_block_actual -= 1;
+				var _allow_backspace = true;
+				if (keyboard_check_pressed(vk_backspace)) {
+				    if (cursor_position > 0) {
+				        cursor_position -= 1;  // Update cursor position first
+				        input_text = string_delete(input_text, cursor_position + 1, 1);  // Then modify input_text
+						_allow_backspace = false;
+						backspace_hold_block_actual = backspace_hold_block;
+					}					
 				}
-		   }
-            if (keyboard_check_pressed(vk_left)) {
-                cursor_position = max(0, cursor_position - 1);
-            }
-            if (keyboard_check_pressed(vk_right)) {
-                cursor_position = min(string_length(input_text), cursor_position + 1);
-            }
-			if (keyboard_check_pressed(vk_backspace)) {
-			    if (cursor_position > 0) {
-			        cursor_position -= 1;  // Update cursor position first
-			        input_text = string_delete(input_text, cursor_position, 1);  // Then modify input_text
-			    }
-			}
-            if (keyboard_check_pressed(vk_delete)) {
-                input_text = string_delete(input_text, cursor_position, 1);
-            }
+				
+				if (keyboard_check(vk_backspace) && backspace_cooldown_actual <= 0 && _allow_backspace && backspace_hold_block_actual <= 0) {
+					backspace_cooldown_actual = backspace_cooldown;
+				    if (cursor_position > 0) {
+				        cursor_position -= 1;  // Update cursor position first
+				        input_text = string_delete(input_text, cursor_position + 1, 1);  // Then modify input_text
+				    }
+				}
+	            if (keyboard_check_pressed(vk_delete)) {
+	                input_text = string_delete(input_text, cursor_position + 1, 1);
+	            }
+				
+	            var _input_char = keyboard_string;
+	            if (string_length(_input_char) > 0 && _input_char != "\r") {
+					cursor_position += string_length(_input_char);
+	                input_text = string_insert(_input_char, input_text, cursor_position);
+					keyboard_string = ""
+	            }
 
-            var _input_char = keyboard_string;
-            if (string_length(_input_char) > 0 && _input_char != "\r") {
-                input_text = string_insert("", _input_char, cursor_position + 1);
-                cursor_position += 1;
-            }
-
-            if (keyboard_check_pressed(vk_enter) || (!hover && mouse_check_button_pressed(mb_left))) {
-                StopInput();
-            }
-        }
-    }
+	            if (!active || keyboard_check_pressed(vk_enter) || (!hover && mouse_check_button_pressed(mb_left))) {
+	                StopInput();
+	            }
+	        }
+	    }
+	}
 
     // Render method with cursor blinking and input display
 	function Render() {
-
+		show_debug_message(input_text);
 	    draw_set_font(font);
 	    var _font_height = font_get_size(font);
 
