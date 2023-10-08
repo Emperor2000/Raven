@@ -118,6 +118,8 @@ Raven provides a set of components for creating dynamic and responsive GUI's in 
 - RavenButtonItem : A button with optional padding and rounded corners that can be displayed in a container.
 - RavenImageButtonItem : A clickable image/sprite with optional scaling parameters for width and height that can be displayed in a container.
 
+### [V0.6.0]
+- RavenImageItem: An image/sprite with optional scaling parameters for width and height that can be displayed in a container (no interaction supported).
 
 
 
