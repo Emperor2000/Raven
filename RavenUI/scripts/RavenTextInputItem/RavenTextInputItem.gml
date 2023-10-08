@@ -127,12 +127,10 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
                     cursor_blink_timer = cursor_blink_interval;
                 }
             }
-			//input_text = string_insert("|", input_text, cursor_position);
-           // input_text = string_insert(cursor_position, "|", cursor_position + 1);
 		   
 		   //Copy to clipboard
 		   if (active) {
-			   if (global.experimental_features) {
+			   if (global.preview_features) {
 					if (keyboard_check(vk_control) && keyboard_check_pressed(ord("C"))) {
 						show_debug_message("copy command:");
 					    clipboard_set_text(input_text);
@@ -151,7 +149,6 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 					    clipboard_set_text(_clipboard);
 						cursor_position = 1;
 						input_text = "";
-					    //input_text = string_delete(input_text, 0, string_length(clipboard_get_text()));
 					}
 			   }
 	            if (keyboard_check_pressed(vk_left)) {
@@ -236,10 +233,7 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 			//Debug purposes alternative, also displays the cursor position/index
 	        //_display_text = _pre_cursor + "|" + _post_cursor + " " + string(cursor_position);
 	    }
-		//show_debug_message("display text: " + _display_text);
-		//show_debug_message("input text: " + input_text);
 	    var _text = draw_text(_text_x, _text_y, _display_text);
-		//show_debug_message("result: " + _display_text);
 	}
 
 }

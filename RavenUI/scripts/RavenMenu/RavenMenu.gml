@@ -157,8 +157,8 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 		
 		lock_icon_x0 = _x1_applied-margin - sprite_get_width(spr_lock)/4;
 		lock_icon_x1 = _x1_applied-margin + sprite_get_width(spr_lock)/4;
-		lock_icon_y0 = (y+height/2) - sprite_get_height(spr_lock/2);
-		lock_icon_y1 = (y+height/2) + sprite_get_height(spr_lock/2);
+		lock_icon_y0 = (y+height/2) - sprite_get_height(spr_lock)/2;
+		lock_icon_y1 = (y+height/2) + sprite_get_height(spr_lock)/2;
 	
 	    var _draw_pos = x + margin;
 	    var _row_count = 1;

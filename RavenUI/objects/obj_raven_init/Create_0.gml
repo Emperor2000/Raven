@@ -74,7 +74,7 @@ global.gui_checkmark_color = GUI_RAVEN_CHECKMARK;
 global.gui_depth_index = 0; //auto increment id, currently unused. TODO
 
 global.experimental_features = false; //Enables some experimental features in the framework. These functionalities may be untested or still contain bugs!
-
+global.preview_features = true; //Enables preview features in the framework, more thoroughly tested than experimental features, but may be overhauled or altered.
 
 #endregion
 
@@ -236,7 +236,8 @@ _subcontainer.AddItem(new RavenCheckboxItem("Check Me: "));
 show_debug_message("list size (init0): " + string(ds_list_size(_subcontainer.items)));
 _subcontainer.AddItem(new RavenLineBreakItem(32,32));
 _subcontainer.AddItem(new RavenButtonItem("This is a button", noone, 16, 6, 6, true));
-_subcontainer.AddItem(new RavenImageButtonItem(noone,Sprite2,16,1,1));
+_subcontainer.AddItem(new RavenImageButtonItem(noone,spr_sample_image,16,1,1));
+_subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
 _subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
 //subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 raven_gui.AddContainer(_subcontainer);
@@ -262,5 +263,6 @@ enum GUI_RENDER_MODE {
 	HLIST,
 	VLIST,
 	GRID,
-	COLUMNS2
+	COLUMNS2,
+	MANUAL
 }

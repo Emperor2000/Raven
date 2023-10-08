@@ -304,9 +304,17 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 				show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method GRID is not yet implemented into Raven!", false);
 			break;
 			
-			//case GUI_RENDER_MODE.COLUMNS2:
-			//	show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method Columns2 is not yet implemented into Raven!", false);
-			//break;
+			case GUI_RENDER_MODE.COLUMNS2:
+				show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method Columns2 is not yet implemented into Raven!", false);
+			break;
+			
+			case GUI_RENDER_MODE.MANUAL:
+				for (var _i = 0; _i < ds_list_size(items); _i++) {
+					var _item = ds_list_find_value(items, _i);	
+					// Render the item
+					_item.Render();
+				}
+			break;
 			
 		}
 	}

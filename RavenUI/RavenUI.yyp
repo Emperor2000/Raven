@@ -37,11 +37,12 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.6.0.92",
+    "IDEVersion": "2023.8.2.106",
   },
   "resources": [
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"DestroyRavenContainerById","path":"scripts/DestroyRavenContainerById/DestroyRavenContainerById.yy",},},
+    {"id":{"name":"RavenImageItem","path":"scripts/RavenImageItem/RavenImageItem.yy",},},
     {"id":{"name":"open_help_page","path":"scripts/open_help_page/open_help_page.yy",},},
     {"id":{"name":"RavenMenu","path":"scripts/RavenMenu/RavenMenu.yy",},},
     {"id":{"name":"fnt_dsansmono16","path":"fonts/fnt_dsansmono16/fnt_dsansmono16.yy",},},
@@ -67,13 +68,14 @@
     {"id":{"name":"GetRavenContainerIndexById","path":"scripts/GetRavenContainerIndexById/GetRavenContainerIndexById.yy",},},
     {"id":{"name":"RavenMultilineTextItem","path":"scripts/RavenMultilineTextItem/RavenMultilineTextItem.yy",},},
     {"id":{"name":"obj_raven_init","path":"objects/obj_raven_init/obj_raven_init.yy",},},
-    {"id":{"name":"Sprite2","path":"sprites/Sprite2/Sprite2.yy",},},
+    {"id":{"name":"spr_sample_image","path":"sprites/spr_sample_image/spr_sample_image.yy",},},
     {"id":{"name":"fnt_bookshelf","path":"fonts/fnt_bookshelf/fnt_bookshelf.yy",},},
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"roomId":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],

@@ -24,6 +24,7 @@
   "ResourceOrderSettings": [
     {"name":"Room1","order":12,"path":"rooms/Room1/Room1.yy",},
     {"name":"DestroyRavenContainerById","order":1,"path":"scripts/DestroyRavenContainerById/DestroyRavenContainerById.yy",},
+    {"name":"RavenImageItem","order":12,"path":"scripts/RavenImageItem/RavenImageItem.yy",},
     {"name":"RavenMenu","order":6,"path":"scripts/RavenMenu/RavenMenu.yy",},
     {"name":"fnt_dsansmono16","order":3,"path":"fonts/fnt_dsansmono16/fnt_dsansmono16.yy",},
     {"name":"RavenContainer","order":1,"path":"scripts/RavenContainer/RavenContainer.yy",},
@@ -44,6 +45,6 @@
     {"name":"GetRavenContainerIndexById","order":3,"path":"scripts/GetRavenContainerIndexById/GetRavenContainerIndexById.yy",},
     {"name":"RavenMultilineTextItem","order":7,"path":"scripts/RavenMultilineTextItem/RavenMultilineTextItem.yy",},
     {"name":"obj_raven_init","order":1,"path":"objects/obj_raven_init/obj_raven_init.yy",},
-    {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
+    {"name":"spr_sample_image","order":1,"path":"sprites/spr_sample_image/spr_sample_image.yy",},
   ],
 }
