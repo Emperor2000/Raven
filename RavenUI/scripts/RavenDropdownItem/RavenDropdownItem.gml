@@ -65,7 +65,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 		ds_list_add(options, _value);
 		return true;
 		} else {
-			show_error("Type Error: The added option is expected to be of type: string, but was: " + typeof(_value));	
+			show_error("Type Error: The added option is expected to be of type: string, but was: " + typeof(_value), true);	
 			return false;
 		}
 	}
@@ -75,18 +75,18 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 			ds_list_delete(options, _index);
 			return true;
 		} else {
-			show_error("Type Error: The added option is expected to be of type: Int32, but was: " + typeof(_index));
+			show_error("Type Error: The added option is expected to be of type: Int32, but was: " + typeof(_index), true);
 			return false;
 		}
 	}
 	/// @description             Deletes the first occurence of the given value from the options, returns true if successful, otherwise returns false.
 	function DeleteOptionByValue(_value) {
-		if (is_string(_value) {
+		if (is_string(_value)) {
 			var _index_to_delete = ds_list_find_index(options, _value);
 			ds_list_delete(options, _index_to_delete);
 			return true;
 		} else {
-			show_error("Type Error: The added option is expected to be of type: string, but was: " + typeof(_value));	
+			show_error("Type Error: The added option is expected to be of type: string, but was: " + typeof(_value), true);	
 			return false;
 		}
 	}

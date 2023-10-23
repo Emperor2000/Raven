@@ -214,8 +214,6 @@ raven_gui.AddContainer(container);
 
 
 
-
-
 //Get Started here:
 
 //replace with your own elements------------------------
