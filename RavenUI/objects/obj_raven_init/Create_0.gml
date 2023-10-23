@@ -227,7 +227,6 @@ _container_menu.AddItem(new RavenItem("Exit",global.destroy_container,32));
 _subcontainer.SetMenuBoundByContainer(true);
 _subcontainer.AddItem(new RavenTextItem("This is a TextField",0,16, fnt_dsansmono16));
 _subcontainer.AddItem(new RavenTextItem("Welcome to Raven, enter your name:",0,16,fnt_dsansmono16));
-
 _subcontainer.AddItem(new RavenTextInputItem("Username", noone, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
 //subcontainer.AddItem(new RavenMultilineTextItem("Let's write an entire section. This code should be shifted to the next line as soon as it overflows!",0,16,fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
 _subcontainer.AddItem(new RavenTextItem("",0,16,fnt_dsansmono16));
@@ -239,7 +238,7 @@ _subcontainer.AddItem(new RavenButtonItem("This is a button", noone, 16, 6, 6, t
 _subcontainer.AddItem(new RavenImageButtonItem(noone,spr_sample_image,16,1,1));
 _subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
 _subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
-//subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
+_subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 raven_gui.AddContainer(_subcontainer);
 
 

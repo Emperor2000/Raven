@@ -110,6 +110,10 @@ function RavenItem(_text, _on_click, _margin = 0) constructor {
 		}
 	}
 	
+	function Render() {
+		
+	}
+	
 	
 	
 
