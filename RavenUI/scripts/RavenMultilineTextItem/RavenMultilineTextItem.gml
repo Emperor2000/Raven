@@ -138,5 +138,8 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
 
         // Draw the last line
         if (_y + specific_margin + string_height(_current_line) < container_y1) draw_text(_x, _y, _current_line);
+		
+		// Update the y1 position to _y if it is larger. This way the container will also be aware of the item's height requirements.
+		if (_y > y1)  y1 = _y;
     }
 }
