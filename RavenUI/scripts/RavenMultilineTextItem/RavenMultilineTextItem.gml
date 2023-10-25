@@ -17,6 +17,10 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
     hover = false;
     font = _font; // Font for the text item
     color = _color; // Color for the text
+	container_x0 = undefined;
+	container_y0 = undefined;
+	container_x1 = undefined;
+	container_y1 = undefined;
 
     function GetContainerId() {
         return container_id;    
@@ -59,9 +63,22 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
     function GetHeight() {
         return string_height(text);
     }
+	
+	function GetContainerBounds() {
+		var _container_id = GetContainerId();
+		if (_container_id != noone && _container_id != undefined) {
+			var _container_inst = GetRavenContainerById(_container_id);
+			if (_container_inst != noone && _container_inst != undefined) {
+			container_x0 = _container_inst.x0_scaling;
+			container_y0 = _container_inst.y0_scaling;
+			container_x1 = _container_inst.x1_scaling;
+			container_y1 = _container_inst.y1_scaling;
+			}
+		}
+	}
 
     function Update() {
-		
+		GetContainerBounds();
         gui_clicking = false;
         if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x1, y1)) {
             hover = true;
@@ -96,6 +113,7 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
         var _x = x0 + specific_margin;
         var _y = (y0 + y1) / 2;
         var _max_width = x1 - x0 - specific_margin * 2;
+		var _max_height = container_y1;
 
         var _words = string_split(text, " ");
         var _current_line = "";
@@ -110,15 +128,15 @@ function RavenMultilineTextItem(_text, _on_click, _margin = 16, _font = fnt_dsan
                 }
                 _current_line += _word;
             } else {
-                // Draw the current line and move the y-coordinate
-                draw_text(_x, _y, _current_line);
-                _y += string_height(_current_line);
-
+				// Draw the current line and move the y-coordinate
+				if (_y + specific_margin + string_height(_current_line) < container_y1)  draw_text(_x, _y, _current_line);
+                
+				_y += string_height(_current_line);
                 _current_line = _word; // Start a new line
             }
         }
 
         // Draw the last line
-        draw_text(_x, _y, _current_line);
+        if (_y + specific_margin + string_height(_current_line) < container_y1) draw_text(_x, _y, _current_line);
     }
 }

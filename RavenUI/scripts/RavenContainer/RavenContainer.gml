@@ -227,7 +227,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		//}
 		}
 	}
-	
 	//Binds a menu to this container
 	function SetMenu(_raven_menu) {
 		show_debug_message(" provided menu: " );
