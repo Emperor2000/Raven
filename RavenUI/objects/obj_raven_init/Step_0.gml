@@ -40,6 +40,9 @@ switch(THEME) {
 		global.gui_menu_hover = $34292d;
 		global.gui_outline = $1b1b1b;
 		global.gui_checkmark_color = c_lime;
+		
+		//overrides generic
+		global.gui_status_success = $3db360;
 		break;
 	case THEME.DARK:
 		global.gui_background = $2a2a2e;

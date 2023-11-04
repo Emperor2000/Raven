@@ -163,8 +163,33 @@ _subcontainer.AddItem(new RavenImageButtonItem(noone,spr_sample_image,16,1,1));
 _subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
 _subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
 _subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
+_subcontainer.AddItem(new RavenLineBreakItem(32,32));
+var _map = ds_map_create();
+ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
+ds_map_add(_map, GUI_STATUS.WARNING, "warning");
+ds_map_add(_map, GUI_STATUS.ERROR, "rejected");
+ds_map_add(_map, GUI_STATUS.DISABLED, "disabled");
+
 raven_gui.AddContainer(_subcontainer);
 
+item_status = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true)
+item_status.SetResult("approved");
+item_status_err = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true)
+item_status_err.SetResult("rejected");
+item_status_warning = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true)
+item_status_warning.SetResult("warning");
+var _status_notification_container = new RavenContainer(800,200,1200,600,false, true, GUI_RENDER_MODE.VLIST, 3);
+_status_notification_container.AddItem(new RavenTextItem("Warning Status Display:", undefined, 16, fnt_dsansmono16));
+_status_notification_container.AddItem(new RavenLineBreakItem(16,16));
+_status_notification_container.AddItem(item_status_warning);
+_status_notification_container.AddItem(new RavenTextItem("Error Status Display:", undefined, 16, fnt_dsansmono16));
+_status_notification_container.AddItem(new RavenLineBreakItem(16,16));
+_status_notification_container.AddItem(item_status_err);
+_status_notification_container.AddItem(new RavenTextItem("Success Status Display:", undefined, 16, fnt_dsansmono16));
+_status_notification_container.AddItem(new RavenLineBreakItem(16,16));
+_status_notification_container.AddItem(item_status);
+
+raven_gui.AddContainer(_status_notification_container);
 
 
 //----------------------------------

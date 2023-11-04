@@ -12,7 +12,7 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 	is_enabled = true;
 	text = _text;
 	status = _initial_status;
-	status_map = _ds_status_map;
+	status_map = _status_map;
 	result = undefined;
 	lock_trigger = false;
 	clicking = false;
@@ -31,7 +31,7 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 	border_radius = _border_radius;
 	
 	/// @function	GetResult()
-	/// @description Returns the value of result.
+	/// @description Returns the value of result. This is the actual value of the Status Item
 	function GetResult() {
 		return result;
 	}
@@ -126,7 +126,7 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 	/// @description Evaluates if the result is equal to any value in the provided ds map, if it is, the key is saved as the status. Returns true if successful
 	function SetStatusWithStatusMap() {
 		var _key = ds_map_find_first(status_map);
-		for (var _i = 0; _i < ds_map_size(status_map); i++) {
+		for (var _i = 0; _i < ds_map_size(status_map); _i++) {
 			var _value = ds_map_find_value(status_map, _key);
 			if (_value == result) {
 				status = _key;
@@ -169,24 +169,6 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 		gui_clicking = false;
 		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), _px0, _py0, _px0+GetWidth(), _py0+GetHeight())) {
 			hover = true;
-			
-			//use mouse_check_button for gui responsiveness
-			if (mouse_check_button(mb_left)) {
-				gui_clicking = true;
-			} else {
-				gui_clicking = false;
-			}
-			
-			//mouse check button pressed for click functionality, only triggered once
-			if (mouse_check_button_pressed(mb_left)) {
-				clicking = true;
-				window_set_cursor(cr_handpoint);
-				OnClick();	
-			} else {
-				clicking = false;	
-			}
-		} else {
-			hover = false;
 		}
 	}
 	
@@ -203,6 +185,7 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 		if (status == GUI_STATUS.ERROR) draw_set_color(global.gui_status_error);
 		if (status == GUI_STATUS.WARNING) draw_set_color(global.gui_status_warning);
 		if (status == GUI_STATUS.SUCCESS) draw_set_color(global.gui_status_success);
+		if (status == GUI_STATUS.DISABLED) draw_set_color(global.gui_status_disabled);
 		
 		draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
 		
