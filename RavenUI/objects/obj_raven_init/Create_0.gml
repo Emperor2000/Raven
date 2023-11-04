@@ -172,11 +172,11 @@ ds_map_add(_map, GUI_STATUS.DISABLED, "disabled");
 
 raven_gui.AddContainer(_subcontainer);
 
-item_status = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true)
+item_status = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true);
 item_status.SetResult("approved");
-item_status_err = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true)
+item_status_err = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true);
 item_status_err.SetResult("rejected");
-item_status_warning = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true)
+item_status_warning = new RavenStatusItem("Status", _map , GUI_STATUS.WARNING, 16, 8, 16, true);
 item_status_warning.SetResult("warning");
 var _status_notification_container = new RavenContainer(800,200,1200,600,false, true, GUI_RENDER_MODE.VLIST, 3);
 _status_notification_container.AddItem(new RavenTextItem("Warning Status Display:", undefined, 16, fnt_dsansmono16));
