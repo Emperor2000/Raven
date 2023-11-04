@@ -159,7 +159,8 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 	
 	
 	function Update() {
-		//todo compare result value against map here
+		//Update status by comparing status map to result
+		SetStatusWithStatusMap();
 		
 		var _px0 = x0 - padding;
 		var _px1 = x1 + padding;
@@ -199,18 +200,12 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 		draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
 		draw_set_color(global.gui_text_default);
 		
+		if (status == GUI_STATUS.ERROR) draw_set_color(global.gui_status_error);
+		if (status == GUI_STATUS.WARNING) draw_set_color(global.gui_status_warning);
+		if (status == GUI_STATUS.SUCCESS) draw_set_color(global.gui_status_success);
 		
+		draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
 		
-
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0),_px0,_py0,_px0+GetWidth(),_py1)) {
-			draw_set_color(global.gui_menu_hover);
-			draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
-			
-			if (mouse_check_button_pressed(mb_left)) {
-				draw_set_color(global.gui_menu_click);
-				draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
-			}
-		}
 		if (draw_outline) {
 			draw_set_color(global.gui_text_default);
 			draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, true);
