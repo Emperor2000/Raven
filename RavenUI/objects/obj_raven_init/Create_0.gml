@@ -97,80 +97,6 @@ display_set_gui_maximise();
 //CHANGE YOUR SELECTED THEME
 THEME = THEME.RAVEN;
 
-
-//Also copy paste any custom THEMEs in step event if you want to update these dynamically.
-switch(THEME) {
-	case THEME.RAVEN:
-		global.gui_background = $2a2a2e;
-		global.gui_menu = $1b1b1b;
-		global.gui_text_default = $f0c5d3;
-		global.gui_text_primary = $dbc4cc;
-		global.gui_button_border = $382d31;
-		global.gui_menu_click = $45373c;
-		global.gui_menu_hover = $34292d;
-		global.gui_outline = $1b1b1b;
-		global.gui_checkmark_color = $9e6975;
-		global.gui_item_color = $9e6975;
-		break;
-	case THEME.DARK:
-		global.gui_background = $2a2a2e;
-		global.gui_menu = $1b1b1b;
-		global.gui_text_default = $c6c6d0;
-		global.gui_text_primary = $bfbfd9;
-		global.gui_button_border = $39393a;
-		global.gui_menu_click = $373838;
-		global.gui_menu_hover = global.gui_menu_click;
-		global.gui_outline = $1b1b1b;
-		global.gui_checkmark_color = c_lime;
-		break;
-	case THEME.LIGHT:
-		//lobal.gui_background = $e3e3e3;
-		global.gui_background = $dddbdc;
-		global.gui_menu = $dddbdc;
-		global.gui_text_default = $303030;
-		global.gui_text_primary = $1f1f1f;
-		global.gui_button_border = $272727;
-		global.gui_menu_click = $cacaca;
-		global.gui_menu_hover = global.gui_menu_click;
-		global.gui_outline = $171718;
-		global.gui_checkmark_color = c_lime;
-		break;
-	case THEME.DARKMIN:
-		//not implemented
-		global.gui_background = GUI_DARK_BACKGROUND;
-		global.gui_menu = GUI_DARK_MENU;
-		global.gui_text_default = GUI_DARK_TEXT_DEFAULT;
-		global.gui_text_primary = GUI_DARK_TEXT_PRIMARY;
-		global.gui_button_border = GUI_DARK_BUTTON_BORDER;
-		global.gui_menu_click = GUI_DARK_MENU_CLICK;
-		global.gui_menu_hover = global.gui_menu_click;
-		global.gui_checkmark_color = c_lime;
-		break;
-	case THEME.APPLE:
-		global.gui_background = $9494d2;
-		global.gui_menu = $4c4cc8;
-		global.gui_text_default = $292954;
-		global.gui_text_primary = $292954;
-		global.gui_button_border = $645dc1;
-		global.gui_menu_click = $5e57bf;
-		global.gui_menu_hover = global.gui_menu_click;
-		global.gui_outline = $5f57c8;
-		global.gui_checkmark_color = c_lime;
-		break;
-	case THEME.COFFEE:
-		global.gui_background = $638aa7;
-		global.gui_menu = $2a485f;
-		global.gui_text_default = $75aad2;
-		global.gui_text_primary = $97cbf2;
-		global.gui_button_border = $7490a5;
-		global.gui_menu_click = $7eb8e3;
-		global.gui_menu_hover = global.gui_menu_click;
-		global.gui_outline = $2a485f;
-		global.gui_checkmark_color = c_lime;
-		break;
-}
-
-
 #endregion
 
 //init raven
@@ -262,4 +188,11 @@ enum GUI_RENDER_MODE {
 	GRID,
 	COLUMNS2,
 	MANUAL
+}
+
+enum GUI_STATUS {
+	SUCCESS,
+	ERROR,
+	WARNING,
+	DISABLED
 }

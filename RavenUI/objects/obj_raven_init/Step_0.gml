@@ -24,6 +24,11 @@ if (global.current_size_x != window_get_width() || global.current_size_y != wind
 //todo: remove THEME manager from step event and only update when called.
 
 //Theme Manager
+//generics
+global.gui_status_success = $25de23
+global.gui_status_warning = $2362de;
+global.gui_status_error = $2323de;
+global.gui_status_disabled = $242425;
 switch(THEME) {
 	case THEME.RAVEN:
 		global.gui_background = $2a2a2e;

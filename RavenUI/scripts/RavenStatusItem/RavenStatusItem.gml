@@ -1,19 +1,19 @@
-/// @function	RavenButtonItem(_text, _on_click, _margin, _padding, _border_radius, _draw_outline)
+/// @function	RavenStatusItem(_text, _on_click, _margin, _padding, _border_radius, _draw_outline)
 /// @description Creates a clickable area with text in it.
-/// @param {String}     text    The text to display in the button.
-/// @param {String}  on_click  The function to execute when the button is clicked.
+/// @param {String}     text    The name of the status field.
+/// @param {Id.DsMap}  _status_map  A ds map of key - value pairs where the key is the status, and the value is the result's expected result value for the status to be active.
+/// @param {Real} _initial_status The initial status. Enum value from GUI_STATUS defined in obj_raven_init.
 /// @param {Real}	_margin The margin around the button.
 /// @param {Real}	_padding The padding of the button.
 /// @param {Real} _border_radius The border radius of the button.
 /// @param {Bool} _draw_outline whether or not to draw an outline.
-function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false) constructor {
+function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	text = _text;
-	if (_on_click == noone || !_on_click)
-	    on_click = _on_click;
-	else
-	    on_click = method(self, _on_click); //Note that _on_click expects a function!
+	status = _initial_status;
+	status_map = _ds_status_map;
+	result = undefined;
 	lock_trigger = false;
 	clicking = false;
 	gui_clicking = false;
@@ -30,14 +30,52 @@ function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_ra
 	padding = _padding;
 	border_radius = _border_radius;
 	
+	/// @function	GetResult()
+	/// @description Returns the value of result.
+	function GetResult() {
+		return result;
+	}
+	
+	/// @function SetResult(_result)
+	/// @description Sets the value of result.
+	function SetResult(_result) {
+		result = _result;
+	}
+	
+	/// @function GetStatusMap()
+	/// @descripotion Returns the status_map ds_map. 
+	function GetStatusMap() {
+		return status_map;
+	}
+	
+	/// @function SetStatusMap(_status_map)
+	/// @descsription Sets the value of status_map, given that the provided _status_map is of type ds_map, otherwise throws an error.
+	function SetStatusMap(_status_map) {
+		//create a mock ds map
+		mock_map = ds_list_create();
+		if (typeof(_status_map) == typeof(mock_map)) {
+			status_map = _status_map;
+		} else {
+			show_error("The provided argument for argument: _status_map in function: SetStatusMap was not of type ds_map in struct: RavenStatusItem", true);
+		}
+		ds_list_destroy(mock_map);
+		
+	}
+	
+	/// @function GetContainerId()
+	/// @description Returns the id of a bound container (container_id).
 	function GetContainerId() {
 		return container_id;	
 	}
 	
+	/// @function SetContainerId(_container_id)
+	/// @description Sets the container_id equal to the provided _container_id.
 	function SetContainerId(_container_id) {
 		container_id = _container_id;
 	}
 	
+	/// @function SetEnabled(_set) 
+	/// @description Whether the element is enabled.
 	function SetEnabled(_set) {
 		is_enabled = _set;	
 	}
@@ -52,12 +90,7 @@ function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_ra
 	
 	///@description		Execute the onclick trigger/event
 	function OnClick() {
-		if (on_click == noone || !on_click) {
-			return noone;
-		} else {
-			//execute onclick function
-			on_click();
-		}
+		show_error("Function OnClick is not implemented in RavenStatusItem", true);
 	}
 	
 	
@@ -89,7 +122,45 @@ function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_ra
     }
 	
 	
+	/// @function SetStatusWithStatusMap()
+	/// @description Evaluates if the result is equal to any value in the provided ds map, if it is, the key is saved as the status. Returns true if successful
+	function SetStatusWithStatusMap() {
+		var _key = ds_map_find_first(status_map);
+		for (var _i = 0; _i < ds_map_size(status_map); i++) {
+			var _value = ds_map_find_value(status_map, _key);
+			if (_value == result) {
+				status = _key;
+				return true;	
+				
+			} else {
+				_key = ds_map_find_next(status_map, _key);			
+			}
+			
+		}
+		return false;
+	}
+	
+	/// @function CompareResultWithStatusMap()
+	/// @description Evaluates if the result is equal to any value in the provided ds map, if it is, the key and value are returned.
+	function CompareResultWithStatusMap() {
+		var _key = ds_map_find_first(status_map);
+		for (var _i = 0; _i < ds_map_size(status_map); i++) {
+			var _value = ds_map_find_value(status_map, _key);
+			if (_value == result) {
+				return [_key, _value];	
+				
+			} else {
+				_key = ds_map_find_next(status_map, _key);			
+			}
+			
+		}
+		return undefined;
+	}
+	
+	
 	function Update() {
+		//todo compare result value against map here
+		
 		var _px0 = x0 - padding;
 		var _px1 = x1 + padding;
 		var _py0 = y0 - padding;
@@ -127,6 +198,9 @@ function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_ra
 		draw_set_color(global.gui_menu);
 		draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
 		draw_set_color(global.gui_text_default);
+		
+		
+		
 
 		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0),_px0,_py0,_px0+GetWidth(),_py1)) {
 			draw_set_color(global.gui_menu_hover);

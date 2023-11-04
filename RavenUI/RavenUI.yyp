@@ -42,6 +42,7 @@
   "resources": [
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"DestroyRavenContainerById","path":"scripts/DestroyRavenContainerById/DestroyRavenContainerById.yy",},},
+    {"id":{"name":"RavenStatusItem","path":"scripts/RavenStatusItem/RavenStatusItem.yy",},},
     {"id":{"name":"RavenImageItem","path":"scripts/RavenImageItem/RavenImageItem.yy",},},
     {"id":{"name":"open_help_page","path":"scripts/open_help_page/open_help_page.yy",},},
     {"id":{"name":"RavenMenu","path":"scripts/RavenMenu/RavenMenu.yy",},},

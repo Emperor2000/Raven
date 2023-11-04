@@ -24,6 +24,7 @@
   "ResourceOrderSettings": [
     {"name":"Room1","order":12,"path":"rooms/Room1/Room1.yy",},
     {"name":"DestroyRavenContainerById","order":1,"path":"scripts/DestroyRavenContainerById/DestroyRavenContainerById.yy",},
+    {"name":"RavenStatusItem","order":13,"path":"scripts/RavenStatusItem/RavenStatusItem.yy",},
     {"name":"RavenImageItem","order":12,"path":"scripts/RavenImageItem/RavenImageItem.yy",},
     {"name":"RavenMenu","order":6,"path":"scripts/RavenMenu/RavenMenu.yy",},
     {"name":"fnt_dsansmono16","order":3,"path":"fonts/fnt_dsansmono16/fnt_dsansmono16.yy",},
