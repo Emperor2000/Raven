@@ -1,13 +1,14 @@
-/// @function	RavenStatusItem(_text, _on_click, _margin, _padding, _border_radius, _draw_outline)
+/// @function	RavenStatusItem(_status_map, _initial_status, _text, _margin, _padding, _border_radius, _draw_outline, _display_result)
 /// @description Creates a clickable area with text in it.
-/// @param {String}     text    The name of the status field.
-/// @param {Id.DsMap}  _status_map  A ds map of key - value pairs where the key is the status, and the value is the result's expected result value for the status to be active.
-/// @param {Real} _initial_status The initial status. Enum value from GUI_STATUS defined in obj_raven_init.
+/// @param {Id.DsMap}	_status_map  A ds map of key - value pairs where the key is the status, and the value is the result's expected result value for the status to be active.
+/// @param {Real}	_initial_status The initial status. Enum value from GUI_STATUS defined in obj_raven_init.
+/// @param {String}	_text    Optional text displayed before the status.
 /// @param {Real}	_margin The margin around the button.
 /// @param {Real}	_padding The padding of the button.
 /// @param {Real} _border_radius The border radius of the button.
 /// @param {Bool} _draw_outline whether or not to draw an outline.
-function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false) constructor {
+/// @param {Bool} _display_result whether or not to draw an outline.
+function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false, _display_result = false) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	text = _text;
@@ -29,6 +30,7 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 	draw_outline = _draw_outline;
 	padding = _padding;
 	border_radius = _border_radius;
+	display_result = _display_result;
 	
 	/// @function	GetResult()
 	/// @description Returns the value of result. This is the actual value of the Status Item
@@ -157,6 +159,19 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 		return undefined;
 	}
 	
+	/// @function SetDisplayResult(_display_result)
+	/// @description Sets whether or not to display the result in the status rectangle, returns true if successful, otherwise returns false.
+	/// @param _display_result {Bool} Whether or not to display the result.
+	/// @returns {Bool} true if successful, otherwise false.
+	function SetDisplayResult(_display_result) {
+		if (is_string(_display_result)) {
+		display_result = _display_result;
+		return true;
+		} else {
+			return false;	
+		}
+	} 
+	
 	
 	function Update() {
 		//Update status by comparing status map to result
@@ -194,7 +209,8 @@ function RavenStatusItem(_text, _status_map, _initial_status = undefined,  _marg
 			draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, true);
 		}
 		draw_set_color(global.gui_text_default);
-		draw_text(x0, y0, text);
+		
+		if (!display_result) draw_text(x0,y0, text) else draw_text(x0,y0, text + " " + result);
 	}
 	
 	
