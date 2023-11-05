@@ -122,8 +122,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	}
 	
 	function Destroy() {
-		//ds_list_destroy(menu_items);
-		//ds_list_destroy(items);
 		ds_list_clear(items);
 		ds_list_clear(menu_items);
 	}
