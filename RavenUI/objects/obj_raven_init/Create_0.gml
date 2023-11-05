@@ -82,6 +82,7 @@ global.preview_features = true; //Enables preview features in the framework, mor
 
 global.destroy_container = function() {
     var _captured_container_id = self.container_id;
+	show_debug_message("actual container id from function: " + string(self.container_id));
     // Define the actual destroy_container logic using captured_container_id
     DestroyRavenContainerById(_captured_container_id);
 };

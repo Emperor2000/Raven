@@ -1,4 +1,5 @@
 /// @Description returns a container struct instance by id by searching it in the global container list, otherwise returns -1
+/// @returns Id.Instance	Returns a container id or -1 if it could not be found.
 function GetRavenContainerById(_container_id){
 	//if global.raven_containers is not undefined and not noone
 	if (global.raven_containers != undefined && global.raven_containers != noone) {
