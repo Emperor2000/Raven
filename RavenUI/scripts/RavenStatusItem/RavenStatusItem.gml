@@ -1,20 +1,20 @@
-/// @function	RavenStatusItem(_status_map, _initial_status, _text, _margin, _padding, _border_radius, _draw_outline, _display_result)
+/// @function	RavenStatusItem(_status_map, _initial_status, _text, _margin, _padding, _border_radius, _draw_outline, _display_current_value)
 /// @description Creates a clickable area with text in it.
-/// @param {Id.DsMap}	_status_map  A ds map of key - value pairs where the key is the status, and the value is the result's expected result value for the status to be active.
+/// @param {Id.DsMap}	_status_map  A ds map of key - value pairs where the key is the status, and the value is the current_value's expected current_value value for the status to be active.
 /// @param {Real}	_initial_status The initial status. Enum value from GUI_STATUS defined in obj_raven_init.
 /// @param {String}	_text    Optional text displayed before the status.
 /// @param {Real}	_margin The margin around the button.
 /// @param {Real}	_padding The padding of the button.
 /// @param {Real} _border_radius The border radius of the button.
 /// @param {Bool} _draw_outline whether or not to draw an outline.
-/// @param {Bool} _display_result whether or not to draw an outline.
-function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false, _display_result = false) constructor {
+/// @param {Bool} _display_current_value whether or not to draw an outline.
+function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false, _display_current_value = false) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	text = _text;
 	status = _initial_status;
 	status_map = _status_map;
-	result = undefined;
+	current_value = undefined;
 	lock_trigger = false;
 	clicking = false;
 	gui_clicking = false;
@@ -30,18 +30,18 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 	draw_outline = _draw_outline;
 	padding = _padding;
 	border_radius = _border_radius;
-	display_result = _display_result;
+	display_current_value = _display_current_value;
 	
-	/// @function	GetResult()
-	/// @description Returns the value of result. This is the actual value of the Status Item
-	function GetResult() {
-		return result;
+	/// @function	GetCurrentValue()
+	/// @description Returns the value of current_value. This is the actual value of the Status Item
+	function GetCurrentValue() {
+		return current_value;
 	}
 	
-	/// @function SetResult(_result)
-	/// @description Sets the value of result.
-	function SetResult(_result) {
-		result = _result;
+	/// @function SetCurrentValue(_current_value)
+	/// @description Sets the value of current_value.
+	function SetCurrentValue(_current_value) {
+		current_value = _current_value;
 	}
 	
 	/// @function GetStatusMap()
@@ -125,12 +125,12 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 	
 	
 	/// @function SetStatusWithStatusMap()
-	/// @description Evaluates if the result is equal to any value in the provided ds map, if it is, the key is saved as the status. Returns true if successful
+	/// @description Evaluates if the current_value is equal to any value in the provided ds map, if it is, the key is saved as the status. Returns true if successful
 	function SetStatusWithStatusMap() {
 		var _key = ds_map_find_first(status_map);
 		for (var _i = 0; _i < ds_map_size(status_map); _i++) {
 			var _value = ds_map_find_value(status_map, _key);
-			if (_value == result) {
+			if (_value == current_value) {
 				status = _key;
 				return true;	
 				
@@ -142,13 +142,13 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 		return false;
 	}
 	
-	/// @function CompareResultWithStatusMap()
-	/// @description Evaluates if the result is equal to any value in the provided ds map, if it is, the key and value are returned.
-	function CompareResultWithStatusMap() {
+	/// @function CompareCurrentValueWithStatusMap()
+	/// @description Evaluates if the current value is equal to any value in the provided ds map, if it is, the key and value are returned.
+	function CompareCurrentValueWithStatusMap() {
 		var _key = ds_map_find_first(status_map);
 		for (var _i = 0; _i < ds_map_size(status_map); i++) {
 			var _value = ds_map_find_value(status_map, _key);
-			if (_value == result) {
+			if (_value == current_value) {
 				return [_key, _value];	
 				
 			} else {
@@ -159,13 +159,13 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 		return undefined;
 	}
 	
-	/// @function SetDisplayResult(_display_result)
-	/// @description Sets whether or not to display the result in the status rectangle, returns true if successful, otherwise returns false.
-	/// @param _display_result {Bool} Whether or not to display the result.
+	/// @function SetDisplayCurrentValue(_display_current_value)
+	/// @description Sets whether or not to display the current value in the status rectangle, returns true if successful, otherwise returns false.
+	/// @param _display_current_value {Bool} Whether or not to display the current_value.
 	/// @returns {Bool} true if successful, otherwise false.
-	function SetDisplayResult(_display_result) {
-		if (is_string(_display_result)) {
-		display_result = _display_result;
+	function SetDisplayCurrentValue(_display_current_value) {
+		if (is_string(_display_current_value)) {
+		display_current_value = _display_current_value;
 		return true;
 		} else {
 			return false;	
@@ -174,7 +174,7 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 	
 	
 	function Update() {
-		//Update status by comparing status map to result
+		//Update status by comparing status map to current_value
 		SetStatusWithStatusMap();
 		
 		var _px0 = x0 - padding;
@@ -210,7 +210,7 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 		}
 		draw_set_color(global.gui_text_default);
 		
-		if (!display_result) draw_text(x0,y0, text) else draw_text(x0,y0, text + " " + result);
+		if (!display_current_value) draw_text(x0,y0, text) else draw_text(x0,y0, text + " " + current_value);
 	}
 	
 	
