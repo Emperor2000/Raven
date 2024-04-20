@@ -1,4 +1,10 @@
-/// TextItem Constructor
+/// @function	RavenTextItem(_text, _on_click, _margin, _font, _color)
+/// @description Creates a text item/line.
+/// @param {String}		_text	The text to display.
+/// @param {Function}   _on_click  The function to execute when the button is clicked.
+/// @param {Real}		_margin Not Currently Implemented.
+/// @param {Asset.GMFont}		_font	The font to use.
+/// @param {Constant.Color}		_color	The color to draw the text in, overrides theme color.
 function RavenTextItem(_text, _on_click, _margin, _font, _color = undefined) : RavenItem(_text, _on_click, _margin) constructor {
     container_id = undefined;
     is_enabled = true;

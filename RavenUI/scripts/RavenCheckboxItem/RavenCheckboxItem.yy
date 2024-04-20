@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "RavenCheckboxItem",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "components",
-    "path": "folders/RavenGUI/components.yy",
+  "$GMScript":"",
+  "%Name":"RavenCheckboxItem",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RavenCheckboxItem",
+  "parent":{
+    "name":"components",
+    "path":"folders/RavenGUI/components.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

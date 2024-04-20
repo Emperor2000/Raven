@@ -1,7 +1,7 @@
 /// @function	RavenButtonItem(_text, _on_click, _margin, _padding, _border_radius, _draw_outline)
 /// @description Creates a clickable area with text in it.
 /// @param {String}     text    The text to display in the button.
-/// @param {String}  on_click  The function to execute when the button is clicked.
+/// @param {Function}  on_click  The function to execute when the button is clicked.
 /// @param {Real}	_margin The margin around the button.
 /// @param {Real}	_padding The padding of the button.
 /// @param {Real} _border_radius The border radius of the button.

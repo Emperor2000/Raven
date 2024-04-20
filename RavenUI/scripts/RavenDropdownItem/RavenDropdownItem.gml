@@ -2,6 +2,7 @@
 /// @param {String}     _text    The name of the dropdown and the text it should show.
 /// @param {Id.DsList}	_options	A ds list of possible dropdown options.
 /// @param {Real}		 _margin	The margin size of the dropdown box.
+/// @param {Asset.GMFont}	_font	The font to use
 /// @param {Constant.Colour}	_color	The dropdown's color. 
 /// @param {Constant.Colour}     _text_color    The color in which any text should be displayed.
 /// @param {Constant.Colour}     _dropdown_color    The color in which the dropdown should be displayed.

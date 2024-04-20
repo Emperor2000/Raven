@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "RavenImageButtonItem",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "components",
-    "path": "folders/RavenGUI/components.yy",
+  "$GMScript":"",
+  "%Name":"RavenImageButtonItem",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RavenImageButtonItem",
+  "parent":{
+    "name":"components",
+    "path":"folders/RavenGUI/components.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

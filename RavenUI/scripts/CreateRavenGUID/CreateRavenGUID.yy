@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "CreateRavenGUID",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "scripts",
-    "path": "folders/RavenGUI/scripts.yy",
+  "$GMScript":"",
+  "%Name":"CreateRavenGUID",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"CreateRavenGUID",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/RavenGUI/scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

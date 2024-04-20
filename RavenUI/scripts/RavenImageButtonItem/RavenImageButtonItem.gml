@@ -1,6 +1,6 @@
 //A Raven Item is a page or a function trigger
 ///@Description An item, use false or noone for _on_click if not interactable.
-/// @param {String}  on_click  The object index to be checked against.
+/// @param {Function}  on_click  The object index to be checked against.
 /// @param {Asset.GMSprite}  _sprite  The sprite 
 /// @param {Real}	_margin The margin applied to the top, buttom, left and right of the item.
 /// @param {Real}	_image_x_scale The x scaling of the image, where 1 is the original scale.

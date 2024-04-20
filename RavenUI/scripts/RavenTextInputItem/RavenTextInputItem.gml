@@ -1,12 +1,12 @@
 /// TextInputItem Constructor
 /// @function                RavenTextInputItem(_placeholder_text, _on_click, _margin, _font, _color)
 /// @description             Raven text input field.
-/// @param {_placeholder_text}     _placeholder_text    Will be displayed in the input field when the user has not typed any input.
-/// @param {_on_click}  _on_click  _on_click is maintained for inheritance purposes and potential future functionality. DOES NOT currently do anything.
-/// @param {_margin} _margin	applied as margin to the left of the input field from the container.
-/// @param {_font} _font	The font used to draw text input.
-/// @param {_color}	_color	The color used to draw input border
-/// @param {_text_color} _text_color		The color used to draw text input
+/// @param {String}     _placeholder_text    Will be displayed in the input field when the user has not typed any input.
+/// @param {Function}  _on_click  _on_click is maintained for inheritance purposes and potential future functionality. DOES NOT currently do anything.
+/// @param {Real} _margin	applied as margin to the left of the input field from the container.
+/// @param {Asset.GMFont} _font	The font used to draw text input.
+/// @param {Constant.Color}	_color	The color used to draw input border
+/// @param {Constant.Color} _text_color		The color used to draw text input
 function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = fnt_dsansmono16, _color = undefined, _text_color = undefined) : RavenItem(_text, _on_click, _margin) constructor {
     container_id = undefined;
     is_enabled = true;
@@ -38,6 +38,13 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 	backspace_cooldown_actual = 0; //when this counter reaches zero another character can be removed.
 	backspace_hold_block = 10; //the cooldown in frames in which holding backspace is ignored after pressing backspace.
 	backspace_hold_block_actual = 0; //when this counter reaches zero another character can be removed.
+
+	//used to store container bounds for limiting the input box size.
+	container_x0 = x0;
+	container_y0 = y0;
+	container_x1 = x1;
+	container_y1 = y1;
+
 
     // New methods to handle input
     function StartInput() {
@@ -110,9 +117,23 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 		height = font_get_size(font);
 		return height;	
 	}
+	
+	function GetContainerBounds() {
+		var _container_id = GetContainerId();
+		if (_container_id != noone && _container_id != undefined) {
+			var _container_inst = GetRavenContainerById(_container_id);
+			if (_container_inst != noone && _container_inst != undefined) {
+				container_x0 = _container_inst.x0_scaling;
+				container_y0 = _container_inst.y0_scaling;
+				container_x1 = _container_inst.x1_scaling;
+				container_y1 = _container_inst.y1_scaling;
+			}
+		}
+	}
 
     // Update method with input handling and cursor blinking
     function Update() {
+		GetContainerBounds();
         hover = point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x1, y1);
 		//show_debug_message(hover);
         if (hover && !active && !lock_trigger && mouse_check_button_pressed(mb_left)) {
@@ -204,8 +225,8 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 	    // Determine the maximum width based on the input text length
 	    var _max_width = string_width(input_text) <= 128 ? 128 : string_width(input_text) * 1.05;
 
-	    // Draw the background rectangle
-	    draw_rectangle(x0 + specific_margin, y0, x0 + specific_margin + _max_width, y1 + _font_height, true);
+	    // Draw the background rectangle - and clamp x1 to prevent exceeding the container width.
+	    draw_rectangle(x0 + specific_margin, y0,clamp(x0 + specific_margin + _max_width, -100, container_x1), y1 + _font_height, true);
 
 	    var _text_x = x0 + specific_margin;
 	    var _text_y = y0 + (y1 - y0 - _font_height) / 2;
