@@ -45,7 +45,8 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 	container_x1 = x1;
 	container_y1 = y1;
 
-
+	y1_text_height = y1;
+	overflow_margin = 16;
     // New methods to handle input
     function StartInput() {
         active = true;
@@ -226,7 +227,8 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 	    var _max_width = string_width(input_text) <= 128 ? 128 : string_width(input_text) * 1.05;
 		var _max_height = container_y1;
 	    // Draw the background rectangle - and clamp x1 to prevent exceeding the container width.
-	    draw_rectangle(x0 + specific_margin, y0, clamp(x0 + specific_margin + _max_width, -100, container_x1), y1 + _font_height, true);
+		var _rectangle_y1 =  y1_text_height + _font_height;
+	    draw_rectangle(x0 + specific_margin, y0, clamp(x0 + specific_margin + _max_width, -100, container_x1) - margin, clamp(_rectangle_y1, 0, container_y1), true);
 
 	    var _text_x = x0 + specific_margin;
 	    var _text_y = y0 + (y1 - y0 - _font_height) / 2;
@@ -256,13 +258,17 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 	    }
 
 	    // Implement text wrapping
-		var _y_seperation = 8;
-	    var _words = string_wrap(_display_text, container_x1 - container_x0);
-var _text_y_offset = 0; // Offset for y-coordinate of each line
-for (var i = 0; i < array_length_1d(_words); i++) {
-    var _text = draw_text(_text_x, _text_y + _text_y_offset, _words[i]);
-    _text_y_offset += _y_seperation; // Increase y-offset for next line
-}
+	    var _words = string_wrap(_display_text, container_x1 - container_x0 - margin - overflow_margin);
+		var _text_y_offset = 0; // Offset for y-coordinate of each line
+		for (var i = 0; i < array_length_1d(_words); i++) {
+			var _y_seperation = _text_y_offset + specific_margin + string_height(_display_text); //increase y offset for next line
+		    if (_text_y + _text_y_offset < container_y1) {
+				var _text = draw_text(_text_x, _text_y + _text_y_offset, _words[i]);
+			}
+		    _text_y_offset = _y_seperation; // Increase y-offset for next line
+			y1 = _text_y + _text_y_offset; //y1 needs to be updated so that the input box area scales with the text present.
+			y1_text_height = y1;
+		}
 	}
 
 }
