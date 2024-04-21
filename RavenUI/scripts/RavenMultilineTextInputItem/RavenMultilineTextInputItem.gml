@@ -228,8 +228,7 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 		var _max_height = container_y1;
 	    // Draw the background rectangle - and clamp x1 to prevent exceeding the container width.
 		var _rectangle_y1 =  y1_text_height + _font_height;
-	    draw_rectangle(x0 + specific_margin, y0, clamp(x0 + specific_margin + _max_width, -100, container_x1) - margin, clamp(_rectangle_y1, 0, container_y1), true);
-
+		draw_rectangle(x0 + specific_margin, y0, clamp(x0 + specific_margin + _max_width, -100, container_x1) - margin, clamp(_rectangle_y1, container_y0, container_y1), true);
 	    var _text_x = x0 + specific_margin;
 	    var _text_y = y0 + (y1 - y0 - _font_height) / 2;
 

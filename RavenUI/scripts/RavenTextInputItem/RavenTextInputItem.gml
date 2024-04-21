@@ -225,8 +225,9 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 	    // Determine the maximum width based on the input text length
 	    var _max_width = string_width(input_text) <= 128 ? 128 : string_width(input_text) * 1.05;
 
+		var _rectangle_y1 =  y1 + _font_height;
 	    // Draw the background rectangle - and clamp x1 to prevent exceeding the container width.
-	    draw_rectangle(x0 + specific_margin, y0,clamp(x0 + specific_margin + _max_width, -100, container_x1), y1 + _font_height, true);
+	    draw_rectangle(x0 + specific_margin, y0,clamp(x0 + specific_margin + _max_width, -100, container_x1), clamp(_rectangle_y1, container_y0, container_y1), true);
 
 	    var _text_x = x0 + specific_margin;
 	    var _text_y = y0 + (y1 - y0 - _font_height) / 2;
