@@ -11,3 +11,9 @@ global.mouse_y_diff = 0;
 #region Selection
 global.raven_occupied = false;
 #endregion
+
+
+#region Keyboard Check limiting.
+global.keyboard_check_counters = ds_map_create();
+global.keyboard_lock_duration = 5;
+#endregion

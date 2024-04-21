@@ -47,6 +47,7 @@
     {"name":"RavenTextInputItem","order":8,"path":"scripts/RavenTextInputItem/RavenTextInputItem.yy",},
     {"name":"RavenTextItem","order":9,"path":"scripts/RavenTextItem/RavenTextItem.yy",},
     {"name":"RegisterRavenContainer","order":4,"path":"scripts/RegisterRavenContainer/RegisterRavenContainer.yy",},
+    {"name":"KeyboardCheckExtended","order":6,"path":"scripts/KeyboardCheckExtended/KeyboardCheckExtended.yy",},
     {"name":"StringWordWrap","order":5,"path":"scripts/StringWordWrap/StringWordWrap.yy",},
     {"name":"spr_node_black_fill","order":6,"path":"sprites/spr_node_black_fill/spr_node_black_fill.yy",},
     {"name":"spr_node_dark_fill","order":5,"path":"sprites/spr_node_dark_fill/spr_node_dark_fill.yy",},

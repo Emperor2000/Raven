@@ -172,10 +172,10 @@ function RavenTextInputItem(_text, _on_click = undefined, _margin = 16, _font = 
 						input_text = "";
 					}
 			   }
-	            if (keyboard_check_pressed(vk_left)) {
+	            if (keyboard_check_ext(vk_left, global.keyboard_lock_duration)) {
 	                cursor_position = max(0, cursor_position - 1);
 	            }
-	            if (keyboard_check_pressed(vk_right)) {
+	            if (keyboard_check_ext(vk_right, global.keyboard_lock_duration)) {
 	                cursor_position = min(string_length(input_text), cursor_position + 1);
 	            }
 				

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"KeyboardCheckExtended",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"KeyboardCheckExtended",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/RavenGUI/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

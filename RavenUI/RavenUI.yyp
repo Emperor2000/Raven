@@ -70,6 +70,7 @@
     {"id":{"name":"RavenTextInputItem","path":"scripts/RavenTextInputItem/RavenTextInputItem.yy",},},
     {"id":{"name":"RavenTextItem","path":"scripts/RavenTextItem/RavenTextItem.yy",},},
     {"id":{"name":"RegisterRavenContainer","path":"scripts/RegisterRavenContainer/RegisterRavenContainer.yy",},},
+    {"id":{"name":"KeyboardCheckExtended","path":"scripts/KeyboardCheckExtended/KeyboardCheckExtended.yy",},},
     {"id":{"name":"StringWordWrap","path":"scripts/StringWordWrap/StringWordWrap.yy",},},
     {"id":{"name":"spr_lock","path":"sprites/spr_lock/spr_lock.yy",},},
     {"id":{"name":"spr_node_black_fill","path":"sprites/spr_node_black_fill/spr_node_black_fill.yy",},},

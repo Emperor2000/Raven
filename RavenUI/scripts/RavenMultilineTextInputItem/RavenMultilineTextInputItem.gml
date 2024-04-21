@@ -173,12 +173,29 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 						input_text = "";
 					}
 			   }
-	            if (keyboard_check_pressed(vk_left)) {
+	            if (keyboard_check_ext(vk_left, global.keyboard_lock_duration)) {
 	                cursor_position = max(0, cursor_position - 1);
 	            }
-	            if (keyboard_check_pressed(vk_right)) {
+	            if (keyboard_check_ext(vk_right, global.keyboard_lock_duration)) {
 	                cursor_position = min(string_length(input_text), cursor_position + 1);
 	            }
+		        if (keyboard_check_pressed(vk_up)) {
+		            // Get the width of a line
+		            var line_width = container_x1 - container_x0 - margin - overflow_margin;
+            
+		            // Calculate the current line index
+		            var current_line_index = clamp(floor((cursor_position * string_height(input_text)) / line_width), 0, array_length_1d(string_wrap(input_text, line_width)) - 1);
+            
+		            // Calculate the character index at the start of the line above
+		            var start_of_line_above = 0;
+		            for (var i = 0; i < current_line_index - 1; i++) {
+		                start_of_line_above += string_length(string_wrap(input_text, line_width)[i]);
+		            }
+
+		            // Set cursor position to the start of the line above
+		            cursor_position = start_of_line_above;
+		        }
+				
 				
 				backspace_cooldown_actual -= 1;
 				backspace_hold_block_actual -= 1;

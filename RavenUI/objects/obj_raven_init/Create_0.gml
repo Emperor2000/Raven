@@ -165,7 +165,7 @@ _subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
 _subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
 _subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 _subcontainer.AddItem(new RavenLineBreakItem(32,32));
-_subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT, GUI_RAVEN_TEXT_DEFAULT));
+_subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16));
 var _map = ds_map_create();
 ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
 ds_map_add(_map, GUI_STATUS.WARNING, "warning");
