@@ -80,6 +80,7 @@
     {"id":{"name":"spr_node_dark_fill","path":"sprites/spr_node_dark_fill/spr_node_dark_fill.yy",},},
     {"id":{"name":"spr_node_dark_transparent","path":"sprites/spr_node_dark_transparent/spr_node_dark_transparent.yy",},},
     {"id":{"name":"spr_node_inner_dark","path":"sprites/spr_node_inner_dark/spr_node_inner_dark.yy",},},
+    {"id":{"name":"spr_node_mask","path":"sprites/spr_node_mask/spr_node_mask.yy",},},
     {"id":{"name":"spr_node_red","path":"sprites/spr_node_red/spr_node_red.yy",},},
     {"id":{"name":"spr_node_white_fill","path":"sprites/spr_node_white_fill/spr_node_white_fill.yy",},},
     {"id":{"name":"spr_node_yellow","path":"sprites/spr_node_yellow/spr_node_yellow.yy",},},

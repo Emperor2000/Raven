@@ -166,6 +166,7 @@ _subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item.
 _subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 _subcontainer.AddItem(new RavenLineBreakItem(32,32));
 _subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16));
+_subcontainer.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_blue, 2, 2));
 var _map = ds_map_create();
 ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
 ds_map_add(_map, GUI_STATUS.WARNING, "warning");
@@ -193,9 +194,6 @@ _status_notification_container.AddItem(item_status_err);
 _status_notification_container.AddItem(new RavenTextItem("Success Status Display:", undefined, 16, fnt_dsansmono16));
 _status_notification_container.AddItem(new RavenLineBreakItem(16,16));
 _status_notification_container.AddItem(item_status);
-
-_status_notification_container.AddItem(new RavenNodeItem(noone, 16, spr_node, 2, 2));
-
 raven_gui.AddContainer(_status_notification_container);
 
 

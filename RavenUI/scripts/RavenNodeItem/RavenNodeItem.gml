@@ -85,8 +85,8 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 	
 	
 	function Update() {
-		show_debug_message("update");
 		node_object_representation.depth = GetRavenContainerById(container_id).gui_depth_index;
+		node_object_representation.depth = -9999;
 		//gui_clicking = false;
 		
 			//Deactivate clicking if mb left has been released.

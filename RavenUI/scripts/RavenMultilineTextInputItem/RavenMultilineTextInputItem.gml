@@ -236,7 +236,6 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 
     // Render method with cursor blinking and input display
 	function Render() {
-	    show_debug_message(input_text);
 	    draw_set_font(font);
 	    var _font_height = font_get_size(font);
 
