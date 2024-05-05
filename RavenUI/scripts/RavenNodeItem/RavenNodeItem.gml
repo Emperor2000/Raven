@@ -29,9 +29,14 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 	sprite_xscale = _sprite_xscale;
 	sprite_yscale = _sprite_yscale;
 	node_object_representation = instance_create_depth(x0,y0,0, obj_node);
+	node_object_representation.node_struct_representation = self;
+	
+	node_target_object_representation = undefined;
 	node_target = undefined;
+	node_target_value = undefined;
 	selected = false;
 	bind_mode = false;
+	bind_toggled_last_frame = false;
 	
 	function GetContainerId() {
 		return container_id;	
@@ -96,20 +101,12 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 			
 			if (mouse_check_button(mb_left) && selected) {
 				bind_mode = true;
-				//check if there is a node at the target position.
-				show_debug_message("selecting");
-				var _obj = instance_position(mouse_x, mouse_y, obj_node);
-				//if (_obj != undefined && _obj != noone) {
-				//	draw_curve(x0, y0, _obj.x, _obj.y, c_red, 3);
-				//}
-				show_debug_message("obj result:");
-				node_object_representation = 0;
 			} else {
 				selected = false;	
 				bind_mode = false;
+				
 			}
-		
-		
+			
 		
 		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale, y0 + sprite_get_height(sprite)*sprite_yscale)) {
 			hover = true;
@@ -134,7 +131,23 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		} else {
 			hover = false;
 		}
+		
+		//release drag --> this is where we check for the object and connect the node.
+		if (bind_toggled_last_frame && !mouse_check_button(mb_left)) {
+			//check if there is a node at the target position.
+			var _obj = instance_position(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), obj_node);
+			show_debug_message("INSTANCE POSITION FOUND");
+			show_debug_message(_obj);
+			if (_obj != undefined && _obj != noone) {
+				node_target_object_representation = _obj;
+				node_target = node_target_object_representation.node_struct_representation;
+				show_debug_message(node_target_object_representation);
+			}
+		}
+		bind_toggled_last_frame = false;	
 	}
+	
+	
 	
 	function Render() {	
 		draw_sprite_ext(sprite,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
@@ -149,7 +162,13 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		
 		if (bind_mode) {
 			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), 300, 1, c_white, 2);	
+			bind_toggled_last_frame = true;
 		}
+		
+		if (node_target_object_representation != undefined && node_target_object_representation != noone) {
+			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, node_target_object_representation.x, node_target_object_representation.y, 300, 1, c_white, 2);
+		}
+		
 	}
 	
 	

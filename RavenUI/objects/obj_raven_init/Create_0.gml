@@ -194,6 +194,7 @@ _status_notification_container.AddItem(item_status_err);
 _status_notification_container.AddItem(new RavenTextItem("Success Status Display:", undefined, 16, fnt_dsansmono16));
 _status_notification_container.AddItem(new RavenLineBreakItem(16,16));
 _status_notification_container.AddItem(item_status);
+_status_notification_container.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_blue, 2, 2));
 raven_gui.AddContainer(_status_notification_container);
 
 

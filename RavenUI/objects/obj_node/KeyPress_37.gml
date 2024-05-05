@@ -1,4 +1,3 @@
 /// @description Insert description here
 // You can write your code in this editor
-depth = -999999;
-node_struct_representation = undefined;
+show_debug_message("CLICKING");
