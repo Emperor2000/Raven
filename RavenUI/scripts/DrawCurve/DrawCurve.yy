@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"DrawCurve",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"DrawCurve",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/RavenGUI/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -52,6 +52,7 @@
     {"id":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
     {"id":{"name":"CreateRavenGUID","path":"scripts/CreateRavenGUID/CreateRavenGUID.yy",},},
     {"id":{"name":"DestroyRavenContainerById","path":"scripts/DestroyRavenContainerById/DestroyRavenContainerById.yy",},},
+    {"id":{"name":"DrawCurve","path":"scripts/DrawCurve/DrawCurve.yy",},},
     {"id":{"name":"GetRavenContainerById","path":"scripts/GetRavenContainerById/GetRavenContainerById.yy",},},
     {"id":{"name":"GetRavenContainerIndexById","path":"scripts/GetRavenContainerIndexById/GetRavenContainerIndexById.yy",},},
     {"id":{"name":"KeyboardCheckExtended","path":"scripts/KeyboardCheckExtended/KeyboardCheckExtended.yy",},},

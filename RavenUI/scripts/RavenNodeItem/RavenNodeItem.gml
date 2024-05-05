@@ -30,6 +30,8 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 	sprite_yscale = _sprite_yscale;
 	node_object_representation = instance_create_depth(x0,y0,0, obj_node);
 	node_target = undefined;
+	selected = false;
+	bind_mode = false;
 	
 	function GetContainerId() {
 		return container_id;	
@@ -86,18 +88,25 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 	
 	function Update() {
 		node_object_representation.depth = GetRavenContainerById(container_id).gui_depth_index;
-		node_object_representation.depth = -9999;
 		//gui_clicking = false;
-		
 			//Deactivate clicking if mb left has been released.
 			if (!mouse_check_button(mb_left)) {
 				gui_clicking = false;
+			}
+			
+			if (mouse_check_button(mb_left) && selected) {
+				bind_mode = true;
 				//check if there is a node at the target position.
-				if (clicking) {
-					var _obj = instance_position(mouse_x, mouse_y, obj_node);
-					show_debug_message("obj result:");
-					node_object_representation = 0;
-				}
+				show_debug_message("selecting");
+				var _obj = instance_position(mouse_x, mouse_y, obj_node);
+				//if (_obj != undefined && _obj != noone) {
+				//	draw_curve(x0, y0, _obj.x, _obj.y, c_red, 3);
+				//}
+				show_debug_message("obj result:");
+				node_object_representation = 0;
+			} else {
+				selected = false;	
+				bind_mode = false;
 			}
 		
 		
@@ -116,6 +125,7 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 			//mouse check button pressed for click functionality, only triggered once
 			if (mouse_check_button_pressed(mb_left)) {
 				clicking = true;
+				selected = true;
 				window_set_cursor(cr_handpoint);
 				OnClick();	
 			} else {
@@ -126,7 +136,7 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		}
 	}
 	
-	function Render() {
+	function Render() {	
 		draw_sprite_ext(sprite,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
 		
 		if (hover) {
@@ -135,6 +145,10 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		
 		if (gui_clicking) {
 			draw_sprite_ext(sprite,0,x0,y0,sprite_xscale,sprite_yscale,0,global.gui_menu_click,0.6);	
+		}
+		
+		if (bind_mode) {
+			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), 300, 1, c_white, 2);	
 		}
 	}
 	
