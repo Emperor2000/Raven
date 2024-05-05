@@ -17,3 +17,7 @@ global.raven_occupied = false;
 global.keyboard_check_counters = ds_map_create();
 global.keyboard_lock_duration = 5;
 #endregion
+
+
+//node map
+global.node_map = ds_map_create();
