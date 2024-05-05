@@ -28,8 +28,11 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 	sprite = _sprite
 	sprite_xscale = _sprite_xscale;
 	sprite_yscale = _sprite_yscale;
+	sprite_connected_color = _sprite_connected_color;
 	node_object_representation = instance_create_depth(x0,y0,0, obj_node);
 	node_object_representation.node_struct_representation = self;
+	
+	connected_node_source_render_target = undefined; //used to reverse rerender to draw on top of everything else.
 	
 	node_target_object_representation = undefined;
 	node_target = undefined;
@@ -141,10 +144,14 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 			if (_obj != undefined && _obj != noone) {
 				node_target_object_representation = _obj;
 				node_target = node_target_object_representation.node_struct_representation;
+				node_target.connected_node_source_render_target = node_object_representation; //bind this node's object representation to the target node's source
 				show_debug_message(node_target_object_representation);
 			}
 		}
-		bind_toggled_last_frame = false;	
+		bind_toggled_last_frame = false;
+		
+		//todo --> remove connection to source and target node.
+		//connected_node_source_render_target = undefined;
 	}
 	
 	
@@ -166,7 +173,13 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		}
 		
 		if (node_target_object_representation != undefined && node_target_object_representation != noone) {
-			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, node_target_object_representation.x, node_target_object_representation.y, 300, 1, c_white, 2);
+			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, node_target_object_representation.x + GetWidth() / 2, node_target_object_representation.y + GetHeight() / 2, 300, 1, c_white, 2);
+			draw_sprite_ext(sprite_connected_color,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
+		}
+		
+		if (connected_node_source_render_target != undefined && connected_node_source_render_target != noone) {
+			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, connected_node_source_render_target.x + GetWidth() / 2, connected_node_source_render_target.y + GetHeight() / 2, 300, 1, c_white, 2);
+			draw_sprite_ext(sprite_connected_color,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
 		}
 		
 	}

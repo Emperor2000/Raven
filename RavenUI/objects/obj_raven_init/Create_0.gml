@@ -160,13 +160,13 @@ _subcontainer.AddItem(new RavenCheckboxItem("Check Me: "));
 show_debug_message("list size (init0): " + string(ds_list_size(_subcontainer.items)));
 _subcontainer.AddItem(new RavenLineBreakItem(32,32));
 _subcontainer.AddItem(new RavenButtonItem("This is a button", noone, 16, 6, 6, true));
-_subcontainer.AddItem(new RavenImageButtonItem(noone,spr_sample_image,16,1,1));
-_subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
-_subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
-_subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
+//_subcontainer.AddItem(new RavenImageButtonItem(noone,spr_sample_image,16,1,1));
+//_subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
+//_subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
+//_subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 _subcontainer.AddItem(new RavenLineBreakItem(32,32));
-_subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16));
-_subcontainer.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_blue, 2, 2));
+//_subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16));
+_subcontainer.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_white_fill, 2, 2));
 var _map = ds_map_create();
 ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
 ds_map_add(_map, GUI_STATUS.WARNING, "warning");
@@ -194,7 +194,7 @@ _status_notification_container.AddItem(item_status_err);
 _status_notification_container.AddItem(new RavenTextItem("Success Status Display:", undefined, 16, fnt_dsansmono16));
 _status_notification_container.AddItem(new RavenLineBreakItem(16,16));
 _status_notification_container.AddItem(item_status);
-_status_notification_container.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_blue, 2, 2));
+_status_notification_container.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_white_fill, 2, 2));
 raven_gui.AddContainer(_status_notification_container);
 
 
@@ -203,7 +203,7 @@ raven_gui.AddContainer(_status_notification_container);
 
 
 
-
+_subcontainer.AddItem(new RavenNodeItem(noone, 16, spr_node, spr_node_white_fill, 2, 2));
 //We must push all references when finished init so that each raven item knows it's parent container:
 raven_gui.PushReferences();
 
