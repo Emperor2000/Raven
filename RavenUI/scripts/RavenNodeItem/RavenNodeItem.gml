@@ -1,18 +1,29 @@
 //A Raven Item is a page or a function trigger
 ///@Description An item, use false or noone for _on_click if not interactable.
-/// @param {Function}  on_click  The object index to be checked against.
+/// @param {Function}  _on_click  The function to run when left clicking the node
+/// @param {Function}  _on_connect_input The function to run when this node receives data (input) from another node.
+/// @param {Function}  _on_connect_output The function to run when this node passes data (output) to another node.
 /// @param {Real}	_margin The margin applied to the top, buttom, left and right of the item.
 /// @param {Asset.GMSprite}	_sprite The sprite to use when this node is not connected.
 /// @param {Asset.GMSprite} _sprite_connected_color The sprite to use when this node is connected.
 /// @param {Real}	_sprite_x_scale The x scaling of the node image, where 1 is the original scale.
 /// @param {Real}	_sprite_y_scale The y scaling of the node image, where 1 is the original scale.
-function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _sprite_connected_color = spr_node_white_fill, _sprite_xscale = 1, _sprite_yscale = 1) constructor {
+function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin = 0, _sprite = spr_node_white_fill, _sprite_connected_color = spr_node_white_fill, _sprite_xscale = 1, _sprite_yscale = 1) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	if (_on_click == noone || !_on_click)
 	    on_click = _on_click;
 	else
 	    on_click = method(self, _on_click); //Note that _on_click expects a function!
+		
+	if (_on_connect_input == noone || !_on_connect_input)
+		on_connect_input = _on_connect_input;
+	else
+		on_connect_input = method(self, _on_connect_input);
+	if (_on_connect_output == noone || !_on_connect_output)
+		on_connect_output = _on_connect_output;
+	else
+		on_connect_output = method(self, _on_connect_output);
 	lock_trigger = false;
 	clicking = false;
 	gui_clicking = false;
@@ -69,6 +80,24 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 			on_click();
 		}
 	}
+	
+	function OnConnectInput() {
+		if (on_connect_input == noone || !on_connect_input) {
+			return noone;	
+		} else {
+			on_connect_input();	
+		}
+	}
+	
+	function OnConnectOutput() {
+		if (on_connect_output == noone || !on_connect_output) {
+			return noone;	
+		} else {
+			on_connect_output();	
+		}
+	}
+	
+	
 	
 	/// @description	returns the width of the text in pixels.
 	function GetWidth() {
