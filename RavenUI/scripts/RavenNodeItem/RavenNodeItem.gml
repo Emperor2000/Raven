@@ -29,14 +29,13 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 	sprite_xscale = _sprite_xscale;
 	sprite_yscale = _sprite_yscale;
 	sprite_connected_color = _sprite_connected_color;
+	select_padding = 4; //appends in pixels to the selector.
 	node_object_representation = instance_create_depth(x0,y0,0, obj_node);
 	node_object_representation.node_struct_representation = self;
-	
 	connected_node_source_render_target = undefined; //used to reverse rerender to draw on top of everything else.
 	
-	node_target_object_representation = undefined;
-	node_target = undefined;
-	node_target_value = undefined;
+	node_target_object_representation = undefined; //The node's object representation
+	node_target = undefined; //The node's struct representation
 	selected = false;
 	bind_mode = false;
 	bind_toggled_last_frame = false;
@@ -93,6 +92,45 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		instance_destroy(node_object_representation);
 	}
 	
+	function ClearConnectedNodeSourceRenderTarget() {
+		connected_node_source_render_target = undefined;	
+	}
+	
+	function ClearTarget() {
+		if (node_target != undefined && node_target != noone) {
+		node_target_object_representation = undefined;
+		node_target = undefined;	
+		}
+	}
+	
+	function OnMouseRightDeleteNodeConnection() {
+		if (hover && mouse_check_button(mb_right)) {
+			if (connected_node_source_render_target != undefined) {
+				var _conn_struct = connected_node_source_render_target.node_struct_representation;
+				_conn_struct.ClearTarget();
+				connected_node_source_render_target = undefined;	
+			}
+			if (node_target != undefined) {
+				//Delete render target from source node
+				//node_target.node_target_object_representation = undefined;
+				//node_target.node_target = undefined;
+				//Delete target node connection
+				if (node_target_object_representation != undefined && node_target_object_representation != noone && node_target != noone && node_target != undefined) {
+					node_target.connected_node_source_render_target = undefined;
+					node_target_object_representation = undefined;
+					node_target = undefined;
+					//connected_node_source_render_target = undefined;
+				}
+			}
+		}
+		//show_debug_message("CONNECTION DEBUGGER_-------------------");
+		//show_debug_message(connected_node_source_render_target);
+		//show_debug_message(node_target_object_representation);
+		//show_debug_message(node_target);
+		//show_debug_message(node_target);
+		//show_debug_message("---------------------------------------");
+	}
+	
 	
 	function Update() {
 		node_object_representation.depth = GetRavenContainerById(container_id).gui_depth_index;
@@ -111,7 +149,7 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 			}
 			
 		
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale, y0 + sprite_get_height(sprite)*sprite_yscale)) {
+		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale + select_padding, y0 + sprite_get_height(sprite)*sprite_yscale + select_padding)) {
 			hover = true;
 			
 			
@@ -141,7 +179,7 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 			var _obj = instance_position(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), obj_node);
 			show_debug_message("INSTANCE POSITION FOUND");
 			show_debug_message(_obj);
-			if (_obj != undefined && _obj != noone) {
+			if (_obj != undefined && _obj != noone && _obj != node_object_representation) {
 				node_target_object_representation = _obj;
 				node_target = node_target_object_representation.node_struct_representation;
 				node_target.connected_node_source_render_target = node_object_representation; //bind this node's object representation to the target node's source
@@ -152,6 +190,9 @@ function RavenNodeItem(_on_click, _margin = 0, _sprite = spr_node_white_fill, _s
 		
 		//todo --> remove connection to source and target node.
 		//connected_node_source_render_target = undefined;
+		OnMouseRightDeleteNodeConnection();
+		
+		
 	}
 	
 	

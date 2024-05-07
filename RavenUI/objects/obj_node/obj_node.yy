@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_node_mask_interaction",
-    "path":"sprites/spr_node_mask_interaction/spr_node_mask_interaction.yy",
+    "name":"spr_node_mask_interaction_upscaled",
+    "path":"sprites/spr_node_mask_interaction_upscaled/spr_node_mask_interaction_upscaled.yy",
   },
   "spriteMaskId":null,
   "visible":true,

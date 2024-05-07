@@ -81,6 +81,7 @@
     {"id":{"name":"spr_node_dark_fill","path":"sprites/spr_node_dark_fill/spr_node_dark_fill.yy",},},
     {"id":{"name":"spr_node_dark_transparent","path":"sprites/spr_node_dark_transparent/spr_node_dark_transparent.yy",},},
     {"id":{"name":"spr_node_inner_dark","path":"sprites/spr_node_inner_dark/spr_node_inner_dark.yy",},},
+    {"id":{"name":"spr_node_mask_interaction_upscaled","path":"sprites/spr_node_mask_interaction_upscaled/spr_node_mask_interaction_upscaled.yy",},},
     {"id":{"name":"spr_node_mask_interaction","path":"sprites/spr_node_mask_interaction/spr_node_mask_interaction.yy",},},
     {"id":{"name":"spr_node_pink","path":"sprites/spr_node_pink/spr_node_pink.yy",},},
     {"id":{"name":"spr_node_red","path":"sprites/spr_node_red/spr_node_red.yy",},},
