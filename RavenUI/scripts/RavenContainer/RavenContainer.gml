@@ -125,13 +125,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		ds_list_clear(items);
 		ds_list_clear(menu_items);
 	}
-		
-		
 	
 	function GetActive() {
 		return active;	
 	}
-	
 	
 	function UpdateContainerLock() {
 		//Retrieve the container and update locked property
@@ -140,34 +137,26 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		}
 	}
 	
-	
-	/// container_resize()
-	/// @desc Resizes the container based on mouse position and outline size.
-
-	/// @param {number} outline_size - The size of the container's outline.
-
-// container_resize()
-// @desc Resizes the container based on mouse position while dragging the edges.
-
 	function containerResize() {
-	//if the container is being moved resizing is not allowed.
-	if (!menu) {
-		return;	
-	}
-	if (!moving && !menu.is_dragging && !lock) {
-		//if (menu != noone && !menu.is_dragging == noone && !menu.is_dragging) {
-		var _select_size = outline_size * 3;
-		if (_select_size < 32) _select_size = 32;
-	    // Check if the mouse is being pressed
-	    //if (mouse_check_button(mb_left)) {
-		var _action_pressed = mouse_check_button(mb_left);
-	
-		//If released button we are no longer resizing.
-		if (mouse_check_button_released(mb_left)) {
-			resizing = false;
-			resizing_left = false;
-			resizing_right = false;
+		//if the container is being moved resizing is not allowed.
+		if (!menu) {
+			return;	
 		}
+	
+		if (!moving && !menu.is_dragging && !lock) {
+			//if (menu != noone && !menu.is_dragging == noone && !menu.is_dragging) {
+			var _select_size = outline_size * 3;
+			if (_select_size < 32) _select_size = 32;
+		    // Check if the mouse is being pressed
+		    //if (mouse_check_button(mb_left)) {
+			var _action_pressed = mouse_check_button(mb_left);
+	
+			//If released button we are no longer resizing.
+			if (mouse_check_button_released(mb_left)) {
+				resizing = false;
+				resizing_left = false;
+				resizing_right = false;
+			}
 		
 			var _select = false;
 			//show_debug_message("select size: " + string(_select_size));
@@ -225,6 +214,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		//}
 		}
 	}
+	
 	//Binds a menu to this container
 	function SetMenu(_raven_menu) {
 		show_debug_message(" provided menu: " );
@@ -255,7 +245,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	}
 	
 	function Render() {
-		
 		//render container base (background) and outline
 		draw_set_color(global.gui_background);
 		if (color_override != undefined) {
@@ -271,11 +260,9 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		//render menu
 		if (menu != noone) menu.Render();
 		
-		
 		//render items
 		var _sep = 16;
 		switch (render_mode) {
-			
 			case GUI_RENDER_MODE.HLIST:
 			show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method HLIST is not yet implemented into Raven!", false);
 			break;
@@ -288,7 +275,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 				//show_debug_message(item.title);
 		        // Update item's position for VLIST rendering
 		        _item.SetCoords(x0_scaling + _item.margin, _y_current, x1_scaling + _item.margin, _y_current + _item.GetHeight());
-
 		        // Render the item
 		        _item.Render();
 				//show_debug_message("Text should have been rendered at: x0: " + x0_scaling + " y0: " + _y_current + " x1: " + x1_scaling + " y1: " + _y_current);
@@ -319,7 +305,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	function Update() {
 		//Check whether the container is locked via the menu and update our lock property.
 		UpdateContainerLock();
-		
 		//Check if we have moved the container last step, if not, moving will be false and resizing is allowed.
 		if (x0 == x0_previous && x1 == x1_previous && y0 == y0_previous && y1 == y1_previous) {
 			moving = false;			

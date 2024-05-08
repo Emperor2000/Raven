@@ -11,16 +11,16 @@
 function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin = 0, _sprite = spr_node_white_fill, _sprite_connected_color = spr_node_white_fill, _sprite_xscale = 1, _sprite_yscale = 1) constructor {
 	container_id = undefined;
 	is_enabled = true;
-	if (_on_click == noone || !_on_click)
+	if (_on_click == noone || !_on_click || _on_click == undefined)
 	    on_click = _on_click;
 	else
 	    on_click = method(self, _on_click); //Note that _on_click expects a function!
 		
-	if (_on_connect_input == noone || !_on_connect_input)
+	if (_on_connect_input == noone || !_on_connect_input || !_on_connect_input == undefined)
 		on_connect_input = _on_connect_input;
 	else
 		on_connect_input = method(self, _on_connect_input);
-	if (_on_connect_output == noone || !_on_connect_output)
+	if (_on_connect_output == noone || !_on_connect_output || !_on_connect_output == undefined)
 		on_connect_output = _on_connect_output;
 	else
 		on_connect_output = method(self, _on_connect_output);

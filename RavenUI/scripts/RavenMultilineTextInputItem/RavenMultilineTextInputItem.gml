@@ -248,7 +248,7 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 	    var _text_x = x0 + specific_margin;
 	    var _text_y = y0 + (y1 - y0 - _font_height) / 2;
 
-	    if (text_color == undefined) {
+	    if (typeof(text_color) == undefined) {
 	        draw_set_color(global.gui_text_default);
 	    } else {
 	        draw_set_color(text_color);
@@ -275,7 +275,7 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 	    // Implement text wrapping
 	    var _words = string_wrap(_display_text, container_x1 - container_x0 - margin - overflow_margin);
 		var _text_y_offset = 0; // Offset for y-coordinate of each line
-		for (var i = 0; i < array_length_1d(_words); i++) {
+		for (var i = 0; i < array_length(_words); i++) {
 			var _y_seperation = _text_y_offset + specific_margin + string_height(_display_text); //increase y offset for next line
 		    if (_text_y + _text_y_offset < container_y1) {
 				var _text = draw_text(_text_x, _text_y + _text_y_offset, _words[i]);

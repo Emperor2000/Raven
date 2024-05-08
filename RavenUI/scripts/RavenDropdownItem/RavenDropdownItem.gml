@@ -154,7 +154,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	/// @description            Renders the element to the screen.
 	function Render() {
 	    // Draw dropdown text at the original y position
-		if (dropdown_color == undefined) {
+		if (typeof(dropdown_color) == undefined) {
 			draw_set_color(global.gui_menu);
 		} else {
 			draw_set_color(dropdown_color);
@@ -170,7 +170,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 		}
 	    draw_set_font(font);
 		
-		if (text_color == undefined) {
+		if (typeof(text_color) == undefined) {
 			draw_set_color(global.gui_text_default);
 		} else {
 			draw_set_color(text_color);
@@ -190,7 +190,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 
 	            // Draw highlighted item on hover
 	            if (_is_mouse_over) {
-					if (hover_color == undefined) {
+					if (typeof(hover_color) == undefined) {
 						draw_set_color(global.gui_menu_hover);
 					} else {
 						draw_set_color(hover_color);
@@ -200,13 +200,13 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
             
 	            // Draw text with appropriate colors
 	            draw_set_font(font);
-				if (dropdown_color == undefined) {
+				if (typeof(dropdown_color) == undefined) {
 					draw_set_color(global.gui_menu);
 				} else {
 					draw_set_color(dropdown_color);
 				}
 	            draw_rectangle(x0, _item_y, x0 + GetDropdownWidth(), _item_y + _item_height, false); // Draw outline
-				if (text_color == undefined) {
+				if (typeof(text_color) == undefined) {
 					draw_set_color(global.gui_text_default);
 				} else {
 					draw_set_color(text_color);
@@ -215,7 +215,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
             
 	            // Apply outline when hovered
 	            if (_is_mouse_over) {
-					if (text_color == undefined) {
+					if (typeof(text_color) == undefined) {
 						draw_set_color(global.gui_text_default);
 					} else {
 						draw_set_color(text_color);
@@ -226,7 +226,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	    } else {
 	        // Draw selected item's text
 	        if (selected_item_index >= 0 && selected_item_index < ds_list_size(options)) {
-				if (text_color == undefined) {
+				if (typeof(text_color) == undefined) {
 					draw_set_color(global.gui_text_default);
 				} else {
 					draw_set_color(text_color);

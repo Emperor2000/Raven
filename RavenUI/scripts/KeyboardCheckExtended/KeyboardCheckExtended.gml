@@ -5,7 +5,7 @@
 /// @param {Real} _frames - Number of frames to wait before checking input again
 /// @returns {bool} Returns true if the _key is pressed, otherwise false
 function keyboard_check_ext(_key, _frames) {
-    // Check if the frame counter exists for the specified _key
+	// Check if the frame counter exists for the specified _key
     if (!ds_map_exists(global.keyboard_check_counters, string(_key)))
     {
         // If it doesn't exist, create it and set it to 0
