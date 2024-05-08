@@ -59,8 +59,7 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
         cursor_blink_timer = 0;
     }
 	
-	
-		function GetContainerId() {
+	function GetContainerId() {
 		return container_id;	
 	}
 	
@@ -89,7 +88,6 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 			on_click();
 		}
 	}
-	
 	
 	/// @description	returns the text of the item.
 	function GetText() {
