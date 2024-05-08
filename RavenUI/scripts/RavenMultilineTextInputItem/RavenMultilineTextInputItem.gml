@@ -184,7 +184,7 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
 		            var line_width = container_x1 - container_x0 - margin - overflow_margin;
             
 		            // Calculate the current line index
-		            var current_line_index = clamp(floor((cursor_position * string_height(input_text)) / line_width), 0, array_length_1d(string_wrap(input_text, line_width)) - 1);
+		            var current_line_index = clamp(floor((cursor_position * string_height(input_text)) / line_width), 0, array_length(string_wrap(input_text, line_width)) - 1);
             
 		            // Calculate the character index at the start of the line above
 		            var start_of_line_above = 0;

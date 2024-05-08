@@ -3,11 +3,11 @@
 /// @param {Id.DsList}	_options	A ds list of possible dropdown options.
 /// @param {Real}		 _margin	The margin size of the dropdown box.
 /// @param {Asset.GMFont}	_font	The font to use
-/// @param {Constant.Colour}	_color	The dropdown's color. 
-/// @param {Constant.Colour}     _text_color    The color in which any text should be displayed.
-/// @param {Constant.Colour}     _dropdown_color    The color in which the dropdown should be displayed.
-/// @param {Constant.Colour}     _hover_color    The color that should be displayed when hovering over an element.
-/// @param {Constant.Colour}     _background_color   The background color that should be displayed.
+/// @param {Constant.Color}	_color	The dropdown's color. 
+/// @param {Constant.Color}     _text_color    The color in which any text should be displayed.
+/// @param {Constant.Color}     _dropdown_color    The color in which the dropdown should be displayed.
+/// @param {Constant.Color}     _hover_color    The color that should be displayed when hovering over an element.
+/// @param {Constant.Color}     _background_color   The background color that should be displayed.
 function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fnt_dsansmono16, _color = undefined, _text_color = undefined, _dropdown_color = global.gui_menu, _hover_color = undefined, _background_color = global.gui_background) : RavenItem(_text, undefined, _margin) constructor {
     container_id = undefined;
     is_enabled = true;

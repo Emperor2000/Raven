@@ -1,4 +1,11 @@
 /// RavenCheckboxItem Constructor
+/// @param {String} _text The text displayed next to the checkbox.
+/// @param {Function} _on_click The script to execute when the checkbox is clicked. Default is undefined.
+/// @param {Real} _margin The margin around the checkbox item. Default is 16.
+/// @param {Asset.GMFont} _font The font used for displaying text. Default is fnt_dsansmono16.
+/// @param {Constant.Color} _color The color of the text. Default is global.gui_text_primary.
+/// @param {Constant.Color} _checkmark_color The color of the checkmark when the checkbox is checked. Default is global.gui_checkmark_color.
+/// @param {bool} _value The initial value of the checkbox (true or false). Default is false.
 function RavenCheckboxItem(_text, _on_click = undefined, _margin = 16, _font = fnt_dsansmono16, _color = global.gui_text_primary, _checkmark_color = global.gui_checkmark_color, _value = false) : RavenItem(_text, _on_click, _margin) constructor {
     container_id = undefined;
     is_enabled = true;

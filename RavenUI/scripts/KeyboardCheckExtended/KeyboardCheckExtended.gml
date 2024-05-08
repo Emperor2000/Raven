@@ -1,11 +1,10 @@
 // Create the _keyboard_check_ext function
 /// @function _keyboard_check_ext
 /// @description Check _keyboard input once every specified number of _frames
-/// @param {integer} _key - The key to check
-/// @param {integer} _frames - Number of frames to wait before checking input again
-/// @returns {boolean} Returns true if the _key is pressed, otherwise false
-function keyboard_check_ext(_key, _frames)
-{
+/// @param {Real} _key - The key to check
+/// @param {Real} _frames - Number of frames to wait before checking input again
+/// @returns {bool} Returns true if the _key is pressed, otherwise false
+function keyboard_check_ext(_key, _frames) {
     // Check if the frame counter exists for the specified _key
     if (!ds_map_exists(global.keyboard_check_counters, string(_key)))
     {
