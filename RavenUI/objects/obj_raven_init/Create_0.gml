@@ -166,7 +166,17 @@ _subcontainer.AddItem(new RavenButtonItem("This is a button", undefined, 16, 6, 
 //_subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
 _subcontainer.AddItem(new RavenLineBreakItem(32,32));
 //_subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16));
-_subcontainer.AddItem(new RavenNodeItem(undefined, undefined, undefined, 16, spr_node, spr_node_white_fill, 2, 2));
+node_on_click_example = function() {
+	show_debug_message("On Click");	
+}
+node_input_function_example = function() {
+	show_debug_message("Input");	
+}
+
+node_output_function_example = function() {
+	show_debug_message("Output");	
+}
+_subcontainer.AddItem(new RavenNodeItem(node_on_click_example, node_input_function_example, node_output_function_example, 16, spr_node, spr_node_white_fill, 2, 2));
 var _map = ds_map_create();
 ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
 ds_map_add(_map, GUI_STATUS.WARNING, "warning");

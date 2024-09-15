@@ -16,11 +16,11 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 	else
 	    on_click = method(self, _on_click); //Note that _on_click expects a function!
 		
-	if (_on_connect_input == noone || !_on_connect_input || !_on_connect_input == undefined)
+	if (_on_connect_input == noone || !_on_connect_input || _on_connect_input == undefined)
 		on_connect_input = _on_connect_input;
 	else
 		on_connect_input = method(self, _on_connect_input);
-	if (_on_connect_output == noone || !_on_connect_output || !_on_connect_output == undefined)
+	if (_on_connect_output == noone || !_on_connect_output || _on_connect_output == undefined)
 		on_connect_output = _on_connect_output;
 	else
 		on_connect_output = method(self, _on_connect_output);
@@ -44,6 +44,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 	node_object_representation = instance_create_depth(x0,y0,0, obj_node);
 	node_object_representation.node_struct_representation = self;
 	connected_node_source_render_target = undefined; //used to reverse rerender to draw on top of everything else.
+	is_input_logic_from_connected_node_executed = false;
 	
 	node_target_object_representation = undefined; //The node's object representation
 	node_target = undefined; //The node's struct representation
@@ -71,6 +72,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		}
 	}
 	
+	
 	///@description		Execute the onclick trigger/event
 	function OnClick() {
 		if (on_click == noone || !on_click) {
@@ -81,6 +83,13 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		}
 	}
 	
+	/// @description	Set the function to run when a node passes data to this node.
+	function SetOnConnectInput(_function) {
+		on_connect_input = _function;
+	}
+	
+	
+	/// @description	Run the input function onto this node (what this node receives)
 	function OnConnectInput() {
 		if (on_connect_input == noone || !on_connect_input) {
 			return noone;	
@@ -89,6 +98,12 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		}
 	}
 	
+	/// @description	Set the function to run when a node passes data to the connected node.
+	function SetOnConnectOutput(_function) {
+		on_connect_output = _function;
+	}
+	
+	/// @description	Run the output function onto the connected node (what this node passes on)
 	function OnConnectOutput() {
 		if (on_connect_output == noone || !on_connect_output) {
 			return noone;	
@@ -122,13 +137,15 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 	}
 	
 	function ClearConnectedNodeSourceRenderTarget() {
-		connected_node_source_render_target = undefined;	
+		connected_node_source_render_target = undefined;
+		is_input_logic_from_connected_node_executed = false;
 	}
 	
 	function ClearTarget() {
 		if (node_target != undefined && node_target != noone) {
 		node_target_object_representation = undefined;
 		node_target = undefined;	
+		ClearConnectedNodeSourceRenderTarget();
 		}
 	}
 	
@@ -138,6 +155,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				var _conn_struct = connected_node_source_render_target.node_struct_representation;
 				_conn_struct.ClearTarget();
 				connected_node_source_render_target = undefined;	
+				ClearConnectedNodeSourceRenderTarget();
 			}
 			if (node_target != undefined) {
 				//Delete render target from source node
@@ -145,7 +163,6 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				//node_target.node_target = undefined;
 				//Delete target node connection
 				if (node_target_object_representation != undefined && node_target_object_representation != noone && node_target != noone && node_target != undefined) {
-					node_target.connected_node_source_render_target = undefined;
 					node_target_object_representation = undefined;
 					node_target = undefined;
 					//connected_node_source_render_target = undefined;
@@ -163,6 +180,14 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 	
 	function Update() {
 		node_object_representation.depth = GetRavenContainerById(container_id).gui_depth_index;
+		
+		//If this node has been connected as an output node.
+		if (connected_node_source_render_target != noone and connected_node_source_render_target != undefined && !is_input_logic_from_connected_node_executed) {
+			//the node is connected and input logic has not been executed yet, run it:
+			OnConnectInput();
+			is_input_logic_from_connected_node_executed = true; //we have executed the input logic from the origin/connected node.
+		}
+		
 		//gui_clicking = false;
 			//Deactivate clicking if mb left has been released.
 			if (!mouse_check_button(mb_left)) {
@@ -212,6 +237,12 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				node_target = node_target_object_representation.node_struct_representation;
 				node_target.connected_node_source_render_target = node_object_representation; //bind this node's object representation to the target node's source
 				show_debug_message(node_target_object_representation);
+				//connection made --> should run output logic in connected node.
+				output_function_template = function() {
+					show_debug_message("Running node output function on target.OnConnectInput");
+					OnConnectOutput();		
+				}
+				node_target.SetOnConnectInput(output_function_template);
 			}
 		}
 		bind_toggled_last_frame = false;
