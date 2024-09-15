@@ -165,6 +165,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				if (node_target_object_representation != undefined && node_target_object_representation != noone && node_target != noone && node_target != undefined) {
 					node_target_object_representation = undefined;
 					node_target = undefined;
+					//todo, also delete connection from origin node
 				}
 			}
 		}
