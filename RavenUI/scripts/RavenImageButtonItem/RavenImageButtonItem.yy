@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"RavenImageButtonItem",
   "isCompatibility":false,
   "isDnD":false,

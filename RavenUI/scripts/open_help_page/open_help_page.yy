@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"open_help_page",
   "isCompatibility":false,
   "isDnD":false,

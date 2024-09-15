@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"RavenLineBreakItem",
   "isCompatibility":false,
   "isDnD":false,

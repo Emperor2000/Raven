@@ -173,8 +173,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				bind_mode = true;
 			} else {
 				selected = false;	
-				bind_mode = false;
-				
+				bind_mode = false;	
 			}
 			
 		
@@ -240,6 +239,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		if (bind_mode) {
 			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), 300, 1, c_white, 2);	
 			bind_toggled_last_frame = true;
+			global.handler.lock_new_interactions(5);
 		}
 		
 		if (node_target_object_representation != undefined && node_target_object_representation != noone) {

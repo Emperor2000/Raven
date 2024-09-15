@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"DrawCurve",
   "isCompatibility":false,
   "isDnD":false,

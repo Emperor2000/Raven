@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"RegisterRavenContainer",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"CreateRavenGUID",
   "isCompatibility":false,
   "isDnD":false,

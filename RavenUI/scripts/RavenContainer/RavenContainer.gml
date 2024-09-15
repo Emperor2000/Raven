@@ -143,7 +143,8 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 			return;	
 		}
 	
-		if (!moving && !menu.is_dragging && !lock) {
+		//Only allowed to resize if the menu is not being moved, not being dragged, the container is not locked + must not already be resizing.
+		if (!moving && !menu.is_dragging && !lock && (!global.handler.is_new_interactions_locked || (resizing_left || resizing_right || resizing))) {
 			//if (menu != noone && !menu.is_dragging == noone && !menu.is_dragging) {
 			var _select_size = outline_size * 3;
 			if (_select_size < 32) _select_size = 32;
@@ -207,6 +208,11 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	        }
 		
 	    }
+		
+		//lock other interactions
+		if (_select) {
+			global.handler.lock_new_interactions(3);
+		}
 	   // else {
 	        global.raven_occupy = noone;
 			//window_set_cursor(cr_default);
