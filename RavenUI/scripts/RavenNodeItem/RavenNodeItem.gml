@@ -64,6 +64,15 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		is_enabled = _set;	
 	}
 	
+	function IsParentContainerLocked() {
+		container = GetRavenContainerById(container_id);
+		if (container == -1) {
+			show_debug_message("Container ID returned -1 but should not!");
+			return false;
+		}
+		return container.lock;
+	}
+	
 	/// @onclick		Set the onclick event trigger for the item.
 	function SetOnClick(_function) {
 		if (is_enabled) {
@@ -150,7 +159,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 	}
 	
 	function OnMouseRightDeleteNodeConnection() {
-		if (hover && mouse_check_button(mb_right)) {
+		if (hover && mouse_check_button(mb_right) && !IsParentContainerLocked()) {
 			if (connected_node_source_render_target != undefined) {
 				var _conn_struct = connected_node_source_render_target.node_struct_representation;
 				_conn_struct.ClearTarget();
@@ -194,7 +203,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				gui_clicking = false;
 			}
 			
-			if (mouse_check_button(mb_left) && selected) {
+			if (mouse_check_button(mb_left) && selected && !IsParentContainerLocked()) {
 				bind_mode = true;
 			} else {
 				selected = false;	
