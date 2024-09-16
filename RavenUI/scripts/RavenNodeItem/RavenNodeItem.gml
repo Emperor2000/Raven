@@ -143,9 +143,9 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 	
 	function ClearTarget() {
 		if (node_target != undefined && node_target != noone) {
-		node_target_object_representation = undefined;
-		node_target = undefined;	
-		ClearConnectedNodeSourceRenderTarget();
+			node_target_object_representation = undefined;
+			node_target = undefined;	
+			ClearConnectedNodeSourceRenderTarget();
 		}
 	}
 	
@@ -155,7 +155,6 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				var _conn_struct = connected_node_source_render_target.node_struct_representation;
 				_conn_struct.ClearTarget();
 				connected_node_source_render_target = undefined;	
-				ClearConnectedNodeSourceRenderTarget();
 			}
 			if (node_target != undefined) {
 				//Delete render target from source node
@@ -164,10 +163,11 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 				//Delete target node connection
 				if (node_target_object_representation != undefined && node_target_object_representation != noone && node_target != noone && node_target != undefined) {
 					node_target_object_representation = undefined;
+					node_target.connected_node_source_render_target = undefined;
 					node_target = undefined;
-					//todo, also delete connection from origin node
 				}
 			}
+			ClearTarget();
 		}
 		//show_debug_message("CONNECTION DEBUGGER_-------------------");
 		//show_debug_message(connected_node_source_render_target);
