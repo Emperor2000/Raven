@@ -145,27 +145,27 @@ raven_menu.AddItem(new RavenDropdownItem("Dropdown"));
 //Get Started here:
 
 //replace with your own elements------------------------
-var _subcontainer = new RavenContainer(200,200,600,600,false, true, GUI_RENDER_MODE.VLIST, 3);
+var _subcontainer = new RavenContainer(200,200,400,340,false, true, GUI_RENDER_MODE.VLIST, 3);
 _subcontainer.SetGUIDepthIndex(2);
 var _container_menu = new RavenMenu(0,0,64,32,32);
 _subcontainer.SetMenu(_container_menu);
-_container_menu.AddItem(new RavenItem("Exit",global.destroy_container,32));
+//_container_menu.AddItem(new RavenItem("Exit",global.destroy_container,32));
 _subcontainer.SetMenuBoundByContainer(true);
-_subcontainer.AddItem(new RavenTextItem("This is a TextField",undefined,16, fnt_dsansmono16));
-_subcontainer.AddItem(new RavenTextItem("Welcome to Raven, enter your name:",undefined,16,fnt_dsansmono16));
-_subcontainer.AddItem(new RavenTextInputItem("Username", undefined, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
+//_subcontainer.AddItem(new RavenTextItem("This is a TextField",undefined,16, fnt_dsansmono16));
+_subcontainer.AddItem(new RavenTextItem("Input:",undefined,16,fnt_dsansmono16));
+_subcontainer.AddItem(new RavenTextInputItem("...", undefined, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
 //subcontainer.AddItem(new RavenMultilineTextItem("Let's write an entire section. This code should be shifted to the next line as soon as it overflows!",0,16,fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
-_subcontainer.AddItem(new RavenTextItem("",undefined,16,fnt_dsansmono16));
-_subcontainer.AddItem(new RavenTextItem("",undefined,16,fnt_dsansmono16));
-_subcontainer.AddItem(new RavenCheckboxItem("Check Me: "));
+//_subcontainer.AddItem(new RavenTextItem("",undefined,16,fnt_dsansmono16));
+//_subcontainer.AddItem(new RavenTextItem("",undefined,16,fnt_dsansmono16));
+//_subcontainer.AddItem(new RavenCheckboxItem("Check Me: "));
 show_debug_message("list size (init0): " + string(ds_list_size(_subcontainer.items)));
-_subcontainer.AddItem(new RavenLineBreakItem(32,32));
-_subcontainer.AddItem(new RavenButtonItem("This is a button", undefined, 16, 6, 6, true));
+//_subcontainer.AddItem(new RavenLineBreakItem(32,32));
+//_subcontainer.AddItem(new RavenButtonItem("This is a button", undefined, 16, 6, 6, true));
 //_subcontainer.AddItem(new RavenImageButtonItem(noone,spr_sample_image,16,1,1));
 //_subcontainer.AddItem(new RavenImageItem(spr_sample_image,16,1,1));
 //_subcontainer.AddItem(new RavenMultilineTextItem("This is a multiline text item. A multi line text item shifts any text that does not fit on a certain line to the next line, again and again. Until all text fits within your container horizontally.", -1,16,fnt_dsansmono16));
 //_subcontainer.AddItem(new RavenDropdownItem("Dropdown"));
-_subcontainer.AddItem(new RavenLineBreakItem(32,32));
+//_subcontainer.AddItem(new RavenLineBreakItem(32,32));
 //_subcontainer.AddItem(new RavenMultilineTextInputItem("This is a multiline input box", noone, 16, fnt_dsansmono16));
 node_on_click_example = function() {
 	show_debug_message("On Click");	
@@ -177,7 +177,9 @@ node_input_function_example = function() {
 node_output_function_example = function() {
 	show_debug_message("Output");	
 }
-_subcontainer.AddItem(new RavenNodeItem(node_on_click_example, node_input_function_example, node_output_function_example, 16, spr_node, spr_node_white_fill, 2, 2));
+var _node = new RavenNodeItem(node_on_click_example, node_input_function_example, node_output_function_example, 235, spr_node, spr_node_white_fill, 2, 2);
+_node.SetCoords(_node.x0 + 200, _node.y0, _node.x1 + 200, _node.y1);
+_subcontainer.AddItem(_node);
 var _map = ds_map_create();
 ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
 ds_map_add(_map, GUI_STATUS.WARNING, "warning");
@@ -211,10 +213,6 @@ raven_gui.AddContainer(_status_notification_container);
 
 //----------------------------------
 
-
-
-
-_subcontainer.AddItem(new RavenNodeItem(undefined, undefined, undefined, 16, spr_node, spr_node_white_fill, 2, 2));
 //We must push all references when finished init so that each raven item knows it's parent container:
 raven_gui.PushReferences();
 

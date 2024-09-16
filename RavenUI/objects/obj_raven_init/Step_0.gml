@@ -56,9 +56,11 @@ switch(THEME) {
 		global.gui_checkmark_color = c_lime;
 		break;
 	case THEME.LIGHT:
-		//lobal.gui_background = $e3e3e3;
-		global.gui_background = $dddbdc;
-		global.gui_menu = $dddbdc;
+		//global.gui_background = $e3e3e3;
+		//global.gui_background = $dddbdc;
+		global.gui_background = $cbcbcb;
+		//global.gui_menu = $dddbdc;
+		global.gui_menu = $cbcbcb;
 		global.gui_text_default = $303030;
 		global.gui_text_primary = $1f1f1f;
 		global.gui_button_border = $272727;

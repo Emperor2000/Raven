@@ -277,19 +277,19 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		}
 		
 		if (bind_mode) {
-			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), 300, 1, c_white, 2);	
+			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), 300, 1, global.gui_text_primary, 2);	
 			bind_toggled_last_frame = true;
 			global.handler.lock_new_interactions(5);
 		}
 		
 		if (node_target_object_representation != undefined && node_target_object_representation != noone) {
 			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, node_target_object_representation.x + GetWidth() / 2, node_target_object_representation.y + GetHeight() / 2, 300, 1, c_white, 2);
-			draw_sprite_ext(sprite_connected_color,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
+			draw_sprite_ext(sprite_connected_color,0,x0,y0,sprite_xscale,sprite_yscale,0,global.gui_text_primary,1);
 		}
 		
 		if (connected_node_source_render_target != undefined && connected_node_source_render_target != noone) {
 			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, connected_node_source_render_target.x + GetWidth() / 2, connected_node_source_render_target.y + GetHeight() / 2, 300, 1, c_white, 2);
-			draw_sprite_ext(sprite_connected_color,0,x0,y0,sprite_xscale,sprite_yscale,0,c_white,1);
+			draw_sprite_ext(sprite_connected_color,0,x0,y0,sprite_xscale,sprite_yscale,0,global.gui_text_primary,1);
 		}
 		
 	}
