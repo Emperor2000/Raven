@@ -32,6 +32,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	minimum_container_size = 400;
 	lock = false;
 	moving = false;
+	is_static = false;
 	render_mode = _render_mode;
 	if (_color_override != undefined) {
 		color_override = _color_override;
@@ -93,6 +94,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		lock = _lock;	
 	}
 	
+	function SetIsStatic(_is_static) {
+		is_static = _is_static;	
+	}
+	
 	//Retrieve all items from Raven Menu
 	function GetMenuItems() {
 		if (menu != noone) {
@@ -110,6 +115,19 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		}
 	}
 	
+	///@description Move the container with priority (the container will move even if locked). Note that static containers can never be moved.
+	function MovePriority(_x_amount, _y_amount) {
+		if (!is_static) {
+			window_set_cursor(cr_drag);
+			x0 += _x_amount;
+			y0 += _y_amount;
+			x1 += _x_amount;
+			y1 += _y_amount;
+			moving = true;
+		}
+	}
+	
+	///@description Move the container
 	function Move(_x_amount, _y_amount) {
 		if (!lock) {
 			window_set_cursor(cr_drag);
