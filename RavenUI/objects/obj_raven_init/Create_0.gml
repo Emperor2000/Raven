@@ -118,6 +118,7 @@ changelog_button = new RavenItem("Changelog", undefined);
 help_button = new RavenItem("Help",global.open_help_page);
 //container = new RavenContainer(0,0,1920,1080, true, false);
 container = new RavenContainer(0,0,global.resolution_x, global.resolution_y, true, false);
+container.SetIsStatic(true);
 container.SetLock(true);
 raven_gui.SetMenu(raven_menu);
 raven_menu.SetOutline(true);
