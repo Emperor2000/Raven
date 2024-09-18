@@ -1,13 +1,16 @@
-//A Raven Item is a page or a function trigger
-///@Description An item, use false or noone for _on_click if not interactable.
-/// @param {String}     text    The unique instance ID value of the instance to check.
-/// @param {String}  on_click  The object index to be checked against.
-/// @param {Real}	_margin Not yet implemented!
+/// @function	RavenButtonItem(_text, _on_click, _margin, _padding, _border_radius, _draw_outline)
+/// @description Creates a clickable area with text in it.
+/// @param {String}     text    The text to display in the button.
+/// @param {Function}  on_click  The function to execute when the button is clicked.
+/// @param {Real}	_margin The margin around the button.
+/// @param {Real}	_padding The padding of the button.
+/// @param {Real} _border_radius The border radius of the button.
+/// @param {Bool} _draw_outline whether or not to draw an outline.
 function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_radius = 0, _draw_outline = false) constructor {
 	container_id = undefined;
 	is_enabled = true;
 	text = _text;
-	if (_on_click == noone || !_on_click)
+	if (_on_click == noone || !_on_click || _on_click == undefined)
 	    on_click = _on_click;
 	else
 	    on_click = method(self, _on_click); //Note that _on_click expects a function!

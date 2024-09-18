@@ -1,4 +1,13 @@
 /// RavenDropdownItem Constructor
+/// @param {String}     _text    The name of the dropdown and the text it should show.
+/// @param {Id.DsList}	_options	A ds list of possible dropdown options.
+/// @param {Real}		 _margin	The margin size of the dropdown box.
+/// @param {Asset.GMFont}	_font	The font to use
+/// @param {Constant.Color}	_color	The dropdown's color. 
+/// @param {Constant.Color}     _text_color    The color in which any text should be displayed.
+/// @param {Constant.Color}     _dropdown_color    The color in which the dropdown should be displayed.
+/// @param {Constant.Color}     _hover_color    The color that should be displayed when hovering over an element.
+/// @param {Constant.Color}     _background_color   The background color that should be displayed.
 function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fnt_dsansmono16, _color = undefined, _text_color = undefined, _dropdown_color = global.gui_menu, _hover_color = undefined, _background_color = global.gui_background) : RavenItem(_text, undefined, _margin) constructor {
     container_id = undefined;
     is_enabled = true;
@@ -10,6 +19,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	ds_list_add(options, "value 1");
 	ds_list_add(options, "value 2");
 	ds_list_add(options, "value 3");
+	is_in_menu = false; //when the item is in a menu, we should delegate rendering the button to the menu.
     lock_trigger = false;
     clicking = false;
     gui_clicking = false;
@@ -33,30 +43,65 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	value = "";
 	specific_margin = 0; //specific margin is an additional margin that can be applied to rendering an item. It is not delegated to a parent container as the regular margin is but applied inside this struct instance.
     
+	/// @description           Inverts the current value of "open", (swaps true and false).
     function Toggle() {
         open = !open;
     }
-	
+	/// @description             Sets the current value of the dropdown.
+	///@param {String}		_value	New value of the dropdown.
 	function SetValue(_value) {
 		value = _value;
 	}
-	
-	function SetValueByOptionIndex(_i) {
+	/// @description             Sets the value by the index of a given option.
+	function SetValueByOptionIndex(_index) {
 		if (selected_item_index < 0 || selected_item_index >= ds_list_size(options) || selected_item_index == noone || selected_item_index == undefined) {
 			show_error("Index Out of Range Exception: RavenDropdownItem SetValueByOptionIndex function expects a valid index.", true);
 		} else {
-			value = ds_list_find_value(options, _i);	
+			value = ds_list_find_value(options, _index);	
 		}
 	}
-	
+	/// @description			Adds the given value to the options, returns true if successful, otherwise returns false.
+	function AddOption(_value) {
+		if (is_string(_value)) {
+		ds_list_add(options, _value);
+		return true;
+		} else {
+			show_error("Type Error: The added option is expected to be of type: string, but was: " + typeof(_value), true);	
+			return false;
+		}
+	}
+	/// @description            Deletes the value at the given position from the options, returns true if successful, otherwise returns false.
+	function DeleteOptionByIndex(_index) {
+		if (is_int32(_index)) {
+			ds_list_delete(options, _index);
+			return true;
+		} else {
+			show_error("Type Error: The added option is expected to be of type: Int32, but was: " + typeof(_index), true);
+			return false;
+		}
+	}
+	/// @description             Deletes the first occurence of the given value from the options, returns true if successful, otherwise returns false.
+	function DeleteOptionByValue(_value) {
+		if (is_string(_value)) {
+			var _index_to_delete = ds_list_find_index(options, _value);
+			ds_list_delete(options, _index_to_delete);
+			return true;
+		} else {
+			show_error("Type Error: The added option is expected to be of type: string, but was: " + typeof(_value), true);	
+			return false;
+		}
+	}
+	/// @description            Retrieves the current value of the dropdown.
 	function GetValue() {
 		return value;	
 	}
 	
+	/// @description             Returns the index of the currently selected item (based on the value)
 	function GetSelectedItemIndex() {
 		return selected_item_index;	
 	}
 
+	/// @description             Executes the dropdown's logic, determines what option is selected and handles player/user interaction.
 	function Update() {
 	    gui_clicking = false;
 
@@ -105,9 +150,11 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	        }
 	    }
 	}
+	
+	/// @description            Renders the element to the screen.
 	function Render() {
 	    // Draw dropdown text at the original y position
-		if (dropdown_color == undefined) {
+		if (typeof(dropdown_color) == undefined) {
 			draw_set_color(global.gui_menu);
 		} else {
 			draw_set_color(dropdown_color);
@@ -123,7 +170,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 		}
 	    draw_set_font(font);
 		
-		if (text_color == undefined) {
+		if (typeof(text_color) == undefined) {
 			draw_set_color(global.gui_text_default);
 		} else {
 			draw_set_color(text_color);
@@ -143,7 +190,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 
 	            // Draw highlighted item on hover
 	            if (_is_mouse_over) {
-					if (hover_color == undefined) {
+					if (typeof(hover_color) == undefined) {
 						draw_set_color(global.gui_menu_hover);
 					} else {
 						draw_set_color(hover_color);
@@ -153,13 +200,13 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
             
 	            // Draw text with appropriate colors
 	            draw_set_font(font);
-				if (dropdown_color == undefined) {
+				if (typeof(dropdown_color) == undefined) {
 					draw_set_color(global.gui_menu);
 				} else {
 					draw_set_color(dropdown_color);
 				}
 	            draw_rectangle(x0, _item_y, x0 + GetDropdownWidth(), _item_y + _item_height, false); // Draw outline
-				if (text_color == undefined) {
+				if (typeof(text_color) == undefined) {
 					draw_set_color(global.gui_text_default);
 				} else {
 					draw_set_color(text_color);
@@ -168,7 +215,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
             
 	            // Apply outline when hovered
 	            if (_is_mouse_over) {
-					if (text_color == undefined) {
+					if (typeof(text_color) == undefined) {
 						draw_set_color(global.gui_text_default);
 					} else {
 						draw_set_color(text_color);
@@ -179,7 +226,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	    } else {
 	        // Draw selected item's text
 	        if (selected_item_index >= 0 && selected_item_index < ds_list_size(options)) {
-				if (text_color == undefined) {
+				if (typeof(text_color) == undefined) {
 					draw_set_color(global.gui_text_default);
 				} else {
 					draw_set_color(text_color);

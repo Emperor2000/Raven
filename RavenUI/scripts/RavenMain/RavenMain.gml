@@ -1,8 +1,8 @@
 function RavenMain() constructor {
 	menu = noone;
-	active_page = noone;
+	active_page = undefined;
 	pages = ds_list_create();
-	items = noone;
+	items = undefined;
 	global.raven_containers = ds_list_create();
 	
 	//Binds a menu to RavenMain

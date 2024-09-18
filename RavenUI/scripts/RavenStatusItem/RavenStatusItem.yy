@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"RavenStatusItem",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RavenStatusItem",
+  "parent":{
+    "name":"components",
+    "path":"folders/RavenGUI/components.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"RavenMultilineTextInputItem",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RavenMultilineTextInputItem",
+  "parent":{
+    "name":"components",
+    "path":"folders/RavenGUI/components.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

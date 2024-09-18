@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"StringWordWrap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"StringWordWrap",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/RavenGUI/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

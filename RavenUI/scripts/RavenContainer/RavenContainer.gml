@@ -29,9 +29,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	resizing_left = false;
 	resizing_right = false;
 	gui_depth_index = 1;
-	minimum_container_size = 400;
+	minimum_container_size = 200;
 	lock = false;
 	moving = false;
+	is_static = false;
 	render_mode = _render_mode;
 	if (_color_override != undefined) {
 		color_override = _color_override;
@@ -93,6 +94,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		lock = _lock;	
 	}
 	
+	function SetIsStatic(_is_static) {
+		is_static = _is_static;	
+	}
+	
 	//Retrieve all items from Raven Menu
 	function GetMenuItems() {
 		if (menu != noone) {
@@ -110,6 +115,19 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		}
 	}
 	
+	///@description Move the container with priority (the container will move even if locked). Note that static containers can never be moved.
+	function MovePriority(_x_amount, _y_amount) {
+		if (!is_static) {
+			window_set_cursor(cr_drag);
+			x0 += _x_amount;
+			y0 += _y_amount;
+			x1 += _x_amount;
+			y1 += _y_amount;
+			moving = true;
+		}
+	}
+	
+	///@description Move the container
 	function Move(_x_amount, _y_amount) {
 		if (!lock) {
 			window_set_cursor(cr_drag);
@@ -122,18 +140,13 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	}
 	
 	function Destroy() {
-		//ds_list_destroy(menu_items);
-		//ds_list_destroy(items);
 		ds_list_clear(items);
 		ds_list_clear(menu_items);
 	}
-		
-		
 	
 	function GetActive() {
 		return active;	
 	}
-	
 	
 	function UpdateContainerLock() {
 		//Retrieve the container and update locked property
@@ -142,34 +155,27 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		}
 	}
 	
-	
-	/// container_resize()
-	/// @desc Resizes the container based on mouse position and outline size.
-
-	/// @param {number} outline_size - The size of the container's outline.
-
-// container_resize()
-// @desc Resizes the container based on mouse position while dragging the edges.
-
 	function containerResize() {
-	//if the container is being moved resizing is not allowed.
-	if (!menu) {
-		return;	
-	}
-	if (!moving && !menu.is_dragging && !lock) {
-		//if (menu != noone && !menu.is_dragging == noone && !menu.is_dragging) {
-		var _select_size = outline_size * 3;
-		if (_select_size < 32) _select_size = 32;
-	    // Check if the mouse is being pressed
-	    //if (mouse_check_button(mb_left)) {
-		var _action_pressed = mouse_check_button(mb_left);
-	
-		//If released button we are no longer resizing.
-		if (mouse_check_button_released(mb_left)) {
-			resizing = false;
-			resizing_left = false;
-			resizing_right = false;
+		//if the container is being moved resizing is not allowed.
+		if (!menu) {
+			return;	
 		}
+	
+		//Only allowed to resize if the menu is not being moved, not being dragged, the container is not locked + must not already be resizing.
+		if (!moving && !menu.is_dragging && !lock && (!global.handler.is_new_interactions_locked || (resizing_left || resizing_right || resizing))) {
+			//if (menu != noone && !menu.is_dragging == noone && !menu.is_dragging) {
+			var _select_size = outline_size * 3;
+			if (_select_size < 32) _select_size = 32;
+		    // Check if the mouse is being pressed
+		    //if (mouse_check_button(mb_left)) {
+			var _action_pressed = mouse_check_button(mb_left);
+	
+			//If released button we are no longer resizing.
+			if (mouse_check_button_released(mb_left)) {
+				resizing = false;
+				resizing_left = false;
+				resizing_right = false;
+			}
 		
 			var _select = false;
 			//show_debug_message("select size: " + string(_select_size));
@@ -184,6 +190,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 					_select = true;
 					resizing = true;
 					window_set_cursor(cr_size_ns);
+					if (y1 < y0 + container_margin_top*2) y1 = y0 + container_margin_top*2;
 				}
 	        }
 	        // Check if the mouse is within the left edge with the specified margin
@@ -220,6 +227,11 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	        }
 		
 	    }
+		
+		//lock other interactions
+		if (_select) {
+			global.handler.lock_new_interactions(3);
+		}
 	   // else {
 	        global.raven_occupy = noone;
 			//window_set_cursor(cr_default);
@@ -258,7 +270,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	}
 	
 	function Render() {
-		
 		//render container base (background) and outline
 		draw_set_color(global.gui_background);
 		if (color_override != undefined) {
@@ -274,11 +285,9 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 		//render menu
 		if (menu != noone) menu.Render();
 		
-		
 		//render items
 		var _sep = 16;
 		switch (render_mode) {
-			
 			case GUI_RENDER_MODE.HLIST:
 			show_error("NOT_IMPLEMENTED_EXCEPTION - Rendering method HLIST is not yet implemented into Raven!", false);
 			break;
@@ -291,9 +300,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 				//show_debug_message(item.title);
 		        // Update item's position for VLIST rendering
 		        _item.SetCoords(x0_scaling + _item.margin, _y_current, x1_scaling + _item.margin, _y_current + _item.GetHeight());
-
-		        // Render the item
-		        _item.Render();
+		        // Render the item if it fits inside the container.
+				if (_item.y1 < y1) {
+					_item.Render();
+				}
 				//show_debug_message("Text should have been rendered at: x0: " + x0_scaling + " y0: " + _y_current + " x1: " + x1_scaling + " y1: " + _y_current);
 		        // Move to the next Y position with separation
 		        _y_current += _item.GetHeight() + _sep;
@@ -322,7 +332,6 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	function Update() {
 		//Check whether the container is locked via the menu and update our lock property.
 		UpdateContainerLock();
-		
 		//Check if we have moved the container last step, if not, moving will be false and resizing is allowed.
 		if (x0 == x0_previous && x1 == x1_previous && y0 == y0_previous && y1 == y1_previous) {
 			moving = false;			

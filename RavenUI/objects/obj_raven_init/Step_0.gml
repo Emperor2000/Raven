@@ -24,6 +24,11 @@ if (global.current_size_x != window_get_width() || global.current_size_y != wind
 //todo: remove THEME manager from step event and only update when called.
 
 //Theme Manager
+//generics
+global.gui_status_success = $25de23
+global.gui_status_warning = $2362de;
+global.gui_status_error = $2323de;
+global.gui_status_disabled = $242425;
 switch(THEME) {
 	case THEME.RAVEN:
 		global.gui_background = $2a2a2e;
@@ -35,6 +40,9 @@ switch(THEME) {
 		global.gui_menu_hover = $34292d;
 		global.gui_outline = $1b1b1b;
 		global.gui_checkmark_color = c_lime;
+		
+		//overrides generic
+		global.gui_status_success = $3db360;
 		break;
 	case THEME.DARK:
 		global.gui_background = $2a2a2e;
@@ -48,9 +56,11 @@ switch(THEME) {
 		global.gui_checkmark_color = c_lime;
 		break;
 	case THEME.LIGHT:
-		//lobal.gui_background = $e3e3e3;
-		global.gui_background = $dddbdc;
-		global.gui_menu = $dddbdc;
+		//global.gui_background = $e3e3e3;
+		//global.gui_background = $dddbdc;
+		global.gui_background = $cbcbcb;
+		//global.gui_menu = $dddbdc;
+		global.gui_menu = $cbcbcb;
 		global.gui_text_default = $303030;
 		global.gui_text_primary = $1f1f1f;
 		global.gui_button_border = $272727;

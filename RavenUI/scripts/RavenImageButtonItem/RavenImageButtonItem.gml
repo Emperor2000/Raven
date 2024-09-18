@@ -1,6 +1,6 @@
 //A Raven Item is a page or a function trigger
 ///@Description An item, use false or noone for _on_click if not interactable.
-/// @param {String}  on_click  The object index to be checked against.
+/// @param {Function}  on_click  The object index to be checked against.
 /// @param {Asset.GMSprite}  _sprite  The sprite 
 /// @param {Real}	_margin The margin applied to the top, buttom, left and right of the item.
 /// @param {Real}	_image_x_scale The x scaling of the image, where 1 is the original scale.
@@ -8,7 +8,7 @@
 function RavenImageButtonItem(_on_click, _sprite, _margin = 0, _sprite_xscale = 1, _sprite_yscale = 1) constructor {
 	container_id = undefined;
 	is_enabled = true;
-	if (_on_click == noone || !_on_click)
+	if (_on_click == noone || !_on_click || !_on_click == undefined)
 	    on_click = _on_click;
 	else
 	    on_click = method(self, _on_click); //Note that _on_click expects a function!

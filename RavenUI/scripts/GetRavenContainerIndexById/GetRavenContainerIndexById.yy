@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "GetRavenContainerIndexById",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "scripts",
-    "path": "folders/RavenGUI/scripts.yy",
+  "$GMScript":"v1",
+  "%Name":"GetRavenContainerIndexById",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GetRavenContainerIndexById",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/RavenGUI/scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
