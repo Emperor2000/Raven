@@ -190,6 +190,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 					_select = true;
 					resizing = true;
 					window_set_cursor(cr_size_ns);
+					if (y1 < y0 + container_margin_top*2) y1 = y0 + container_margin_top*2;
 				}
 	        }
 	        // Check if the mouse is within the left edge with the specified margin
@@ -299,8 +300,10 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 				//show_debug_message(item.title);
 		        // Update item's position for VLIST rendering
 		        _item.SetCoords(x0_scaling + _item.margin, _y_current, x1_scaling + _item.margin, _y_current + _item.GetHeight());
-		        // Render the item
-		        _item.Render();
+		        // Render the item if it fits inside the container.
+				if (_item.y1 < y1) {
+					_item.Render();
+				}
 				//show_debug_message("Text should have been rendered at: x0: " + x0_scaling + " y0: " + _y_current + " x1: " + x1_scaling + " y1: " + _y_current);
 		        // Move to the next Y position with separation
 		        _y_current += _item.GetHeight() + _sep;

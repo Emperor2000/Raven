@@ -33,7 +33,6 @@ global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
 #macro GUI_TEXT_FONT_MENU_ 14
 
 #endregion
-
 #region global variables - base
 enum THEME {
 	RAVEN,

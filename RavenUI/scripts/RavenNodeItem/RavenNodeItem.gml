@@ -81,7 +81,6 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		}
 	}
 	
-	
 	///@description		Execute the onclick trigger/event
 	function OnClick() {
 		if (on_click == noone || !on_click) {
