@@ -103,6 +103,38 @@ You can select a few different themes, or easily make your own!
 
 ## Components
 Raven provides a set of components for creating dynamic and responsive GUI's in GameMaker. Components include containers (panels), menuss, checkboxes, text input fields, dropdowns, text fields and much more.
+
+### [V0.9.0]
+- RavenStatusItem: An element used to track the status of an action/result.
+- RavenNodeItem: A connectable element that can interact with another node (receive/transmit data).
+- RavenMultiLineTextInputItem: Similar to the text input item, but allows adding inpt to a multiline field.
+- The RavenTextInputItem is no longer considered experimental; it should work reliably and support several common keyboard operations such as: cut text, copy text, paste text, delete character in front of text and delete backwards.
+Features:
+- Added word wrap seperation.
+- Added panning.
+- Fixed multilinetextItem rendering outside of container bounds.
+- Fixed a number of colours to match and align with global theme.
+- Updated Destroy function to call container's destroy method.
+- Implemented clamping on input item when overflowing over container width.
+- MultilineTextInput now respects the container's bounds.
+- Improved input navigation.
+- Type hinting and format improvements to support Feather type inference.
+- More explanatory function descriptions.
+- Improved error and exception handling.
+
+### [V0.8.0]
+- Internal test build, not published.
+  
+### [V0.7.0]
+- Internal test build, not published.
+
+### [V0.6.0]
+- RavenImageItem: An image/sprite with optional scaling parameters for width and height that can be displayed in a container (no interaction supported).
+
+### [V0.5.0]
+- RavenButtonItem : A button with optional padding and rounded corners that can be displayed in a container.
+- RavenImageButtonItem : A clickable image/sprite with optional scaling parameters for width and height that can be displayed in a container.
+
 ### [V0.4.0]
 - RavenMain : Main component which controls and updates all components in the framework.
 - RavenMenu : A component that you can insert into containers, to give them a menu bar and make them controllable.
@@ -114,12 +146,9 @@ Raven provides a set of components for creating dynamic and responsive GUI's in 
 - RavenCheckboxItem: A simple checkbox item. Shows a string with a checkbox (true or false) value behind it.
 - RavenTextInputItem : An experimental element that allows you to type text into a field. Please note that this item is a work in progress, and may have some unexpected behavior.
 - RavenDropdownItem : An experimental element that allows you to show options in a dropdown, and select an item. Please note that this element may have some unexpected behavior.
-### [V0.5.0]
-- RavenButtonItem : A button with optional padding and rounded corners that can be displayed in a container.
-- RavenImageButtonItem : A clickable image/sprite with optional scaling parameters for width and height that can be displayed in a container.
 
-### [V0.6.0]
-- RavenImageItem: An image/sprite with optional scaling parameters for width and height that can be displayed in a container (no interaction supported).
+
+
 
 
 
