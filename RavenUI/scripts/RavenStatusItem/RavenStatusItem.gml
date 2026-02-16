@@ -182,7 +182,7 @@ function RavenStatusItem(_status_map, _initial_status = undefined, _text= "", _m
 		var _py0 = y0 - padding;
 		var _py1 = y1 + padding;
 		gui_clicking = false;
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), _px0, _py0, _px0+GetWidth(), _py0+GetHeight())) {
+		if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, _px0, _py0, _px0+GetWidth(), _py0+GetHeight())) {
 			hover = true;
 		}
 	}

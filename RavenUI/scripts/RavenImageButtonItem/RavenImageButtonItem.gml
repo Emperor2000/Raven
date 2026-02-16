@@ -77,7 +77,7 @@ function RavenImageButtonItem(_on_click, _sprite, _margin = 0, _sprite_xscale = 
 	
 	function Update() {
 		gui_clicking = false;
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale, y0 + sprite_get_height(sprite)*sprite_yscale)) {
+		if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale, y0 + sprite_get_height(sprite)*sprite_yscale)) {
 			hover = true;
 			
 			//use mouse_check_button for gui responsiveness

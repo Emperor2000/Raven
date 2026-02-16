@@ -180,7 +180,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 			var _select = false;
 			//show_debug_message("select size: " + string(_select_size));
 	        // Check if the mouse is within the bottom edge with the specified margin
-	        if (device_mouse_y_to_gui(0) > (y1 - _select_size) && device_mouse_y_to_gui(0) < (y1 + _select_size) && device_mouse_x_to_gui(0) > (x0 - _select_size) && device_mouse_x_to_gui(0) < (x1 + _select_size)) || resizing {
+	        if (global.canvas_mouse_y > (y1 - _select_size) && global.canvas_mouse_y < (y1 + _select_size) && global.canvas_mouse_x > (x0 - _select_size) && global.canvas_mouse_x < (x1 + _select_size)) || resizing {
 				//Hovering the bottom edge
 				window_set_cursor(cr_size_ns);
 				if (_action_pressed && !lock) {
@@ -195,13 +195,13 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 	        }
 	        // Check if the mouse is within the left edge with the specified margin
 			
-	        if (device_mouse_x_to_gui(0) > (x0 - _select_size) && device_mouse_x_to_gui(0) < (x0 + _select_size) && device_mouse_y_to_gui(0) > (y0 - _select_size) && device_mouse_y_to_gui(0) < (y1 + _select_size)) || resizing_left {
+	        if (global.canvas_mouse_x > (x0 - _select_size) && global.canvas_mouse_x < (x0 + _select_size) && global.canvas_mouse_y > (y0 - _select_size) && global.canvas_mouse_y < (y1 + _select_size)) || resizing_left {
 				//Hovering the left edge
 				window_set_cursor(cr_size_we);
 				if (_action_pressed && !lock) {
 	            // Resizing the left edge
 				//check that the mouse is at least the minimum container size removed from the left edge of the container (x0)
-				if (device_mouse_x_to_gui(0) < x1 - minimum_container_size) {
+				if (global.canvas_mouse_x < x1 - minimum_container_size) {
 					x0 += global.mouse_x_diff;
 				}
 	            global.raven_occupied = self;
@@ -211,13 +211,13 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 				}
 	        }
 	        // Check if the mouse is within the right edge with the specified margin
-	        if (device_mouse_x_to_gui(0) > (x1 - _select_size) && (device_mouse_x_to_gui(0) < x1 + _select_size) && device_mouse_y_to_gui(0) > (y0 - _select_size) && device_mouse_y_to_gui(0) < (y1 + _select_size)) || resizing_right {
+	        if (global.canvas_mouse_x > (x1 - _select_size) && (global.canvas_mouse_x < x1 + _select_size) && global.canvas_mouse_y > (y0 - _select_size) && global.canvas_mouse_y < (y1 + _select_size)) || resizing_right {
 				//Hovering the right edge
 				window_set_cursor(cr_size_we);
 				if (_action_pressed && !lock) {
 	            // Resizing the right edge
 				//check that the mouse is at least the minimum container size removed from the right edge of the container (x1)
-				if (device_mouse_x_to_gui(0) > x0 + minimum_container_size) {
+				if (global.canvas_mouse_x > x0 + minimum_container_size) {
 					x1 += global.mouse_x_diff;
 				}
 	            global.raven_occupied = self;
@@ -344,7 +344,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 			
 			//menu properties - check lock
 			//check if hovering over lock icon
-			if (device_mouse_x_to_gui(0) >= menu.lock_icon_x0 && device_mouse_x_to_gui(0) <= menu.lock_icon_x1 && device_mouse_y_to_gui(0) >= menu.lock_icon_y0 && device_mouse_y_to_gui(0) <= menu.lock_icon_y1) {
+			if (global.canvas_mouse_x >= menu.lock_icon_x0 && global.canvas_mouse_x <= menu.lock_icon_x1 && global.canvas_mouse_y >= menu.lock_icon_y0 && global.canvas_mouse_y <= menu.lock_icon_y1) {
 				//if clicking
 				if (mouse_check_button_pressed(mb_left)) {
 					//change lock 

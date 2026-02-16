@@ -114,7 +114,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	        _dropdown_y1 = _dropdown_y0 + GetDropdownItemHeight() + GetDropdownItemHeight() * ds_list_size(options) + margin; // Adjusted height
 	    }
 
-	    if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, _dropdown_x1, _dropdown_y1)) {
+	    if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, y0, _dropdown_x1, _dropdown_y1)) {
 	        hover = true;
 
 	        if (mouse_check_button_pressed(mb_left)) {
@@ -126,7 +126,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	        hover = false;
 	    }
 
-	    if (clicking && point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, _dropdown_x1, y0 + GetDropdownItemHeight())) {
+	    if (clicking && point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, y0, _dropdown_x1, y0 + GetDropdownItemHeight())) {
 	        Toggle();
 	        clicking = false;
 	    }
@@ -138,7 +138,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	            var _item_y = _dropdown_y0 + (_i + 1) * GetSpecificDropdownItemHeight(_i) * 1.5; // Adjusted position
 	            var _item_height = GetDropdownItemHeight();
 
-	            if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, _item_y, _dropdown_x1, _item_y + _item_height)) {
+	            if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, _item_y, _dropdown_x1, _item_y + _item_height)) {
 	                hover = true;
 
 	                if (mouse_check_button_pressed(mb_left)) {
@@ -186,7 +186,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 	            var _item_height = GetDropdownItemHeight();
 
 	            // Check if mouse is over the item
-	            var _is_mouse_over = point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, _item_y, x0 + GetDropdownWidth(), _item_y + _item_height);
+	            var _is_mouse_over = point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, _item_y, x0 + GetDropdownWidth(), _item_y + _item_height);
 
 	            // Draw highlighted item on hover
 	            if (_is_mouse_over) {
@@ -260,7 +260,7 @@ function RavenDropdownItem(_text, _options = undefined, _margin = 16, _font = fn
 		return string_height(ds_list_find_value(options, _i)) * 1.5;
 	}
 
-    function GetValue() {
+    function GetSelectedValue() {
         if (selected_item_index >= 0 && selected_item_index < ds_list_size(options)) {
             return ds_list_find_value(options, selected_item_index);
         } else {

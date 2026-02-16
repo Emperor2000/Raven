@@ -112,8 +112,8 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 		}
 		
         if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), container_x0, container_y0, container_x1, y1)) {
-			//show_debug_message("mouse x: " + string(device_mouse_x_to_gui(0)));
-			//show_debug_message("mouse y: " + string(device_mouse_y_to_gui(0)));
+			//show_debug_message("mouse x: " + string(global.canvas_mouse_x));
+			//show_debug_message("mouse y: " + string(global.canvas_mouse_y));
 			//show_debug_message("x0: " + string(x0));
 			//show_debug_message("x1: " + string(x1));
 			//show_debug_message("y0: " + string(y0));

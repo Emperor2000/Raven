@@ -1,8 +1,8 @@
 {
-  "$GMProject":"",
+  "$GMProject":"v1",
   "%Name":"RavenUI",
   "AudioGroups":[
-    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -32,11 +32,12 @@
     {"$GMFolder":"","%Name":"Tile Sets","folderPath":"folders/Tile Sets.yy","name":"Tile Sets","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
+  "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.8.1.171",
+    "IDEVersion":"2024.14.3.217",
   },
   "name":"RavenUI",
   "resources":[
@@ -50,6 +51,7 @@
     {"id":{"name":"obj_raven_init","path":"objects/obj_raven_init/obj_raven_init.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
+    {"id":{"name":"CanvasZoom","path":"scripts/CanvasZoom/CanvasZoom.yy",},},
     {"id":{"name":"CreateRavenGUID","path":"scripts/CreateRavenGUID/CreateRavenGUID.yy",},},
     {"id":{"name":"DestroyRavenContainerById","path":"scripts/DestroyRavenContainerById/DestroyRavenContainerById.yy",},},
     {"id":{"name":"DrawCurve","path":"scripts/DrawCurve/DrawCurve.yy",},},

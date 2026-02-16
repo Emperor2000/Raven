@@ -79,7 +79,7 @@ function RavenTextItem(_text, _on_click, _margin, _font, _color = undefined) : R
 	
     function Update() {
         gui_clicking = false;
-        if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x1, y1)) {
+        if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, y0, x1, y1)) {
             hover = true;
 
             if (mouse_check_button(mb_left)) {

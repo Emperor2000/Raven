@@ -2,6 +2,8 @@
 
 
 //determine x and y diff from last frame
+//global.mouse_x_diff = global.canvas_mouse_x - mouse_x_previous;
+//global.mouse_y_diff = global.canvas_mouse_y - mouse_y_previous;
 global.mouse_x_diff = device_mouse_x_to_gui(0) - mouse_x_previous;
 global.mouse_y_diff = device_mouse_y_to_gui(0) - mouse_y_previous;
 
@@ -11,8 +13,32 @@ global.mouse_y_diff = device_mouse_y_to_gui(0) - mouse_y_previous;
 
 
 //store previous x and y
+//mouse_x_previous = global.canvas_mouse_x;
+//mouse_y_previous = global.canvas_mouse_y;
 mouse_x_previous = device_mouse_x_to_gui(0);
 mouse_y_previous = device_mouse_y_to_gui(0);
 
 //reset cursor
 //window_set_cursor(cr_default);
+
+//#region zooming
+//var _scroll = mouse_wheel_up() - mouse_wheel_down();
+//if (_scroll != 0) {
+//    var _origin_x = (device_mouse_x_to_gui(0) - canvas_offset_x) / canvas_zoom;
+//    var _origin_y = (device_mouse_y_to_gui(0) - canvas_offset_y) / canvas_zoom;
+//    CanvasZoom(_scroll * canvas_zoom_step, _origin_x, _origin_y);
+//}
+//#endregion
+#region zooming
+var _scroll = mouse_wheel_up() - mouse_wheel_down();
+if (_scroll != 0) {
+    var _origin_x = (device_mouse_x_to_gui(0) - canvas_offset_x) / canvas_zoom;
+    var _origin_y = (device_mouse_y_to_gui(0) - canvas_offset_y) / canvas_zoom;
+    CanvasZoom(_scroll * canvas_zoom_step, _origin_x, _origin_y);
+}
+#endregion
+
+#region canvas matrix mouse tracking
+global.canvas_mouse_x = (device_mouse_x_to_gui(0) - canvas_offset_x) / canvas_zoom;
+global.canvas_mouse_y = (device_mouse_y_to_gui(0) - canvas_offset_y) / canvas_zoom;
+#endregion

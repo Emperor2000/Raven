@@ -133,7 +133,7 @@ function RavenMultilineTextInputItem(_text, _on_click = undefined, _margin = 16,
     // Update method with input handling and cursor blinking
     function Update() {
 		GetContainerBounds();
-        hover = point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x1, y1);
+        hover = point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, y0, x1, y1);
 		//show_debug_message(hover);
         if (hover && !active && !lock_trigger && mouse_check_button_pressed(mb_left)) {
             StartInput();

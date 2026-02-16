@@ -1,7 +1,7 @@
 /// @description Handler init
 
 #region mouse coordinate spaces
-mouse_x_previous = device_mouse_x_to_gui(0);
+mouse_x_previous = global.canvas_mouse_x;
 mouse_y_previous = mouse_y;
 global.mouse_x_diff = 0;
 global.mouse_y_diff = 0;
@@ -30,4 +30,20 @@ new_interactions_locked_duration_in_frames_remaining = 0;
 function lock_new_interactions(_duration) {
 	is_new_interactions_locked = true;
 	new_interactions_locked_duration_in_frames_remaining = 3;
+}
+
+#region zooming 
+canvas_zoom = 1.0;
+canvas_zoom_min = 0.25;
+canvas_zoom_max = 4.0;
+canvas_zoom_step = 0.1;
+canvas_offset_x = 0;
+canvas_offset_y = 0;
+#endregion
+
+function canvas_mouse_x() {
+    return (global.canvas_mouse_x - canvas_offset_x) / canvas_zoom;
+}
+function canvas_mouse_y() {
+    return (global.canvas_mouse_y - canvas_offset_y) / canvas_zoom;
 }

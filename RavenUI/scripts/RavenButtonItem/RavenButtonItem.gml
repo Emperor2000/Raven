@@ -95,7 +95,7 @@ function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_ra
 		var _py0 = y0 - padding;
 		var _py1 = y1 + padding;
 		gui_clicking = false;
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), _px0, _py0, _px0+GetWidth(), _py0+GetHeight())) {
+		if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, _px0, _py0, _px0+GetWidth(), _py0+GetHeight())) {
 			hover = true;
 			
 			//use mouse_check_button for gui responsiveness
@@ -128,7 +128,7 @@ function RavenButtonItem(_text, _on_click, _margin = 0, _padding = 2, _border_ra
 		draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
 		draw_set_color(global.gui_text_default);
 
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0),_px0,_py0,_px0+GetWidth(),_py1)) {
+		if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y,_px0,_py0,_px0+GetWidth(),_py1)) {
 			draw_set_color(global.gui_menu_hover);
 			draw_roundrect_ext(_px0,_py0,_px0+GetWidth(),_py1, border_radius, border_radius, false);
 			

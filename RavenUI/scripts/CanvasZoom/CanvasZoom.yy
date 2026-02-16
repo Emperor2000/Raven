@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"CanvasZoom",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"CanvasZoom",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/RavenGUI/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

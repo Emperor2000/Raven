@@ -1,5 +1,8 @@
 // Init
+global.canvas_mouse_x = 0;
+global.canvas_mouse_y = 0;
 global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
+
 #region Macros
 // Dark THEME - macros not directly used, but simply serve as data store for THEME manager
 #macro GUI_DARK_BACKGROUND $2a2a2e
@@ -33,6 +36,7 @@ global.handler = instance_create_depth(x,y,depth, obj_raven_handler);
 #macro GUI_TEXT_FONT_MENU_ 14
 
 #endregion
+
 #region global variables - base
 enum THEME {
 	RAVEN,
@@ -74,6 +78,7 @@ global.gui_depth_index = 0; //auto increment id, currently unused. TODO
 
 global.experimental_features = false; //Enables some experimental features in the framework. These functionalities may be untested or still contain bugs!
 global.preview_features = true; //Enables preview features in the framework, more thoroughly tested than experimental features, but may be overhauled or altered.
+
 
 #endregion
 
@@ -153,6 +158,7 @@ _subcontainer.SetMenuBoundByContainer(true);
 //_subcontainer.AddItem(new RavenTextItem("This is a TextField",undefined,16, fnt_dsansmono16));
 _subcontainer.AddItem(new RavenTextItem("Input:",undefined,16,fnt_dsansmono16));
 _subcontainer.AddItem(new RavenTextInputItem("...", undefined, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
+//_subcontainer.AddItem(new RavenMultilineTextInputItem("The...", noone, 16, fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT, GUI_RAVEN_TEXT_DEFAULT));
 //subcontainer.AddItem(new RavenMultilineTextItem("Let's write an entire section. This code should be shifted to the next line as soon as it overflows!",0,16,fnt_dsansmono16, GUI_RAVEN_TEXT_DEFAULT));
 //_subcontainer.AddItem(new RavenTextItem("",undefined,16,fnt_dsansmono16));
 //_subcontainer.AddItem(new RavenTextItem("",undefined,16,fnt_dsansmono16));
@@ -176,9 +182,9 @@ node_input_function_example = function() {
 node_output_function_example = function() {
 	show_debug_message("Output");	
 }
-var _node = new RavenNodeItem(node_on_click_example, node_input_function_example, node_output_function_example, 235, spr_node, spr_node_white_fill, 2, 2);
-_node.SetCoords(_node.x0 + 200, _node.y0, _node.x1 + 200, _node.y1);
-_subcontainer.AddItem(_node);
+//var _node = new RavenNodeItem(node_on_click_example, node_input_function_example, node_output_function_example, 235, spr_node, spr_node_white_fill, 2, 2);
+//_node.SetCoords(_node.x0 + 460, _node.y0, _node.x1 + 46, _node.y1 + 50);
+//_subcontainer.AddItem(_node);
 var _map = ds_map_create();
 ds_map_add(_map, GUI_STATUS.SUCCESS, "approved");
 ds_map_add(_map, GUI_STATUS.WARNING, "warning");

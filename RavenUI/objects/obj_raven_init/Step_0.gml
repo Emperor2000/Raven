@@ -103,8 +103,3 @@ switch(THEME) {
 		global.gui_checkmark_color = c_lime;
 		break;
 }
-
-
-
-
-	

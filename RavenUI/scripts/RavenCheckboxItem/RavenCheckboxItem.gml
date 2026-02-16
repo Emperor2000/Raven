@@ -64,7 +64,7 @@ function RavenCheckboxItem(_text, _on_click = undefined, _margin = 16, _font = f
 
     function Update() {
         gui_clicking = false;
-        if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), rectangle_x0, rectangle_y0, rectangle_x1, rectangle_y1)) {
+        if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, rectangle_x0, rectangle_y0, rectangle_x1, rectangle_y1)) {
             hover = true;
             if (mouse_check_button_pressed(mb_left)) {
                 clicking = true;
@@ -75,7 +75,7 @@ function RavenCheckboxItem(_text, _on_click = undefined, _margin = 16, _font = f
             hover = false;
         }
 
-        if (clicking && point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), rectangle_x0, rectangle_y0, rectangle_x1, rectangle_y1)) {
+        if (clicking && point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, rectangle_x0, rectangle_y0, rectangle_x1, rectangle_y1)) {
             ToggleValue();
             clicking = false; // Reset clicking state after handling the click
         }

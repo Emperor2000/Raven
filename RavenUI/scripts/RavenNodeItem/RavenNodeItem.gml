@@ -210,7 +210,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 			}
 			
 		
-		if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale + select_padding, y0 + sprite_get_height(sprite)*sprite_yscale + select_padding)) {
+		if (point_in_rectangle(global.canvas_mouse_x, global.canvas_mouse_y, x0, y0, x0 + sprite_get_width(sprite)*sprite_xscale + select_padding, y0 + sprite_get_height(sprite)*sprite_yscale + select_padding)) {
 			hover = true;
 			
 			
@@ -237,7 +237,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		//release drag --> this is where we check for the object and connect the node.
 		if (bind_toggled_last_frame && !mouse_check_button(mb_left)) {
 			//check if there is a node at the target position.
-			var _obj = instance_position(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), obj_node);
+			var _obj = instance_position(global.canvas_mouse_x, global.canvas_mouse_y, obj_node);
 			show_debug_message("INSTANCE POSITION FOUND");
 			show_debug_message(_obj);
 			if (_obj != undefined && _obj != noone && _obj != node_object_representation) {
@@ -276,7 +276,7 @@ function RavenNodeItem(_on_click, _on_connect_input, _on_connect_output, _margin
 		}
 		
 		if (bind_mode) {
-			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), 300, 1, global.gui_text_primary, 2);	
+			draw_sinus_curve(x0 + GetWidth() / 2, y0 + GetHeight() / 2, global.canvas_mouse_x, global.canvas_mouse_y, 300, 1, global.gui_text_primary, 2);	
 			bind_toggled_last_frame = true;
 			global.handler.lock_new_interactions(5);
 		}
