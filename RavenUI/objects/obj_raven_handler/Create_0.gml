@@ -41,6 +41,14 @@ canvas_offset_x = 0;
 canvas_offset_y = 0;
 #endregion
 
+#region zoom indicator
+zoom_indicator_alpha = 1;
+zoom_indicator_fade_delay = 120;
+zoom_indicator_timer = zoom_indicator_fade_delay;
+canvas_zoom_previous = -1;
+
+#endregion
+
 function canvas_mouse_x() {
     return (global.canvas_mouse_x - canvas_offset_x) / canvas_zoom;
 }

@@ -358,7 +358,7 @@ function RavenContainer(_x0, _y0, _x1, _y1, _scaling, _outline, _render_mode = G
 			
 			if (menu.is_dragging) {
 				//container moving
-				Move(global.mouse_x_diff,global.mouse_y_diff);	
+				Move(global.mouse_x_diff / global.handler.canvas_zoom, global.mouse_y_diff / global.handler.canvas_zoom);	
 			
 			}
 			menu.Update();

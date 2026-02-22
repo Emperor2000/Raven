@@ -42,3 +42,18 @@ if (_scroll != 0) {
 global.canvas_mouse_x = (device_mouse_x_to_gui(0) - canvas_offset_x) / canvas_zoom;
 global.canvas_mouse_y = (device_mouse_y_to_gui(0) - canvas_offset_y) / canvas_zoom;
 #endregion
+
+
+#region zoom indicator visibility
+if (canvas_zoom != canvas_zoom_previous) {
+    zoom_indicator_alpha = 1;
+    zoom_indicator_timer = zoom_indicator_fade_delay;
+}
+canvas_zoom_previous = canvas_zoom;
+
+if (zoom_indicator_timer > 0) {
+    zoom_indicator_timer--;
+} else {
+    zoom_indicator_alpha = max(0, zoom_indicator_alpha - 0.02); // gentle fade
+}
+#endregion

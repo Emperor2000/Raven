@@ -47,6 +47,7 @@
     {"id":{"name":"fnt_dsansmono16","path":"fonts/fnt_dsansmono16/fnt_dsansmono16.yy",},},
     {"id":{"name":"fnt_dsansmono32","path":"fonts/fnt_dsansmono32/fnt_dsansmono32.yy",},},
     {"id":{"name":"obj_node","path":"objects/obj_node/obj_node.yy",},},
+    {"id":{"name":"obj_raven_app_controller","path":"objects/obj_raven_app_controller/obj_raven_app_controller.yy",},},
     {"id":{"name":"obj_raven_handler","path":"objects/obj_raven_handler/obj_raven_handler.yy",},},
     {"id":{"name":"obj_raven_init","path":"objects/obj_raven_init/obj_raven_init.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},

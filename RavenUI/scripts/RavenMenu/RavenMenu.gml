@@ -110,8 +110,13 @@ function RavenMenu(_x, _y, _item_width, _height, _margin, _font = fnt_bookshelf)
 				is_dragging = false;
 			}
 		}
-		
-        if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), container_x0, container_y0, container_x1, y1)) {
+		var _loc_x = device_mouse_x_to_gui(0)
+		var _loc_y = device_mouse_y_to_gui(0)
+		if (is_bound_by_container) {
+			_loc_x = global.canvas_mouse_x;
+			_loc_y = global.canvas_mouse_y;
+		}
+        if (point_in_rectangle(_loc_x, _loc_y, container_x0, container_y0, container_x1, y1)) {
 			//show_debug_message("mouse x: " + string(global.canvas_mouse_x));
 			//show_debug_message("mouse y: " + string(global.canvas_mouse_y));
 			//show_debug_message("x0: " + string(x0));

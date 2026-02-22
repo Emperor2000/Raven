@@ -42,6 +42,7 @@ enum THEME {
 	RAVEN,
 	DARK,
 	LIGHT,
+	DOVE,
 	DARKMIN,
 	APPLE,
 	COFFEE
@@ -241,3 +242,7 @@ enum GUI_STATUS {
 	WARNING,
 	DISABLED
 }
+
+
+controller = instance_create_layer(x,y,self.layer,obj_raven_app_controller);
+controller.depth = -9999;

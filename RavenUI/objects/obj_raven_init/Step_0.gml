@@ -69,6 +69,17 @@ switch(THEME) {
 		global.gui_outline = $171718;
 		global.gui_checkmark_color = c_lime;
 		break;
+	case THEME.DOVE:
+	    global.gui_background = $f5f0e8
+	    global.gui_menu = $ede6d9;
+	    global.gui_text_default = $3d2e35;
+	    global.gui_text_primary = $5c4350;
+	    global.gui_button_border = $c9b8be;
+	    global.gui_menu_click = $d9c4bb;
+	    global.gui_menu_hover = $e8ddd5;
+	    global.gui_outline = $c5b8af;
+	    global.gui_checkmark_color = $7a9e6e;
+		break;
 	case THEME.DARKMIN:
 		//not implemented
 		global.gui_background = GUI_DARK_BACKGROUND;

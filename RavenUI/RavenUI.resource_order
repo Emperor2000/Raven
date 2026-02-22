@@ -27,6 +27,7 @@
     {"name":"fnt_dsansmono16","order":3,"path":"fonts/fnt_dsansmono16/fnt_dsansmono16.yy",},
     {"name":"fnt_dsansmono32","order":4,"path":"fonts/fnt_dsansmono32/fnt_dsansmono32.yy",},
     {"name":"obj_node","order":2,"path":"objects/obj_node/obj_node.yy",},
+    {"name":"obj_raven_app_controller","order":3,"path":"objects/obj_raven_app_controller/obj_raven_app_controller.yy",},
     {"name":"obj_raven_init","order":1,"path":"objects/obj_raven_init/obj_raven_init.yy",},
     {"name":"Room1","order":12,"path":"rooms/Room1/Room1.yy",},
     {"name":"Room3","order":1,"path":"rooms/Room3/Room3.yy",},
